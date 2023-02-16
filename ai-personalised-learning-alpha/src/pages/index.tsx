@@ -21,7 +21,8 @@ const Home: NextPage = () => {
             Hello World
           </h1>
 
-          <h2 className="text-white font-extrabold">This is a new creation</h2>
+          <h2 className="font-extrabold text-white">This is a new creation</h2>
+          <h3 className="font-bold text-white"> Testing git pull</h3>
         </div>
       </main>
     </>
