@@ -20,6 +20,8 @@ const Home: NextPage = () => {
           <h1 className="text-5xl font-extrabold tracking-tight text-white sm:text-[5rem]">
             Hello World
           </h1>
+
+          <h2 className="text-white font-extrabold">This is a new creation</h2>
         </div>
       </main>
     </>
