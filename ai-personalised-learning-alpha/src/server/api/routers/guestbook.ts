@@ -1,4 +1,5 @@
 // src/server/api/routers/guestbook.ts
+
 import { z } from "zod";
 import { createTRPCRouter, protectedProcedure, publicProcedure } from "../trpc";
 
@@ -15,7 +16,21 @@ export const guestbookRouter = createTRPCRouter({
         },
       });
     } catch (error) {
-      console.log("error", error);
+      console.log(error);
     }
   }),
+  postMessage: protectedProcedure
+    .input(z.object({ name: z.string(), message: z.string() }))
+    .mutation(async ({ ctx, input }) => {
+      try {
+        await ctx.prisma.guestbook.create({
+          data: {
+            name: input.name,
+            message: input.message,
+          },
+        });
+      } catch (error) {
+        console.log(error);
+      }
+    }),
 });
