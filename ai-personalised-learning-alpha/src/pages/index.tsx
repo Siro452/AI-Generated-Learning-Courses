@@ -23,6 +23,8 @@ const Home: NextPage = () => {
 
           <h2 className="font-extrabold text-white">This is a new creation</h2>
           <h3 className="font-bold text-white"> Testing git pull</h3>
+
+          <p className="text-white">This means that Jordans test of the deployment has come through</p>
         </div>
       </main>
     </>
