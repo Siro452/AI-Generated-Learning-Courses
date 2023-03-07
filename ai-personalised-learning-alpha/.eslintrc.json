@@ -22,26 +22,24 @@
 // }
 
 {
-  "overrides"; [
+  "overrides": [
     {
       "extends": [
         "plugin:@typescript-eslint/recommended-requiring-type-checking"
       ],
       "files": ["*.ts", "*.tsx"],
       "parserOptions": {
-        "project": "./tsconfig.json",
-        "tsconfigRootDir" : "__dirname"
+        "project": "./tsconfig.json"
       }
     }
   ],
-  "parser"; "@typescript-eslint/parser",
-  "parserOptions"; {
-    "project"; "./tsconfig.json",
-    "tsconfigRootDir"; "__dirname"
-  }
-  "plugins"; ["@typescript-eslint"],
-  "extends"; ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
-  "rules"; {
-    "@typescript-eslint/consistent-type-imports"; "warn"
+  "parser": "@typescript-eslint/parser",
+  "parserOptions": {
+    "tsconfigRootDir": "./"
+  },
+  "plugins": ["@typescript-eslint"],
+  "extends": ["next/core-web-vitals", "plugin:@typescript-eslint/recommended"],
+  "rules": {
+    "@typescript-eslint/consistent-type-imports": "warn"
   }
 }
