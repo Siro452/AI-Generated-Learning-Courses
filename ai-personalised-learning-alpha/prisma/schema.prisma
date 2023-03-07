@@ -84,3 +84,10 @@ model LearningModel {
     eventStatus         String   @db.VarChar(250)
     eventDate           DateTime
 }
+
+model clientdb {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    name      String
+    message   String   @db.VarChar(100)
+}
