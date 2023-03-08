@@ -24,8 +24,7 @@ const Home: NextPage = () => {
             Welcome the Dacreed AI Learning Content Creator prototype
           </h1>
           <div className="flex justify-end">
-            <Button text="Jordan Protype" href="/jordanprototype"></Button>
-
+            <Button text="Jordan Prototype" href="/Jordanprototype" />
             <Button text="Nick Prototype" href="/inputuser" />
           </div>
         </div>
