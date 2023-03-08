@@ -1,0 +1,5 @@
+{
+  "devDependencies": {
+    "@next/eslint-plugin-next": "^13.2.3"
+  }
+}
