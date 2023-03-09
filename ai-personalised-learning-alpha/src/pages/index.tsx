@@ -4,7 +4,7 @@ import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import { api } from "../utils/api";
-import Button from "../Components/button";
+import Button from "../components/button";
 
 const Home: NextPage = () => {
   return (
@@ -16,17 +16,19 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center font-sans ">
         <div className="container flex flex-col justify-center gap-12 px-4 py-16 ">
-          <img
-            src="https://www.dacreed.com/static/Dacreed-logo-dark-f80888dcbd37d98ef1c3c84aabb5c049.png"
-            className="h-1/2 w-1/2 items-start"
-          ></img>
           <h1 className="items-start text-5xl  tracking-tight sm:text-[5rem]">
-            Welcome the Dacreed AI Learning Content Creator prototype
+            Welcome to <br />{" "}
+            <img
+              src="https://www.dacreed.com/static/Dacreed-logo-dark-f80888dcbd37d98ef1c3c84aabb5c049.png"
+              className="h-1/2 w-1/2 items-start"
+            ></img>{" "}
+            <br />
+            AI Learning Content Creator Prototype
           </h1>
           <div className="flex justify-end">
             <Button text="Jordan Protype" href="/jordanprototype"></Button>
 
-            <Button text="Nick Prototype" href="/inputuser" />
+            <Button text="Nick Prototype" href="/nickprototype/inputuser" />
           </div>
         </div>
       </main>

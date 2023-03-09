@@ -13,7 +13,7 @@ datasource db {
     // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
     // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
     url      = env("DATABASE_URL")
-    relationMode = "prisma"
+    
    
 }
 
@@ -68,19 +68,37 @@ datasource db {
 //     @@unique([identifier, token])
 // }
 
-model Guestbook {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
-    name      String
-    message   String   @db.VarChar(100)
-}
+// model Guestbook {
+//     id        String   @id @default(cuid())
+//     createdAt DateTime @default(now())
+//     name      String
+//     message   String   @db.VarChar(100)
+// }
 
 model LearningModel {
     id                  String   @id @default(cuid())
     createdAt           DateTime @default(now())
+    userid              String   @unique
     sessionID           String   @unique
+    eventID             String   @unique
+    event               Event    @relation(fields: [eventID], references: [id], onDelete: Cascade)     
+}
+
+
+model Event {
+    id                  String   @unique
+    createdAt           DateTime @default(now())
     eventType           String   @db.VarChar(32)   
     eventDescription    String   @db.VarChar(250)
     eventStatus         String   @db.VarChar(250)
-    eventDate           DateTime
+    eventDate           DateTime  @default(now())
+    learningmodels      LearningModel[]
+}
+
+
+model clientdb {
+    id        String   @id @default(cuid())
+    createdAt DateTime @default(now())
+    name      String
+    message   String   @db.VarChar(100)
 }
