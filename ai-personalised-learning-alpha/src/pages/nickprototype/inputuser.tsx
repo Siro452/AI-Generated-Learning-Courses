@@ -1,6 +1,6 @@
 import { api } from "../../utils/api";
 import { useState } from "react";
-import Button from "../../components/button";
+import Button from "../../Components/button";
 import { nanoid } from "nanoid";
 import Link from "next/link";
 
