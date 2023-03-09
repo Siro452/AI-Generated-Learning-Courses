@@ -91,7 +91,7 @@ model Event {
     eventType           String   @db.VarChar(32)   
     eventDescription    String   @db.VarChar(250)
     eventStatus         String   @db.VarChar(250)
-    eventDate           DateTime  @default(now())
+    eventDate           DateTime @default(now())
     learningmodels      LearningModel[]
 }
 
