@@ -1,19 +1,19 @@
 import { api } from "../../utils/api";
 import { useState } from "react";
-import Button from "../../Components/button";
+import Button from "../../components/button";
 import { nanoid } from "nanoid";
 import Link from "next/link";
 
 export default function InputUser() {
-  const [name, setName] = useState("");
+  // const [name, setName] = useState("");
 
   // const createUser = api.createUser.createUser.useMutation({});
-  // const createEvent = api.createUser.createEvent.useMutation({});
+  // const createEvent = api.createEvent.createEvent.useMutation({});
 
   // async function handleSubmit(e: any) {
   //   e.preventDefault();
   //   await createUser.mutateAsync({
-  //     username: name,
+  //     userid: name,
   //     sessionID: nanoid(),
   //     eventID: nanoid(),
   //   });

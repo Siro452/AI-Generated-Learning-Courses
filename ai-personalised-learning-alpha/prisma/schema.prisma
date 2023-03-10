@@ -75,13 +75,12 @@ datasource db {
 //     message   String   @db.VarChar(100)
 // }
 
-model LearningModel {
+model UserSession {
     id                  String   @id @default(cuid())
     createdAt           DateTime @default(now())
     userid              String   @unique
     sessionID           String   @unique
-    eventID             String   @unique
-    event               Event    @relation(fields: [eventID], references: [id], onDelete: Cascade)     
+    event               Event    @relation(fields: [sessionID], references: [id], onDelete: Cascade)     
 }
 
 
@@ -92,7 +91,7 @@ model Event {
     eventDescription    String   @db.VarChar(250)
     eventStatus         String   @db.VarChar(250)
     eventDate           DateTime @default(now())
-    learningmodels      LearningModel[]
+    userSession         UserSession[]
 }
 
 
