@@ -28,7 +28,7 @@ const Home: NextPage = () => {
           </h1>
           <div className="flex justify-end">
             <Button text="Jordan Prototype" href="/jordanprototype" />
-            <Button text="Nick Prototype" href="/inputuser" />
+            <Button text="Nick Prototype" href="/nickprototype/inputuser" />
           </div>
         </div>
       </main>
