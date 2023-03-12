@@ -6,8 +6,6 @@ import changeToUpper from "./changeToUpperCase";
 import filterLinks from './filterLinks&em';
 // Modification of Data imports
 
-import { prismatestRouter } from "./prismatest";
-import { clientdb } from "@prisma/client";
 
 
 export const receivedData = t.router({
