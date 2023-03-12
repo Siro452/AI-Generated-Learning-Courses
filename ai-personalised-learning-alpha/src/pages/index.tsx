@@ -4,7 +4,7 @@ import Link from "next/link";
 import { signIn, signOut, useSession } from "next-auth/react";
 
 import { api } from "../utils/api";
-import Button from "../Components/button";
+import Button from "../components/button";
 
 const Home: NextPage = () => {
   return (
@@ -24,7 +24,7 @@ const Home: NextPage = () => {
             Welcome the Dacreed AI Learning Content Creator prototype
           </h1>
           <div className="flex justify-end">
-            <Button text="Jordan Prototype" href="/Jordanprototype" />
+            <Button text="Jordan Prototype" href="/jordanprototype" />
             <Button text="Nick Prototype" href="/inputuser" />
           </div>
         </div>

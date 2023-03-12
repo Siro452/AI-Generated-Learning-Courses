@@ -1,35 +1,37 @@
-import { api } from '../utils/api';
-import { useState } from 'react';
-import { string } from 'zod';
-import { useMutation } from '@tanstack/react-query';
-import React from 'react';
+import { api } from "../utils/api";
+import { useState } from "react";
+import { string } from "zod";
+import { useMutation } from "@tanstack/react-query";
+import React from "react";
 // import { api } from '../utils/api';
 export default function DataHandler() {
   // const { data, error, isLoading } = await api.receivedData.mutateData.useMutation({ clientData });
 
-  // const [response, setResponse] = useState<{id: string, name: string, message: string, createdAt: Date}>();
+  // const [response, setResponse] = useState<{
+  //   id: string;
+  //   name: string;
+  //   message: string;
+  //   createdAt: Date;
+  // }>();
+  
   const [response, setResponse] = useState<{name: string}>();
-  const mutation = api.receivedData.mutateData.useMutation()
+  const mutation = api.receivedData.mutateData.useMutation();
   const [clientData, setClientData] = useState<string>("");
-
-
 
   const mutateData = api.receivedData.mutateData.useMutation({
     onSuccess(clientData) {
-      clientData
+      clientData;
     },
   });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const response = await mutateData.mutateAsync({clientData})
+    const response = await mutateData.mutateAsync({ clientData });
 
-    console.log(response, "response has been returned.")
+    console.log(response, "response has been returned.");
     setClientData("");
-    setResponse(response.concat)
+    setResponse(response);
   };
-
-
 
   //
   return (
@@ -45,7 +47,7 @@ export default function DataHandler() {
         />
         <button type="submit">Submit</button>
       </form>
-      {mutation.isLoading && <p className='border 	my-1.5 pl-20'>Loading...</p>}
+      {mutation.isLoading && <p className="my-1.5 	border pl-20">Loading...</p>}
       {mutation.error && <p>Error: {mutation.error.message}</p>}
       {response && <p>{JSON.stringify(response)}</p>}
 
@@ -55,11 +57,11 @@ export default function DataHandler() {
 }
 
 const styles = {
-  width: '100vw',
-  height: '100vh',
-  display: 'flex',
-  justifyContent: 'center',
-  alignItems: 'center',
-  textColor: 'white',
-  background: 'white'
+  width: "100vw",
+  height: "100vh",
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  textColor: "white",
+  background: "white",
 };
