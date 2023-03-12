@@ -14,14 +14,12 @@ export default function DataHandler() {
   //   createdAt: Date;
   // }>();
   
-  const [response, setResponse] = useState<{name: string}>();
+  const [response, setResponse] = useState<string>();
   const mutation = api.receivedData.mutateData.useMutation();
   const [clientData, setClientData] = useState<string>("");
 
   const mutateData = api.receivedData.mutateData.useMutation({
-    onSuccess(clientData) {
-      clientData;
-    },
+  
   });
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
