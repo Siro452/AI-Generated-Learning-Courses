@@ -1,6 +1,11 @@
 import { type NextPage } from "next";
 import Head from "next/head";
-import Button from "../Components/button";
+import Link from "next/link";
+import { signIn, signOut, useSession } from "next-auth/react";
+
+import { api } from "../utils/api";
+import Button from "../components/button";
+
 
 const Home: NextPage = () => {
   return (
@@ -22,8 +27,7 @@ const Home: NextPage = () => {
             AI Learning Content Creator Prototype
           </h1>
           <div className="flex justify-end">
-            <Button text="Jordan Protype" href="/jordanprototype"></Button>
-
+            <Button text="Jordan Prototype" href="/jordanprototype" />
             <Button text="Nick Prototype" href="/nickprototype/inputuser" />
           </div>
         </div>
