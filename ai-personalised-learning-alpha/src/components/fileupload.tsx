@@ -2,13 +2,12 @@ import React, { useState } from "react";
 import Generate from './generatebtn'
 import { api } from "../utils/api";
 import { apiBaseUrl } from "next-auth/client/_utils";
-export default async function fileUpload() :any {
+export default function fileUpload():any{
   const [dragging, setDragging] = useState(false);
   const [rawData, setRawData] = useState<string>("");
   
   const [response, setResponse] = useState<{name: string}>();
-  const mutation = api.receivedData.mutateData.useMutation()
-  // const mutation = api
+  const mutation = api.receivedData.mutateData.useMutation();
   const [clientData, setClientData] = useState<string>("");
 
 
