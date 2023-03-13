@@ -3,9 +3,9 @@ import FileUpload from "../../components/fileupload";
 
 export default function createNewCourse() {
   return (
-    <div>
+    <div className="flex border-8 max-w-max .max-h-full ">
       <header>
-        <Title title="Create new course" />
+        <Title title="Create new course"/>
       </header>
 
       <section>Sidebar</section>

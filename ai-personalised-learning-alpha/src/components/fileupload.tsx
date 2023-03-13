@@ -1,15 +1,13 @@
 import React, { useState } from "react";
-import Generate from './generatebtn'
+import Generate from "./generatebtn";
 import { api } from "../utils/api";
 import { apiBaseUrl } from "next-auth/client/_utils";
-export default function fileUpload():any{
+export default function fileUpload(): any {
   const [dragging, setDragging] = useState(false);
   const [rawData, setRawData] = useState<string>("");
-  
-  const [response, setResponse] = useState<{name: string}>();
+  const [response, setResponse] = useState<{}>();
   const mutation = api.receivedData.mutateData.useMutation();
   const [clientData, setClientData] = useState<string>("");
-
 
   function handleDragOver(event: React.DragEvent<HTMLDivElement>) {
     event.preventDefault();
@@ -27,11 +25,25 @@ export default function fileUpload():any{
     fr.onload = async function () {
       let readText = (document.getElementById("output").textContent =
         fr.result as string);
-      readText ? setRawData(rawData) : "it hasn't been read";
+      readText ? setClientData(clientData) : "it hasn't been read";
       console.log(fr.result);
     };
-    console.log(rawData);
+    console.log(clientData);
     fr.readAsText(event.dataTransfer.items[0].getAsFile());
+  }
+ 
+  const mutateData = api.receivedData.mutateData.useMutation({});
+
+  async function handleClick() {
+
+ 
+    const response = await mutateData.mutateAsync({ clientData });
+
+
+    setClientData("")
+    setResponse(response)
+    
+    return;
   }
 
   // const handleUpload = async (event: any) => {
@@ -46,20 +58,18 @@ export default function fileUpload():any{
   // }
 
   return (
-    <div>
+    <div className="border-8">
       <div
-        className={`border-8 ${dragging ? "bg-gray-200" : "bg-white"} p-6`}
+        className={`border-8 flex ${dragging ? "bg-gray-200" : "bg-white"} p-6`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
         <p>Drag & Drop your course material</p>
-        <Generate span="Generate"></Generate>
+
+        <button onClick={handleClick}>Generate</button>
+        {/* <Generate span="Generate" className="text-black border-8" onClick={handleClick}>Kjfdksjfkjfakdjlfjfkldas</Generate> */}
         <div id="output"></div>
-
-
-
-        
       </div>
     </div>
   );
