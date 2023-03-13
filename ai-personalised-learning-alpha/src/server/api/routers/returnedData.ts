@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { t } from "../../api/trpc";
+import { t } from "../trpc";
 import { prisma } from "../../db";
 // Modification of Data imports
 import changeToUpper from "./changeToUpperCase";
