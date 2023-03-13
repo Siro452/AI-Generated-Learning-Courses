@@ -1,4 +1,5 @@
 import Link from "next/link";
+import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 
 export default function Button(props: any) {
   return (
@@ -9,6 +10,7 @@ export default function Button(props: any) {
       >
         <span className="block rounded-full bg-white px-4 py-2 font-semibold text-black">
           {props.text}
+          <ArrowForwardRoundedIcon className="w-8 pl-1" />
         </span>
       </button>
     </Link>

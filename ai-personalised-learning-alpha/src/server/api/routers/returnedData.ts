@@ -55,7 +55,7 @@ export const receivedData = t.router({
           message: 'New item added'
         },
       });
-      return removeLinks
+      return modifyString
       // return result;
 
 }),

@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import Generate from "./generatebtn";
 import { api } from "../utils/api";
 import { apiBaseUrl } from "next-auth/client/_utils";
+import GenerateBar from "./generatebar";
 export default function fileUpload(): any {
   const [dragging, setDragging] = useState(false);
   const [rawData, setRawData] = useState<string>("");
@@ -31,18 +31,15 @@ export default function fileUpload(): any {
     console.log(clientData);
     fr.readAsText(event.dataTransfer.items[0].getAsFile());
   }
- 
+
   const mutateData = api.receivedData.mutateData.useMutation({});
 
   async function handleClick() {
-
- 
     const response = await mutateData.mutateAsync({ clientData });
 
+    setClientData("");
+    setResponse(response);
 
-    setClientData("")
-    setResponse(response)
-    
     return;
   }
 
@@ -58,17 +55,17 @@ export default function fileUpload(): any {
   // }
 
   return (
-    <div className="border-8">
+    <div className="">
       <div
-        className={`border-8 flex ${dragging ? "bg-gray-200" : "bg-white"} p-6`}
+        className={`${dragging ? "bg-gray-200" : "bg-white"} p-6`}
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
         <p>Drag & Drop your course material</p>
 
-        <button onClick={handleClick}>Generate</button>
-        {/* <Generate span="Generate" className="text-black border-8" onClick={handleClick}>Kjfdksjfkjfakdjlfjfkldas</Generate> */}
+        {/* <button onClick={handleClick}>Generate</button> */}
+        <GenerateBar placeholder="File uploads:" />
         <div id="output"></div>
       </div>
     </div>
