@@ -1,36 +1,10 @@
-// import Button from './generatebtn'
-
-// export default function generate(props: any) {
-//   return (
-//     <div className="rounded-3xl border-2">
-//       <input
-//         className="rounded-3xl"
-//         type="text"
-//         placeholder={props.placeholder}
-//       ></input>
-
-//       <div><Button title="Generate" /></div>
-//     </div>
-//   );
-// }
-
-// import Button from './generatebtn';
-
-// export default function generate(props: any) {
-//   return (
-//     <div className="flex rounded-3xl border-2">
-//       <input
-//         className="flex-grow rounded-l-3xl"
-//         type="text"
-//         placeholder={props.placeholder}
-//       />
-//       <Button title="Generate" className="rounded-r-3xl" />
-//     </div>
-//   );
-// }
 import Button from "./generatebtn";
-
+import handleClick from './fileupload'
 export default function generate(props: any) {
+
+
+
+
   return (
     <div className="flex rounded-3xl">
       <input
@@ -38,7 +12,7 @@ export default function generate(props: any) {
         type="text"
         placeholder={props.placeholder}
       />
-      <Button title="Generate" />
+      <Button onClick={handleClick} title="Generate" />
     </div>
   );
 }

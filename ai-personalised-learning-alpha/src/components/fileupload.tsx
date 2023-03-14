@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { api } from "../utils/api";
 import { apiBaseUrl } from "next-auth/client/_utils";
 import GenerateBar from "./generatebar";
+
 export default function fileUpload(): any {
   const [dragging, setDragging] = useState(false);
   const [rawData, setRawData] = useState<string>("");
@@ -42,6 +43,7 @@ export default function fileUpload(): any {
 
     return;
   }
+  
 
   // const handleUpload = async (event: any) => {
   //   const file = event.target.files[0];
@@ -55,19 +57,21 @@ export default function fileUpload(): any {
   // }
 
   return (
-    <div className={`${dragging ? "bg-gray-200" : "bg-white"} p-6`}>
+    <div className={`border-8${dragging ? "bg-gray-200" : "bg-white"} p-6`}>
       <div
-      
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
-        <div className=" flex w-full h-60 flex-col justify-center items-center">
-        <span className="font-extrabold text-2xl">Drag & Drop your course material</span>
-        <span className=" text-neutral-300">.jpg, .png, .pdf format or browse</span>
+        <div className=" flex h-60 w-full flex-col items-center justify-center">
+          <span className="text-2xl font-extrabold">
+            Drag & Drop your course material
+          </span>
+          <span className=" text-neutral-400">
+            .jpg, .png, .pdf format or browse
+          </span>
         </div>
-        {/* <button onClick={handleClick}>Generate</button> */}
-        {/* <GenerateBar placeholder="File uploads:" /> */}
+
         <div id="output"></div>
       </div>
     </div>
