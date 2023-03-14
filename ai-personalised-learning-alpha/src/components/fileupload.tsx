@@ -55,17 +55,19 @@ export default function fileUpload(): any {
   // }
 
   return (
-    <div className="">
+    <div className={`${dragging ? "bg-gray-200" : "bg-white"} p-6`}>
       <div
-        className={`${dragging ? "bg-gray-200" : "bg-white"} p-6`}
+      
         onDragOver={handleDragOver}
         onDragLeave={handleDragLeave}
         onDrop={handleDrop}
       >
-        <p>Drag & Drop your course material</p>
-
+        <div className=" flex w-full h-60 flex-col justify-center items-center">
+        <span className="font-extrabold text-2xl">Drag & Drop your course material</span>
+        <span className=" text-neutral-300">.jpg, .png, .pdf format or browse</span>
+        </div>
         {/* <button onClick={handleClick}>Generate</button> */}
-        <GenerateBar placeholder="File uploads:" />
+        {/* <GenerateBar placeholder="File uploads:" /> */}
         <div id="output"></div>
       </div>
     </div>

@@ -10,7 +10,7 @@ export default function generate(props: any) {
         placeholder={props.placeholder}
       ></input>
 
-      <div><Button text="Generate"/>Generate</div>
+      <div><Button title="Generate" /></div>
     </div>
   );
 }
