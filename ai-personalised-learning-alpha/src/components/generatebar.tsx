@@ -6,6 +6,20 @@ interface GenerateProps {
   content: FileSubmissionState;
 }
 
+const payload = () => {
+
+  // api endpoint request
+  
+  
+  
+  // return response
+  
+  
+  }
+  
+
+
+
 const Generate: React.FC<GenerateProps> = ({ placeholder, content }) => {
   const fileNames: string[] = content.content.map((x) => x.filename);
   return (
@@ -16,7 +30,7 @@ const Generate: React.FC<GenerateProps> = ({ placeholder, content }) => {
       >
         {fileNames.join(" , ")}
       </div>
-      <Button title="Generate" />
+      <Button title="Generate" onClick = {payload} />
     </div>
   );
 };

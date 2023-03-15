@@ -3,10 +3,8 @@ import { t } from "../trpc";
 import { prisma } from "../../db";
 // Modification of Data imports
 import changeToUpper from "./changeToUpperCase";
-import filterLinks from './filterLinks&em';
+import filterLinks from "./filterLinks&em";
 // Modification of Data imports
-
-
 
 export const receivedData = t.router({
   returnedData: t.procedure
@@ -17,47 +15,45 @@ export const receivedData = t.router({
     )
     .query(async ({ input }) => {
       // const prismatest = prismatestRouter
-      const result = await prisma.clientdb.findMany({});
+      const result = await prisma.uploadedDocument.findMany({});
       return `${input.clientData}`;
     }),
-  post: t.procedure
+  // post: t.procedure
+  //   .input(
+  //     z.object({
+  //       clientData: z.string(),
+  //     })
+  //   )
+  //   .mutation(async ({ input }) => {
+  //     const result = await prisma.uploadedDocument.create({
+  //       data: {
+  //         name: input.,
+  //         message: "adding data",
+  //       },
+  //     });
+  //     return result;
+  //   }),
+  mutateData: t.procedure
     .input(
       z.object({
-        clientData: z.string(),
+        documents: z.array(
+          z.object({ filename: z.string(), content: z.string() })
+        ),
       })
     )
     .mutation(async ({ input }) => {
-      const result = await prisma.clientdb.create({
-        data: {
-          name: input.clientData,
-          message: 'adding data'
-        },
+      // const modifyString = changeToUpper(input.documents);
+      // const removeLinks = filterLinks(input.clientData);
+      const result = await prisma.uploadedDocument.createMany({
+      data: input.documents.map(document => ({
+        fileName: document.filename,
+        fileContent: document.content,
+      }))
       });
       return result;
-
-
-
-
-    }),
-    mutateData: t.procedure
-    .input(
-      z.object({
-        clientData: z.string(),
-      })
-    )
-    .mutation(async ({ input }) => {
-      const modifyString = changeToUpper(input.clientData)
-      const removeLinks = filterLinks(input.clientData)
-      const result = await prisma.clientdb.create({
-        
-        data: {
-          name: input.clientData,
-          message: 'New item added'
-        },
-      });
-      return modifyString
       // return result;
+    }),
+});
 
-}),
+// adding another api endpoint that returns what's already in the database.
 
-})
