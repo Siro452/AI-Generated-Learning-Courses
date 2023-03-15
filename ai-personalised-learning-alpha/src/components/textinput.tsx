@@ -1,4 +1,12 @@
-export default function TextInput(props) {
+interface textInputProps {
+  title: string;
+  placeholder: string;
+  h: string;
+  rounded: string;
+  pb?: string;
+}
+
+export default function TextInput(props: textInputProps) {
   return (
     <div className="my-4 flex h-full w-11/12 flex-col">
       <label className="self-start py-2 text-2xl">{props.title}</label>

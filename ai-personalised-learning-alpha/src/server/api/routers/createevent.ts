@@ -1,27 +1,28 @@
 import { createTRPCRouter } from "../trpc";
-import { publicProcedure } from "../trpc";
-import { z } from "zod";
+// import { publicProcedure } from "../trpc";
+// import { z } from "zod";
 
 export const createEventRouter = createTRPCRouter({
+  //may be needed for other events
   // createEvent: publicProcedure
   //   .input(
   //     z.object({
-  //       // sessionID: z.string(),
   //       eventType: z.string(),
   //       eventDescription: z.string(),
   //       eventStatus: z.string(),
-  //       // userSession: z.any(),
+  //       sessionID: z.string(),
+  //       userid: z.string(),
   //     })
   //   )
   //   .mutation(async ({ ctx, input }) => {
   //     try {
   //       await ctx.prisma.event.create({
   //         data: {
-  //           // sessionID: input.sessionID,
   //           eventType: input.eventType,
   //           eventDescription: input.eventDescription,
   //           eventStatus: input.eventStatus,
-  //           // userSession: input.userSession,
+  //           sessionID: input.sessionID,
+  //           userid: input.userid,
   //         },
   //       });
   //     } catch (error) {

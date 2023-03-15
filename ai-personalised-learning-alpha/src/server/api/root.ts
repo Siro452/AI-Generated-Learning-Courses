@@ -1,10 +1,8 @@
 import { createTRPCRouter } from "./trpc";
-import { publicProcedure } from "./trpc";
-import { z } from "zod";
-import { prisma } from "../db";
 import { createUserRouter } from "./routers/createuser";
-import {receivedData} from './routers/returnedData'
+import { receivedData } from "./routers/returnedData";
 import { createEventRouter } from "./routers/createevent";
+import { findUserRouter } from "./routers/finduser";
 
 /**
  * This is the primary router for your server.
@@ -15,6 +13,7 @@ export const appRouter = createTRPCRouter({
   receivedData,
   createUser: createUserRouter,
   createEvent: createEventRouter,
+  findUser: findUserRouter,
 });
 
 // export type definition of API
