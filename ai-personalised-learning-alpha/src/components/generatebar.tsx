@@ -1,4 +1,6 @@
+import { event } from "jquery";
 import { FileSubmissionState } from "../pages/jordanprototype/createnewcourse";
+import { api } from "../utils/api";
 import Button from "./generatebtn";
 
 interface GenerateProps {
@@ -6,19 +8,21 @@ interface GenerateProps {
   content: FileSubmissionState;
 }
 
-const payload = () => {
+const payload = async () => {
+  // event.preventDefault()
+
+  const mutateData = api.receivedData.mutateData.useMutation({});
+  const response = await mutateData.mutateAsync({  });
 
   // api endpoint request
-  
-  
-  
+  const payloadData = await api.receivedData.mutateData.useMutation();
+
+  console.log(payloadData);
+  console.log(response)
+
   // return response
-  
-  
-  }
-  
-
-
+  return payloadData;
+};
 
 const Generate: React.FC<GenerateProps> = ({ placeholder, content }) => {
   const fileNames: string[] = content.content.map((x) => x.filename);
@@ -30,7 +34,7 @@ const Generate: React.FC<GenerateProps> = ({ placeholder, content }) => {
       >
         {fileNames.join(" , ")}
       </div>
-      <Button title="Generate" onClick = {payload} />
+      <Button title="Generate" onClick={payload} />
     </div>
   );
 };
