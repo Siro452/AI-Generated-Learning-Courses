@@ -47,12 +47,13 @@ export default function fileUpload(props: FileUploadProps): JSX.Element {
         : "it hasn't been read";
 
       console.log(fr.result);
+      console.log(extractedText)
+
     };
-    console.log(clientData);
     fr.readAsText(event.dataTransfer.items[0].getAsFile());
   }
 
-  const mutateData = api.receivedData.mutateData.useMutation({});
+
   return (
     <div className={`border-8${dragging ? "bg-gray-200" : "bg-white"} p-6`}>
       <div
