@@ -1,26 +1,20 @@
 import React, { useState } from "react";
 import { api } from "../utils/api";
-import { apiBaseUrl } from "next-auth/client/_utils";
-import GenerateBar from "./generatebar";
-import {FileSubmissionState} from '../pages/jordanprototype/createnewcourse'
-
+import { FileSubmissionState } from "../pages/jordanprototype/createnewcourse";
 
 interface FileUploadProps {
-  setFileSubmissionState: React.Dispatch<React.SetStateAction<FileSubmissionState>>,
-  fileSubmissionState: FileSubmissionState
+  setFileSubmissionState: React.Dispatch<
+    React.SetStateAction<FileSubmissionState>
+  >;
+  fileSubmissionState: FileSubmissionState;
 }
 
-
-export default function fileUpload(props: FileUploadProps) :JSX.Element {
+export default function fileUpload(props: FileUploadProps): JSX.Element {
   const [dragging, setDragging] = useState(false);
-  const [rawData, setRawData] = useState<string>("");
-  const [response, setResponse] = useState<{}>();
+  // const [rawData, setRawData] = useState<string>("");
+  // const [response, setResponse] = useState<{}>();
   const mutation = api.receivedData.mutateData.useMutation();
   const [clientData, setClientData] = useState<string>("");
-
-
-
-
 
   function handleDragOver(event: React.DragEvent<HTMLDivElement>) {
     event.preventDefault();
@@ -31,50 +25,34 @@ export default function fileUpload(props: FileUploadProps) :JSX.Element {
     setDragging(false);
   }
 
-async function handleDrop(event: React.DragEvent<HTMLDivElement>) {
+  async function handleDrop(event: React.DragEvent<HTMLDivElement>) {
     event.preventDefault();
     setDragging(false);
     const fr = new FileReader();
     fr.onload = async function () {
-      let readText = (document.getElementById("output").textContent =
-        fr.result as string);
+      let extractedText = fr.result as string;
 
-      readText ? props.setFileSubmissionState({
-      options: props.fileSubmissionState.options,
-      content: [...props.fileSubmissionState.content, {filename: props.fileSubmissionState.content.length.toString(), rawtext: clientData}],
-      title: props.fileSubmissionState.title
-
-      }) : "it hasn't been read";
+      extractedText
+        ? props.setFileSubmissionState({
+            options: props.fileSubmissionState.options,
+            content: [
+              ...props.fileSubmissionState.content,
+              {
+                filename: props.fileSubmissionState.content.length.toString(),
+                rawtext: clientData,
+              },
+            ],
+            title: props.fileSubmissionState.title,
+          })
+        : "it hasn't been read";
 
       console.log(fr.result);
-      console.log(fr)
     };
     console.log(clientData);
     fr.readAsText(event.dataTransfer.items[0].getAsFile());
   }
 
-
   const mutateData = api.receivedData.mutateData.useMutation({});
-
-// async function handleClick() {
-//     const response = await mutateData.mutateAsync({ clientData });
-
-//     setClientData("");
-//     setResponse(response);
-
-//     return response
-//   }
-  // const handleUpload = async (event: any) => {
-  //   const file = event.target.files[0];
-
-  //   try {
-  //     const fileContents = readUploadedFileAsText(file)
-  //     console.log(fileContents);
-  //   } catch (e) {
-  //     console.warn(e.message)
-  //   }
-  // }
-
   return (
     <div className={`border-8${dragging ? "bg-gray-200" : "bg-white"} p-6`}>
       <div
@@ -90,8 +68,6 @@ async function handleDrop(event: React.DragEvent<HTMLDivElement>) {
             .jpg, .png, .pdf format or browse
           </span>
         </div>
-
-        <div id="output"></div>
       </div>
     </div>
   );
