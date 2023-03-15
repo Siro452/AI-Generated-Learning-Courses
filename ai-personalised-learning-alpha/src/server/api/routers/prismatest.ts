@@ -4,10 +4,10 @@ import { z } from "zod";
 export const prismatestRouter = t.router({
   getAll: publicProcedure.query(async ({ ctx }) => {
     try {
-      return await ctx.prisma.clientdb.findMany({
+      return await ctx.prisma.uploadedDocument.findMany({
         select: {
-          name: true,
-          message: true,
+          fileName: true,
+          fileContent: true,
         },
         orderBy: {
           createdAt: "desc",

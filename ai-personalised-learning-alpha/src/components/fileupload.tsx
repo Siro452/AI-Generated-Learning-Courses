@@ -7,6 +7,7 @@ interface FileUploadProps {
     React.SetStateAction<FileSubmissionState>
   >;
   fileSubmissionState: FileSubmissionState;
+  
 }
 
 export default function fileUpload(props: FileUploadProps): JSX.Element {
@@ -29,6 +30,10 @@ export default function fileUpload(props: FileUploadProps): JSX.Element {
     event.preventDefault();
     setDragging(false);
     const fr = new FileReader();
+    const file = event.dataTransfer.items[0].getAsFile()
+    fr.readAsText(file);
+    console.log(file.name)
+    const fileName = file.name
     fr.onload = async function () {
       let extractedText = fr.result as string;
 
@@ -38,7 +43,7 @@ export default function fileUpload(props: FileUploadProps): JSX.Element {
             content: [
               ...props.fileSubmissionState.content,
               {
-                filename: props.fileSubmissionState.content.length.toString(),
+                filename: fileName,
                 rawtext: clientData,
               },
             ],
@@ -46,11 +51,11 @@ export default function fileUpload(props: FileUploadProps): JSX.Element {
           })
         : "it hasn't been read";
 
-      console.log(fr.result);
+      console.log();
       console.log(extractedText)
 
     };
-    fr.readAsText(event.dataTransfer.items[0].getAsFile());
+
   }
 
 
@@ -73,3 +78,7 @@ export default function fileUpload(props: FileUploadProps): JSX.Element {
     </div>
   );
 }
+
+// do unit tests to validate functions working the way i want.
+// test payload data
+// wait for api to do filters

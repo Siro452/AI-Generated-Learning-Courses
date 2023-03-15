@@ -103,9 +103,10 @@ model Session{
 }
 
 
-model clientdb {
+model UploadedDocument {
     id        String   @id @default(cuid())
     createdAt DateTime @default(now())
-    name      String
-    message   String   @db.VarChar(100)
+    fileName      String
+    fileContent   String
+    processedData String?
 }
