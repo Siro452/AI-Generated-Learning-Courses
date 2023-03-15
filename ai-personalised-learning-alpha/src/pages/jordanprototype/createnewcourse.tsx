@@ -15,7 +15,10 @@ export interface FileSubmissionState {
 }
 
 export default function createNewCourse() {
-  const [content, setContent] = useState<FileSubmissionState>({content: [], title: ''});
+  const [content, setContent] = useState<FileSubmissionState>({
+    content: [],
+    title: "",
+  });
 
   return (
     <div className="grid h-screen max-w-none max-w-full grid-cols-5 grid-rows-5 gap-x-12 gap-y-10 border-8">
@@ -26,7 +29,10 @@ export default function createNewCourse() {
         <Title title="Create new course" />
       </div>
       <div className="border-grey-300 col-span-3 col-start-2 col-end-5 row-span-1 row-start-2 row-end-4 rounded-xl border-8 bg-gray-200 p-9">
-        <FileUpload fileSubmissionState={content} setFileSubmissionState={setContent} />
+        <FileUpload
+          fileSubmissionState={content}
+          setFileSubmissionState={setContent}
+        />
       </div>
       <div className="col-span-3 row-span-1">
         <GenerateBar placeholder="File uploads:" content={content} />
