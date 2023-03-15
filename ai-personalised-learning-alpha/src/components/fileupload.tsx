@@ -2,13 +2,25 @@ import React, { useState } from "react";
 import { api } from "../utils/api";
 import { apiBaseUrl } from "next-auth/client/_utils";
 import GenerateBar from "./generatebar";
+import {FileSubmissionState} from '../pages/jordanprototype/createnewcourse'
 
-export default function fileUpload(): any {
+
+interface FileUploadProps {
+  setFileSubmissionState: React.Dispatch<React.SetStateAction<FileSubmissionState>>,
+  fileSubmissionState: FileSubmissionState
+}
+
+
+export default function fileUpload(props: FileUploadProps) :JSX.Element {
   const [dragging, setDragging] = useState(false);
   const [rawData, setRawData] = useState<string>("");
   const [response, setResponse] = useState<{}>();
   const mutation = api.receivedData.mutateData.useMutation();
   const [clientData, setClientData] = useState<string>("");
+
+
+
+
 
   function handleDragOver(event: React.DragEvent<HTMLDivElement>) {
     event.preventDefault();
@@ -19,32 +31,39 @@ export default function fileUpload(): any {
     setDragging(false);
   }
 
-  async function handleDrop(event: React.DragEvent<HTMLDivElement>) {
+async function handleDrop(event: React.DragEvent<HTMLDivElement>) {
     event.preventDefault();
     setDragging(false);
     const fr = new FileReader();
     fr.onload = async function () {
       let readText = (document.getElementById("output").textContent =
         fr.result as string);
-      readText ? setClientData(clientData) : "it hasn't been read";
+
+      readText ? props.setFileSubmissionState({
+      options: props.fileSubmissionState.options,
+      content: [...props.fileSubmissionState.content, {filename: props.fileSubmissionState.content.length.toString(), rawtext: clientData}],
+      title: props.fileSubmissionState.title
+
+      }) : "it hasn't been read";
+
       console.log(fr.result);
+      console.log(fr)
     };
     console.log(clientData);
     fr.readAsText(event.dataTransfer.items[0].getAsFile());
   }
 
+
   const mutateData = api.receivedData.mutateData.useMutation({});
 
-  async function handleClick() {
-    const response = await mutateData.mutateAsync({ clientData });
+// async function handleClick() {
+//     const response = await mutateData.mutateAsync({ clientData });
 
-    setClientData("");
-    setResponse(response);
+//     setClientData("");
+//     setResponse(response);
 
-    return;
-  }
-  
-
+//     return response
+//   }
   // const handleUpload = async (event: any) => {
   //   const file = event.target.files[0];
 

@@ -1,18 +1,27 @@
+import { FileSubmissionState } from "../pages/jordanprototype/createnewcourse";
 import Button from "./generatebtn";
-import handleClick from './fileupload'
-export default function generate(props: any) {
 
+interface GenerateProps {
+  placeholder: string,
+  content: FileSubmissionState,
+}
 
-
-
+const Generate: React.FC<GenerateProps> = ({placeholder, content}) => {
+const fileNames: string[] = content.content.map(x => x.filename)
   return (
     <div className="flex rounded-3xl">
-      <input
-        className="flex-grow rounded-full px-4 py-2 border-2 mr-2 "
-        type="text"
-        placeholder={props.placeholder}
-      />
-      <Button onClick={handleClick} title="Generate" />
+      <div
+        className="mr-2 flex-grow rounded-full border-2 px-4 py-2 "
+        // type="text"
+
+        placeholder={placeholder}
+      >{fileNames.join(" , ")}</div>
+      <Button title="Generate"  />
+
+    
     </div>
+   
   );
 }
+
+export default Generate
