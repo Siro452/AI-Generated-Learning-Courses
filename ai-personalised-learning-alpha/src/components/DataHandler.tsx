@@ -3,7 +3,8 @@
 // import { string } from "zod";
 // import { useMutation } from "@tanstack/react-query";
 // import React from "react";
-// // import { api } from '../utils/api';
+// import { contextProps } from '@trpc/react-query/shared';
+// import { api } from '../utils/api';
 export default function DataHandler() {
 
   return <div>ghghgh</div>
@@ -17,7 +18,7 @@ export default function DataHandler() {
 //   // }>();
   
 //   const [response, setResponse] = useState<string>();
-//   const mutation = api.receivedData.mutateData.useMutation();
+  // const mutation = api.routers.receivedData.mutateData.useMutation();
 //   const [clientData, setClientData] = useState<string>("");
 
 //   const mutateData = api.receivedData.mutateData.useMutation({

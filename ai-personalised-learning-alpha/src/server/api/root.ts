@@ -1,5 +1,9 @@
 import { createTRPCRouter } from "./trpc";
+import { publicProcedure } from "./trpc";
+import { z } from "zod";
+import { prisma } from "../db";
 import { createUserRouter } from "./routers/createuser";
+import {receivedData} from './routers/returnedData'
 import { createEventRouter } from "./routers/createevent";
 
 /**
@@ -8,6 +12,7 @@ import { createEventRouter } from "./routers/createevent";
  * All routers added in /api/routers should be manually added here
  */
 export const appRouter = createTRPCRouter({
+  receivedData,
   createUser: createUserRouter,
   createEvent: createEventRouter,
 });
