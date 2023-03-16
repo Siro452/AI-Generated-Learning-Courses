@@ -2,7 +2,6 @@ import { type NextPage } from "next";
 import Head from "next/head";
 import Button from "../components/button";
 import Image from "next/image";
-import DacreedLogo from "../components/DacreedLogo";
 
 const Home: NextPage = () => {
   return (
@@ -14,11 +13,17 @@ const Home: NextPage = () => {
       </Head>
       <main className="flex min-h-screen flex-col items-center justify-center bg-white font-sans">
         <div className="container flex flex-col justify-center gap-12 px-4 py-16 ">
-          <h1 className="items-start bg-gradient-to-r from-[#F2F2F2] via-[#6567EA] via-[#364577] to-[#FFDCB3] bg-clip-text text-[180px] font-bold tracking-tight text-transparent">
+          <h1 className="items-start text-[180px] font-bold  tracking-tight">
             Prototype Testing
           </h1>
-          <h2 className="m-2 flex flex-row bg-gradient-to-r  from-[#4865A6] via-[#AFAFAF] to-[#E3E3E3] bg-clip-text text-5xl text-transparent">
-            <DacreedLogo className="mx-2" height={100} width={200} />
+          <h2 className="">
+            <img
+              src="https://www.dacreed.com/static/Dacreed-logo-dark-f80888dcbd37d98ef1c3c84aabb5c049.png"
+              className="h-1/2 w-1/2 items-start"
+              alt="Dacreed logo"
+              width={200}
+              height={100}
+            />{" "}
             AI Learning Content Creator
           </h2>
           <div className="flex justify-end">
