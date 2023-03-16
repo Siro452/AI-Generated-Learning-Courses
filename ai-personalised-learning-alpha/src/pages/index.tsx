@@ -26,8 +26,16 @@ const Home: NextPage = () => {
             AI Learning Content Creator Prototype
           </h1>
           <div className="flex justify-end">
-            <Button text="Jordan Prototype" href="/jordanprototype" />
-            <Button text="Nick Prototype" href="/nickprototype/inputuser" />
+            <Button
+              type="button"
+              text="Jordan Prototype"
+              href="/jordanprototype"
+            />
+            <Button
+              type="button"
+              text="Nick Prototype"
+              href="/nickprototype/inputuser"
+            />
           </div>
         </div>
       </main>

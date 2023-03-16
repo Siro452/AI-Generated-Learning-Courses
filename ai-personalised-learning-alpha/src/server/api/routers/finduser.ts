@@ -9,7 +9,8 @@ export const findUserRouter = createTRPCRouter({
         },
         include: {
           sessions: {
-            include: {
+            select: {
+              id: true,
               event: true,
             },
           },

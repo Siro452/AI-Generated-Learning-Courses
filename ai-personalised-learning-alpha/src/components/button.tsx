@@ -1,14 +1,14 @@
 import Link from "next/link";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 
-interface buttonProps {
+interface ButtonProps {
   alignment?: string;
   text: string;
   href: string;
-  type?: "submit" | "reset" | "button";
+  type: "submit" | "reset" | "button";
 }
 
-export default function Button(props: buttonProps) {
+export default function Button(props: ButtonProps) {
   return (
     <Link href={props.href} className={`${props.alignment}`}>
       <button

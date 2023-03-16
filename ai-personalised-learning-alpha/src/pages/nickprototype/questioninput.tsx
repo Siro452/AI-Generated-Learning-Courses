@@ -49,7 +49,12 @@ export default function QuestionInput() {
               pb="pb-36"
             />
 
-            <Button text="Confirm" href="/confirmation" alignment="self-end" />
+            <Button
+              type="button"
+              text="Confirm"
+              href="/confirmation"
+              alignment="self-end"
+            />
           </form>
           <div className="flex flex-col">
             <EditorButton icon={<AddIcon className="h-7 w-7" />} />
