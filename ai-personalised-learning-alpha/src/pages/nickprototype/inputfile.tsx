@@ -20,6 +20,7 @@ export default function InputFile() {
             Upload your learning material
           </h5>
           <Button
+            type="button"
             alignment="self-end"
             text="Upload"
             href="/nickprototype/postuploadloading"

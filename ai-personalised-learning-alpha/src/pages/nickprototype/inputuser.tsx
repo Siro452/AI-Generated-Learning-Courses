@@ -9,30 +9,39 @@ import { FormEventHandler } from "react";
 export default function InputUser() {
   const [name, setName] = useState("");
   const createUser = api.createUser.createUser.useMutation({});
+  const findUser = api.findUser.findUser.useQuery();
 
-  const handleSubmit: FormEventHandler = async (
-    e: React.FormEvent
-  ): Promise<void> => {
-    e.preventDefault();
-    try {
-      await createUser.mutateAsync({
-        username: name,
-        sessions: [
-          {
-            sessionDate: new Date().toISOString(),
-            event: [
-              {
-                eventType: "User Created",
-                eventDescription: "User Created",
-                eventStatus: "Success",
-              },
-            ],
-          },
-        ],
-      });
-    } catch (error) {
-      console.log(error);
-    }
+  const handleSubmit = async (e: React.FormEvent) => {
+    const handleFindUser = async () => {
+      if (findUser.data?.username === name) {
+        console.log("user exists");
+      } else {
+        e.preventDefault();
+        try {
+          const createNewUser = async () => {
+            await createUser.mutateAsync({
+              username: name,
+              sessions: [
+                {
+                  sessionDate: new Date().toISOString(),
+                  event: [
+                    {
+                      eventType: "User Created",
+                      eventDescription: "User Created",
+                      eventStatus: "Success",
+                    },
+                  ],
+                },
+              ],
+            });
+          };
+          await createNewUser();
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    };
+    await handleFindUser();
   };
 
   return (
@@ -63,7 +72,12 @@ export default function InputUser() {
           value="submit"
         ></input>
         {/* // why is this component not working? as submit */}
-        {/* <Button type="submit" alignment="self-end" text="Next" href="" /> */}
+        <Button
+          type="button"
+          alignment="self-end"
+          text="Next"
+          href="/nickprototype/inputfile"
+        />
       </form>
     </div>
   );
