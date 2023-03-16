@@ -1,5 +1,4 @@
 import Link from "next/link";
-import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 
 interface ButtonProps {
   alignment?: string;
@@ -13,12 +12,9 @@ export default function Button(props: ButtonProps) {
     <Link href={props.href} className={`${props.alignment}`}>
       <button
         type={props.type}
-        className="m-4 rounded-full bg-gradient-to-r from-[#8197FA] via-[#BB416D] via-[#A663CC] to-[#4765E8] p-1"
+        className="m-4 rounded-full bg-gradient-to-br from-[#354678]  to-[#8088F1] py-4 px-9 text-xl font-bold text-white"
       >
-        <span className="block rounded-full bg-white px-4 py-2 font-semibold text-black">
-          {props.text}
-          <ArrowForwardRoundedIcon className="w-8 pl-1" />
-        </span>
+        {props.text}
       </button>
     </Link>
   );
