@@ -72,12 +72,12 @@ export default function InputUser() {
           value="submit"
         ></input>
         {/* // why is this component not working? as submit */}
-        <Button
+        {/* <Button
           type="button"
           alignment="self-end"
           text="Next"
           href="/nickprototype/inputfile"
-        />
+        /> */}
       </form>
     </div>
   );
