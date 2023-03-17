@@ -1,8 +1,7 @@
-import Title from "../../components/h1";
 import FileUpload from "../../components/fileupload";
 import GenerateBar from "../../components/generatebar";
 import { useState } from "react";
-import SubTitle from "../../components/subTitle";
+import Slider from "../../components/slider";
 
 export interface FileContent {
   filename: string;
@@ -15,6 +14,9 @@ export interface FileSubmissionState {
   title: string;
 }
 
+export interface Filters {
+  sliderValue: number;
+}
 export default function createNewCourse() {
   const [content, setContent] = useState<FileSubmissionState>({
     content: [],
@@ -26,7 +28,7 @@ export default function createNewCourse() {
       <div className="border-grey-300 col-span-1 row-span-5 ml-8 w-40 rounded-3xl border-8 p-4">
         Sidebar
       </div>
-  
+
       <div className=" col-span-3 col-start-2 col-end-5 row-span-1 row-start-2 row-end-4">
         <FileUpload
           fileSubmissionState={content}
@@ -37,6 +39,8 @@ export default function createNewCourse() {
         <GenerateBar placeholder="File uploads:" content={content} />
         TeamsPlus AI-powered created courses will enhance your process
       </div>
+
+      <Slider />
     </div>
   );
 }
