@@ -17,7 +17,7 @@ export default function UserInput() {
           type="text"
           placeholder="Enter your name"
         />
-        <Button type="submit" text="Next" href="/uploadfile" />
+        <Button type="submit" text="Next" href="./uploadfile" />
       </form>
     </div>
   );
