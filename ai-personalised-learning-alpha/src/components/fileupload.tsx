@@ -7,10 +7,9 @@ interface FileUploadProps {
     React.SetStateAction<FileSubmissionState>
   >;
   fileSubmissionState: FileSubmissionState;
-  
 }
 
-export default function fileUpload(props: FileUploadProps): JSX.Element {
+export default function FileUpload(props: FileUploadProps): JSX.Element {
   const [dragging, setDragging] = useState(false);
   // const [rawData, setRawData] = useState<string>("");
   // const [response, setResponse] = useState<{}>();
@@ -30,10 +29,10 @@ export default function fileUpload(props: FileUploadProps): JSX.Element {
     event.preventDefault();
     setDragging(false);
     const fr = new FileReader();
-    const file = event.dataTransfer.items[0].getAsFile()
+    const file = event.dataTransfer.items[0].getAsFile();
     fr.readAsText(file);
-    console.log(file.name)
-    const fileName = file.name
+    console.log(file.name);
+    const fileName = file.name;
     fr.onload = async function () {
       let extractedText = fr.result as string;
 
@@ -52,12 +51,9 @@ export default function fileUpload(props: FileUploadProps): JSX.Element {
         : "it hasn't been read";
 
       console.log();
-      console.log(extractedText)
-
+      console.log(extractedText);
     };
-
   }
-
 
   return (
     <div className={`border-8${dragging ? "bg-gray-200" : "bg-white"} p-6`}>

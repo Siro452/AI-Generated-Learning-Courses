@@ -5,7 +5,7 @@ import {
   ReactPortal,
 } from "react";
 
-export default function Header(props: {
+export default function H1(props: {
   title:
     | string
     | number
