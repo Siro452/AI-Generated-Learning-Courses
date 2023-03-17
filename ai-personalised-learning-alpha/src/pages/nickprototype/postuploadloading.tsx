@@ -9,12 +9,12 @@ export default function postuploadloading() {
           That dogs can't look up
         </h4>
         <img src="https://smashinghub.com/wp-content/uploads/2014/08/cool-loading-animated-gif-1.gif"></img>
-        <Button
+        {/* <Button
           type="button"
           alignment="self-end"
           text="Next"
           href="/nickprototype/questioninput"
-        />
+        /> */}
       </div>
     </div>
   );
