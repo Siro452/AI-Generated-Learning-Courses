@@ -10,6 +10,7 @@ export default function postuploadloading() {
         </h4>
         <img src="https://smashinghub.com/wp-content/uploads/2014/08/cool-loading-animated-gif-1.gif"></img>
         <Button
+          type="button"
           alignment="self-end"
           text="Next"
           href="/nickprototype/questioninput"

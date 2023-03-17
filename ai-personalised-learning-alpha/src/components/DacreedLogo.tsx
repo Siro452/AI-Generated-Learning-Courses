@@ -1,10 +1,13 @@
-import DacreedLogo from "../../public/DacreedLogo.png";
 import Image2 from "next/image";
 
-export default function Image() {
+export default function DacreedLogo() {
   return (
-    <div className="flex items-start pl-40 h-40 items-end">
-      <Image2 className="object-cover" src={DacreedLogo} alt="company logo" />
+    <div className="flex h-40 items-start items-end pl-40">
+      <Image2
+        className="object-cover"
+        src="https://www.dacreed.com/static/Dacreed-logo-dark-f80888dcbd37d98ef1c3c84aabb5c049.png "
+        alt="company logo"
+      />
     </div>
   );
 }

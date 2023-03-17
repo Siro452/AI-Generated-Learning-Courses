@@ -10,12 +10,18 @@ interface GenerateProps {
 const payload = async (e: { preventDefault: () => void }) => {
   e.preventDefault();
   // mutate data
-
+  const payloadData = await api.receivedData.mutateData.useMutation();
   const mutateData = api.receivedData.mutateData.useMutation({});
-
   const response = await mutateData.mutateAsync({});
 
-  return response;
+ 
+
+  
+  console.log(payloadData);
+  console.log(response);
+
+  // return response
+  return payloadData;
 };
 
 const Generate: React.FC<GenerateProps> = ({ placeholder, content }) => {
@@ -34,6 +40,7 @@ const Generate: React.FC<GenerateProps> = ({ placeholder, content }) => {
           placeholder && content ? payload : "";
         }}
       />
+      <Button type="button" title="Generate" onClick={payload} />
     </div>
   );
 };
