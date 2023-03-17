@@ -1,10 +1,11 @@
+import DacreedLogo from "../../components/DacreedLogo";
 
-import DacreedLogo from '../../components/DacreedLogo'
-
-import Header from '../../components/ContentCreator'
+import Header from "../../components/ContentCreator";
 export default function Upload() {
-  return <div>
-<DacreedLogo />
-<Header />
-  </div>;
+  return (
+    <div>
+      <DacreedLogo />
+      <Header />
+    </div>
+  );
 }

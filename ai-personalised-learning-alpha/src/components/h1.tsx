@@ -14,5 +14,5 @@ export default function Header(props: {
     | ReactFragment
     | ReactPortal;
 }) {
-  return <h1 className="font-black	">{props.title}</h1>;
+  return <h1>{props.title}</h1>;
 }

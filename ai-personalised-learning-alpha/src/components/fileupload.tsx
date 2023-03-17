@@ -1,13 +1,13 @@
 import React, { useState } from "react";
 import { api } from "../utils/api";
 import { FileSubmissionState } from "../pages/jordanprototype/createnewcourse";
-
+import BlueCircle from "./blueCircle";
+import DragDrop from "./DragDrop";
 interface FileUploadProps {
   setFileSubmissionState: React.Dispatch<
     React.SetStateAction<FileSubmissionState>
   >;
   fileSubmissionState: FileSubmissionState;
-  
 }
 
 export default function fileUpload(props: FileUploadProps): JSX.Element {
@@ -30,10 +30,10 @@ export default function fileUpload(props: FileUploadProps): JSX.Element {
     event.preventDefault();
     setDragging(false);
     const fr = new FileReader();
-    const file = event.dataTransfer.items[0].getAsFile()
+    const file = event.dataTransfer.items[0].getAsFile();
     fr.readAsText(file);
-    console.log(file.name)
-    const fileName = file.name
+    console.log(file.name);
+    const fileName = file.name;
     fr.onload = async function () {
       let extractedText = fr.result as string;
 
@@ -52,29 +52,17 @@ export default function fileUpload(props: FileUploadProps): JSX.Element {
         : "it hasn't been read";
 
       console.log();
-      console.log(extractedText)
-
+      console.log(extractedText);
     };
-
   }
 
-
   return (
-    <div className={`border-8${dragging ? "bg-gray-200" : "bg-white"} p-6`}>
-      <div
-        onDragOver={handleDragOver}
-        onDragLeave={handleDragLeave}
-        onDrop={handleDrop}
-      >
-        <div className=" flex h-60 w-full flex-col items-center justify-center">
-          <span className="text-2xl font-extrabold">
-            Drag & Drop your course material
-          </span>
-          <span className=" text-neutral-400">
-            .jpg, .png, .pdf format or browse
-          </span>
-        </div>
-      </div>
+    <div
+      onDragOver={handleDragOver}
+      onDragLeave={handleDragLeave}
+      onDrop={handleDrop}
+    >
+      <DragDrop />
     </div>
   );
 }
@@ -82,3 +70,5 @@ export default function fileUpload(props: FileUploadProps): JSX.Element {
 // do unit tests to validate functions working the way i want.
 // test payload data
 // wait for api to do filters
+
+// click the fileupload box and it would browse the computer files
