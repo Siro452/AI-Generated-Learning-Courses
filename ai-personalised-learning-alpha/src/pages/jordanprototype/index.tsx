@@ -4,11 +4,14 @@ import React from "react";
 import Upload from "./uploadInterface";
 import CreateNewCourse from "./createnewcourse";
 import DragDrop from "../../components/DragDrop";
+import Filters from '../../components/filters'
 export default function JordanPrototype() {
   return (
     <div>
-      {/* <DragDrop /> */}
-      <CreateNewCourse></CreateNewCourse>
+     
+      {/* <CreateNewCourse></CreateNewCourse> */}
+
+      <Filters />
     </div>
   );
 }
