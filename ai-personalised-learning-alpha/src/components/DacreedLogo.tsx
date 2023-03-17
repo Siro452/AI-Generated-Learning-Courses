@@ -7,7 +7,7 @@ interface DacreedLogoProps {
   height: number;
 }
 
-export default function DacreedLogo(props: DacreedLogoProps) {
+export default function DacreedLogo(props) {
   return (
     <Image
       className={props.className}
