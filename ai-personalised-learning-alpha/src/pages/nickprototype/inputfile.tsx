@@ -21,7 +21,6 @@ export default function InputFile() {
           </h5>
           <Button
             type="button"
-            alignment="self-end"
             text="Upload"
             href="/nickprototype/postuploadloading"
           />

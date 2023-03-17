@@ -10,7 +10,7 @@ interface FileUploadProps {
   fileSubmissionState: FileSubmissionState;
 }
 
-export default function fileUpload(props: FileUploadProps): JSX.Element {
+export default function FileUpload(props: FileUploadProps): JSX.Element {
   const [dragging, setDragging] = useState(false);
   // const [rawData, setRawData] = useState<string>("");
   // const [response, setResponse] = useState<{}>();

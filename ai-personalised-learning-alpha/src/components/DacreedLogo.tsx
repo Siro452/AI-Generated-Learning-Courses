@@ -1,13 +1,20 @@
-import Image2 from "next/image";
+import Image from "next/image";
+import Dacreed from "../images/Dacreed-logo.png";
 
-export default function DacreedLogo() {
+interface DacreedLogoProps {
+  className?: string;
+  width: number;
+  height: number;
+}
+
+export default function DacreedLogo(props) {
   return (
-    <div className="flex h-40 items-start items-end pl-40">
-      <Image2
-        className="object-cover"
-        src="https://www.dacreed.com/static/Dacreed-logo-dark-f80888dcbd37d98ef1c3c84aabb5c049.png "
-        alt="company logo"
-      />
-    </div>
+    <Image
+      className={props.className}
+      src={Dacreed}
+      alt="company logo"
+      width={props.width}
+      height={props.height}
+    />
   );
 }
