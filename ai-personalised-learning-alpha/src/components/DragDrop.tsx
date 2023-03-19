@@ -12,7 +12,7 @@ export default function DragDrop() {
           <SubTitle subtitle="Upload your files" />
         </span>
         <span className="mx-3"></span>
-        <span className="block text-3xl font-black font-extrabold drop-shadow-md pb-10">
+        <span className="block pb-10 text-3xl font-black font-extrabold drop-shadow-md">
           <Title title="Drag & drop or browse" />
         </span>
       </div>
