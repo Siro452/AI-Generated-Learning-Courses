@@ -1,6 +1,8 @@
 import BlueCircle from "./blueCircle";
 import Title from "./h1";
 import SubTitle from "./subTitle";
+
+
 export default function DragDrop() {
   return (
     <div className={`p-6`}>
@@ -18,7 +20,7 @@ export default function DragDrop() {
       </div>
       <div>
         <div
-          className=" flex h-60 w-full flex-col items-center justify-center rounded-xl border-2 p-2 pb-4"
+          className="flex h-60 w-full flex-col items-center justify-center rounded-xl border-2 p-2 pb-4"
           style={{
             boxShadow: "-2px 2px 2px 0px rgba(0,0,0,0.3)",
             height: "19rem",
@@ -27,6 +29,7 @@ export default function DragDrop() {
           <BlueCircle />
           <p className="text-lg text-neutral-300">.png, .jpg, .pdf supported</p>
           <p className="text-center text-lg text-neutral-300">or paste text</p>
+          {/* <input type="file" className="flex block h-0 w-0 flex-col items-center justify-center rounded-xl border-none p-0 m-0"></input> */}
         </div>
       </div>
     </div>
