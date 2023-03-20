@@ -1,30 +1,71 @@
 import Button from "../../components/button";
 import CourseDescriptionEditor from "../../components/coursedescriptioneditor";
 import CourseEditorContents from "../../components/courseeditorcontent";
-import CourseEditorSectionHeader from "../../components/courseeditorsectionheader";
+import CourseEditorTitleHeader from "../../components/courseeditortitleheader";
 import HeaderContainer from "../../components/headercontainer";
 import LogoContainer from "../../components/logocontainer";
 import SectionTextEditor from "../../components/sectiontexteditor";
+import CourseEditorSectionTitle from "../../components/courseeditorsectiontitle";
+import { useState } from "react";
 
 export default function CourseEditor() {
+  const [courseTitle, setCourseTitle] = useState<string>("Course Title");
+  const [courseDescription, setCourseDescription] = useState<string>(
+    "Course Description Title"
+  );
+  const [sectionHeader, setSectionHeader] = useState<string>(
+    "Section Header Title"
+  );
+
+  const updateCourseTitle = (title) => {
+    if (title === "") {
+      setCourseTitle("Course Title");
+    } else setCourseTitle(title);
+  };
+
+  const updateCourseDescriptionTitle = (description) => {
+    if (description === "") {
+      setCourseDescription("Course Description Title");
+    } else setCourseDescription(description);
+  };
+
+  const updateSectionHeaderTitle = (header: string) => {
+    if (header === "") {
+      setSectionHeader("Section Header Title");
+    } else setSectionHeader(header);
+  };
+
   return (
     <div className="flex flex-col items-center">
       <LogoContainer className="self-start" />
       <HeaderContainer
         smallTitle="Edit your course"
         largeTitle="Hi, User"
-        alignment="place-self-start"
+        alignment="self-start"
         flexDirection="flex-col-reverse "
       />
-      <div className="flex flex-row">
-        <div className="flex w-[800px] flex-col">
-          <CourseEditorSectionHeader placeholderTitle="Course Title" />
-          <CourseDescriptionEditor />
-          <CourseEditorSectionHeader placeholderTitle="Section Heading" />
+      <div className="flex w-3/4 flex-row">
+        <div className="flex w-3/4 flex-col">
+          <CourseEditorTitleHeader
+            placeholderTitle={courseTitle}
+            title={updateCourseTitle}
+          />
+          <CourseDescriptionEditor
+            placeholderTitle={courseDescription}
+            updateCourseDescription={updateCourseDescriptionTitle}
+          />
+          <CourseEditorSectionTitle
+            placeholderTitle={sectionHeader}
+            sectionTitle={updateSectionHeaderTitle}
+          />
           <SectionTextEditor />
         </div>
         <div className="ml-4 flex w-16 flex-col items-center">
-          <CourseEditorContents />
+          <CourseEditorContents
+            courseTitle={courseTitle}
+            courseDescription={courseDescription}
+            sectionHeader={sectionHeader}
+          />
           <Button text="Confirm" href="./confirmation" type="submit" />
         </div>
       </div>

@@ -9,7 +9,7 @@ export default function SectionTextEditor() {
   };
 
   return (
-    <div className="my-6 flex w-full flex-col ">
+    <div className=" flex w-3/4 flex-col ">
       <div className="my-6 flex w-full flex-col rounded-xl border-l-[14px] border-[#DBE4FF] text-[#353535] drop-shadow">
         <input
           type="text"
