@@ -26,6 +26,13 @@ export default function FileUpload(props: FileUploadProps): JSX.Element {
     setDragging(false);
   }
 
+  function handleClick() {
+    const input = document.createElement("input");
+    input.type = "file";
+    input.accept = ".txt";
+    input.click();
+  }
+
   async function handleDrop(event: React.DragEvent<HTMLDivElement>) {
     event.preventDefault();
     setDragging(false);
@@ -61,6 +68,7 @@ export default function FileUpload(props: FileUploadProps): JSX.Element {
       onDragOver={handleDragOver}
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
+      onClick={handleClick}
     >
       <DragDrop />
     </div>
