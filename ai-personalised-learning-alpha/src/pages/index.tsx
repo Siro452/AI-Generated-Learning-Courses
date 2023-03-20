@@ -27,12 +27,13 @@ const Home: NextPage = () => {
               text="Prototype 3"
               href="/prototype3/userinput"
             />
-            {/* <Button
-              type="button"
-              text="Jordan Prototype"
-              href="/jordanprototype"
-            />
             <Button
+              type="button"
+              text="Prototype 2"
+              href="/jordanprototype"
+              className="ml-20"
+            />
+            {/* <Button
               type="button"
               text="Nick Prototype"
               href="/nickprototype/inputuser"
