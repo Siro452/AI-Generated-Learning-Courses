@@ -32,7 +32,7 @@ export default function FileUpload(props: FileUploadProps) {
     input.type = "file";
     input.accept = ".txt";
     input.click();
-    
+
     input.addEventListener("change", () => {
       const file = input.files?.[0];
       if (file) {
@@ -40,12 +40,12 @@ export default function FileUpload(props: FileUploadProps) {
         const fileReader = new FileReader();
         const fileName = file.name;
         fileReader.readAsText(fileBlob);
-  
+
         fileReader.onload = async function () {
           let extractedText = fileReader.result as string;
-  
+
           console.log("Extracted text:", extractedText);
-  
+
           extractedText
             ? props.setFileSubmissionState({
                 options: props.fileSubmissionState.options,
@@ -59,14 +59,13 @@ export default function FileUpload(props: FileUploadProps) {
                 title: props.fileSubmissionState.title,
               })
             : "it hasn't been read";
-  
+
           console.log("File submission state:", props.fileSubmissionState);
-          return extractedText
+          return extractedText;
         };
       }
     });
   }
-  
 
   async function handleDrop(event: React.DragEvent<HTMLDivElement>) {
     event.preventDefault();
