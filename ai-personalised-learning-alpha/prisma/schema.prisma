@@ -80,34 +80,36 @@ model User {
 }
 
 model Event {
-    id               String   @id @default(cuid())
-    createdAt        DateTime @default(now())
-    eventType        String   @db.VarChar(32)
-    eventDescription String   @db.VarChar(250)
-    eventStatus      String   @db.VarChar(250)
-    session          Session  @relation(fields: [sessionid], references: [id], onDelete: Cascade)
-    sessionid        String   @unique
+    id               String            @id @default(cuid())
+    createdAt        DateTime          @default(now())
+    eventType        String            @db.VarChar(32)
+    eventDescription String            @db.VarChar(250)
+    eventStatus      String            @db.VarChar(250)
+    session          Session           @relation(fields: [sessionid], references: [id], onDelete: Cascade)
+    sessionid        String            @unique
+    UploadedDocument UploadedDocument?
 }
 
 model Session {
-    id          String   @id @default(cuid())
-    createdAt   DateTime @default(now())
-    sessionDate DateTime @default(now())
-    User        User     @relation(fields: [userid], references: [username], onDelete: Cascade)
-    userid      String   @unique
-    event       Event[]
-    documents   UploadedDocument[]
+    id               String             @id @default(cuid())
+    createdAt        DateTime           @default(now())
+    sessionDate      DateTime           @default(now())
+    User             User               @relation(fields: [userid], references: [username], onDelete: Cascade)
+    userid           String             @unique
+    event            Event[]
+    uploadeddocument UploadedDocument[]
 }
 
 model UploadedDocument {
-
     id            String   @id @default(cuid())
-    session       Session  @relation(fields: [sessionid], references: [userid])
-    sessionid     String   @unique
     createdAt     DateTime @default(now())
     fileName      String
     fileContent   String
     processedData String?
+    session   Session @relation(fields: [sessionid], references: [id], onDelete: Cascade)
+    sessionid String  @unique
+    event     Event   @relation(fields: [eventid], references: [id], onDelete: Cascade)
+    eventid   String  @unique
 }
 
 // See if i can make this relate to id
