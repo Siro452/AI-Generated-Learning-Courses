@@ -3,7 +3,6 @@
 
 generator client {
     provider = "prisma-client-js"
-  
 }
 
 datasource db {
@@ -13,8 +12,6 @@ datasource db {
     // https://next-auth.js.org/adapters/prisma#create-the-prisma-schema
     // https://www.prisma.io/docs/reference/api-reference/prisma-schema-reference#string
     url      = env("DATABASE_URL")
-    
-   
 }
 
 // model Example {
@@ -76,37 +73,47 @@ datasource db {
 // }
 
 model User {
-    id                  String   @id @default(cuid())
-    createdAt           DateTime @default(now())
-    username            String   @unique
-    sessions            Session[]        
+    id        String    @id @default(cuid())
+    createdAt DateTime  @default(now())
+    username  String    @unique
+    sessions  Session[]
 }
-
 
 model Event {
-    id                  String   @id @default(cuid())
-    createdAt           DateTime @default(now())
-    eventType           String   @db.VarChar(32)   
-    eventDescription    String   @db.VarChar(250)
-    eventStatus         String   @db.VarChar(250)
-    session             Session  @relation(fields: [sessionid], references: [id], onDelete: Cascade)
-    sessionid           String   @unique
+    id               String            @id @default(cuid())
+    createdAt        DateTime          @default(now())
+    eventType        String            @db.VarChar(32)
+    eventDescription String            @db.VarChar(250)
+    eventStatus      String            @db.VarChar(250)
+    session          Session           @relation(fields: [sessionid], references: [id], onDelete: Cascade)
+    sessionid        String            @unique
+    UploadedDocument UploadedDocument?
 }
 
-model Session{
-    id                  String   @id @default(cuid())
-    createdAt           DateTime @default(now())
-    sessionDate         DateTime @default(now())
-    User                User     @relation(fields: [userid], references: [username], onDelete: Cascade)
-    userid              String   @unique
-    event               Event[]
+model Session {
+    id               String             @id @default(cuid())
+    createdAt        DateTime           @default(now())
+    sessionDate      DateTime           @default(now())
+    User             User               @relation(fields: [userid], references: [username], onDelete: Cascade)
+    userid           String             @unique
+    event            Event[]
+    uploadeddocument UploadedDocument[]
 }
-
 
 model UploadedDocument {
-    id        String   @id @default(cuid())
-    createdAt DateTime @default(now())
+    id            String   @id @default(cuid())
+    createdAt     DateTime @default(now())
     fileName      String
     fileContent   String
     processedData String?
+    session   Session @relation(fields: [sessionid], references: [id], onDelete: Cascade)
+    sessionid String  @unique
+    event     Event   @relation(fields: [eventid], references: [id], onDelete: Cascade)
+    eventid   String  @unique
 }
+
+// See if i can make this relate to id
+
+// returned data table also.
+
+// once it's at the front then put it at the back, to make it more efficient
