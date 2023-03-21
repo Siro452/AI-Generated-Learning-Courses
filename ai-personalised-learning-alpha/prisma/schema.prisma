@@ -87,7 +87,7 @@ model Event {
     eventStatus      String            @db.VarChar(250)
     session          Session           @relation(fields: [sessionid], references: [id], onDelete: Cascade)
     sessionid        String            @unique
-    UploadedDocument UploadedDocument?
+    uploadedDocument UploadedDocument?
 }
 
 model Session {
