@@ -15,7 +15,7 @@ export default function CourseEditorTitleHeader(
       <input
         type="text"
         placeholder={props.placeholderTitle}
-        className="h-full w-full pl-2 align-middle text-2xl font-bold text-[#353535] placeholder:align-middle placeholder:text-[#353535] "
+        className="h-full w-full py-5 pl-2 align-middle text-2xl font-bold text-[#353535] placeholder:align-middle placeholder:text-[#353535] "
         onChange={courseTitleUpdate}
       ></input>
     </div>

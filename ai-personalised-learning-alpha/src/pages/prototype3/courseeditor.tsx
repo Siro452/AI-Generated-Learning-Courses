@@ -45,7 +45,7 @@ export default function CourseEditor() {
         flexDirection="flex-col-reverse "
       />
       <div className="flex w-3/4 flex-row">
-        <div className="flex w-3/4 flex-col">
+        <div className="flex h-full w-3/4 flex-col">
           <CourseEditorTitleHeader
             placeholderTitle={courseTitle}
             title={updateCourseTitle}

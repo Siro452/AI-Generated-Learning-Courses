@@ -1,6 +1,7 @@
 import LogoContainer from "../../components/logocontainer";
 import HeaderContainer from "../../components/headercontainer";
 import Button from "../../components/button";
+import Slider from "../../components/slider";
 
 export default function Preferences() {
   return (
@@ -12,9 +13,19 @@ export default function Preferences() {
         alignment="place-self-start"
         flexDirection="flex-col"
       />
-      <div className="flex flex-row">
-        <div>Radial buttons</div>
-        <Button text="Generate" href="./loadingpage" type="submit" />
+      <div className="flex flex-row items-center">
+        <div className="mx-64">
+          <Slider label="Professionalism" />
+          <Slider label="Humour" />
+          <Slider label="Simplicity" />
+          <Slider label="Synonyms" />
+        </div>
+        <Button
+          className="self-end"
+          text="Generate"
+          href="./loadingpage"
+          type="submit"
+        />
       </div>
     </div>
   );

@@ -1,6 +1,10 @@
 import { useState } from "react";
 
-export default function Slider() {
+interface SliderProps {
+  label?: string;
+}
+
+export default function Slider(props: SliderProps) {
   const [value, setValue] = useState(0);
 
   const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
@@ -8,7 +12,8 @@ export default function Slider() {
   };
 
   return (
-    <div className=" flex items-center">
+    <div className=" flex flex-col items-start">
+      <label className="mx-2">{props.label}</label>
       <input
         id="medium-range"
         type="range"
@@ -16,10 +21,10 @@ export default function Slider() {
         max={100}
         value={value}
         onChange={handleChange}
-        className="mb-6 mt-1 h-2 w-80 cursor-pointer appearance-none rounded-lg bg-gray-200 dark:bg-gray-700 accent-indigo-500"
+        className="mb-2 mt-1 h-2 w-80 cursor-pointer appearance-none rounded-lg bg-gray-500 accent-[#6567ea]"
       />
 
-      <div className=" mt-1 pl-4 text-indigo-400"> {value}</div>
+      <p className="self-end pl-4 text-[#6567ea]"> {value}</p>
     </div>
   );
 }
