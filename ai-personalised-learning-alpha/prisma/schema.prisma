@@ -77,7 +77,6 @@ model User {
     createdAt DateTime  @default(now())
     username  String    @unique
     sessions  Session[]
-    documents UploadedDocument[]
 }
 
 model Event {
@@ -97,13 +96,14 @@ model Session {
     User        User     @relation(fields: [userid], references: [username], onDelete: Cascade)
     userid      String   @unique
     event       Event[]
+    documents   UploadedDocument[]
 }
 
 model UploadedDocument {
 
     id            String   @id @default(cuid())
-    User          User     @relation(fields: [userid], references: [username])
-    userid        String   @unique
+    session       Session  @relation(fields: [sessionid], references: [userid])
+    sessionid     String   @unique
     createdAt     DateTime @default(now())
     fileName      String
     fileContent   String
