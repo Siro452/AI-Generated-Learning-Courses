@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { MouseEvent, useState } from "react";
 import { api } from "../utils/api";
 import { FileSubmissionState } from "../pages/jordanprototype/createnewcourse";
 import BlueCircle from "./blueCircle";
@@ -10,7 +10,7 @@ interface FileUploadProps {
   fileSubmissionState: FileSubmissionState;
 }
 
-export default function FileUpload(props: FileUploadProps): JSX.Element {
+export default function FileUpload(props: FileUploadProps) {
   const [dragging, setDragging] = useState(false);
   // const [rawData, setRawData] = useState<string>("");
   // const [response, setResponse] = useState<{}>();
@@ -26,12 +26,47 @@ export default function FileUpload(props: FileUploadProps): JSX.Element {
     setDragging(false);
   }
 
-  function handleClick() {
+  function handleClick(e: MouseEvent): void {
+    e.preventDefault();
     const input = document.createElement("input");
     input.type = "file";
     input.accept = ".txt";
     input.click();
+    
+    input.addEventListener("change", () => {
+      const file = input.files?.[0];
+      if (file) {
+        const fileBlob = new Blob([file], { type: file.type });
+        const fileReader = new FileReader();
+        const fileName = file.name;
+        fileReader.readAsText(fileBlob);
+  
+        fileReader.onload = async function () {
+          let extractedText = fileReader.result as string;
+  
+          console.log("Extracted text:", extractedText);
+  
+          extractedText
+            ? props.setFileSubmissionState({
+                options: props.fileSubmissionState.options,
+                content: [
+                  ...props.fileSubmissionState.content,
+                  {
+                    filename: fileName,
+                    rawtext: clientData,
+                  },
+                ],
+                title: props.fileSubmissionState.title,
+              })
+            : "it hasn't been read";
+  
+          console.log("File submission state:", props.fileSubmissionState);
+          return extractedText
+        };
+      }
+    });
   }
+  
 
   async function handleDrop(event: React.DragEvent<HTMLDivElement>) {
     event.preventDefault();

@@ -7,6 +7,8 @@ import HeaderContainer from "../../components/headercontainer";
 import Title from "../../components/h1";
 import SubTitle from "../../components/subTitle";
 import Button from "../../components/button";
+
+
 export interface FileContent {
   filename: string;
   rawtext: string;
@@ -94,7 +96,7 @@ export default function createNewCourse() {
         </section>
 
 
-        <section className="flex flex-row justify-end py-4"><Button text={"Generate"} href={""} type={"button"} className="w-60" /></section>
+       <section className="flex flex-row justify-end py-4"><Button text={"Generate"} href={"/jordanprototype/loadingpage"} type={"button"} className="w-60" /></section>
       </main>
     </>
   );
