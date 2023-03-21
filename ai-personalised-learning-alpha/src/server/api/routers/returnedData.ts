@@ -37,7 +37,7 @@ export const receivedData = t.router({
     .input(
       z.object({
         documents: z.array(
-          z.object({ filename: z.string(), content: z.string() })
+          z.object({ filename: z.string(), content: z.string(), sessionid: z.any(), eventid: z.any()})
         ),
       })
     )
@@ -48,6 +48,8 @@ export const receivedData = t.router({
       data: input.documents.map(document => ({
         fileName: document.filename,
         fileContent: document.content,
+        sessionid: document.sessionid,
+        eventid: document.eventid
       }))
       });
       return result;

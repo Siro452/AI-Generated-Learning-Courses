@@ -19,7 +19,7 @@ export default function Slider() {
         className="mb-6 mt-1 h-2 w-80 cursor-pointer appearance-none rounded-lg bg-gray-200 dark:bg-gray-700 accent-indigo-500"
       />
 
-      <div className=" mt-1 pl-4 text-indigo-200"> {value}</div>
+      <div className=" mt-1 pl-4 text-indigo-400"> {value}</div>
     </div>
   );
 }
