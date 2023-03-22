@@ -9,40 +9,40 @@ import { FormEventHandler } from "react";
 export default function InputUser() {
   const [name, setName] = useState("");
   const createUser = api.createUser.createUser.useMutation({});
-  // const findUser = api.findUser.findUser.useQuery();
+  const findUser = api.findUser.findUser.useQuery();
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   const handleFindUser = async () => {
-  //     if (findUser.data?.username === name) {
-  //       console.log("user exists");
-  //     } else {
-  //       e.preventDefault();
-  //       try {
-  //         const createNewUser = async () => {
-  //           await createUser.mutateAsync({
-  //             username: name,
-  //             sessions: [
-  //               {
-  //                 sessionDate: new Date().toISOString(),
-  //                 event: [
-  //                   {
-  //                     eventType: "User Created",
-  //                     eventDescription: "User Created",
-  //                     eventStatus: "Success",
-  //                   },
-  //                 ],
-  //               },
-  //             ],
-  //           });
-  //         };
-  //         await createNewUser();
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     }
-  //   };
-  //   await handleFindUser();
-  // };
+  const handleSubmit = async (e: React.FormEvent) => {
+    const handleFindUser = async () => {
+      if (findUser.data?.username === name) {
+        console.log("user exists");
+      } else {
+        e.preventDefault();
+        try {
+          const createNewUser = async () => {
+            await createUser.mutateAsync({
+              username: name,
+              sessions: [
+                {
+                  sessionDate: new Date().toISOString(),
+                  event: [
+                    {
+                      eventType: "User Created",
+                      eventDescription: "User Created",
+                      eventStatus: "Success",
+                    },
+                  ],
+                },
+              ],
+            });
+          };
+          await createNewUser();
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    };
+    await handleFindUser();
+  };
 
   return (
     <div className="flex items-center justify-center font-sans">
@@ -50,7 +50,7 @@ export default function InputUser() {
       <form
         className="items-left m-72 flex w-full flex-col
         justify-center gap-4"
-        // onSubmit={handleSubmit}
+        onSubmit={handleSubmit}
       >
         <label className="mb-16 items-start  text-5xl tracking-tight ">
           What&apos;s Your Name?
@@ -60,7 +60,7 @@ export default function InputUser() {
           py-[2]
           pl-[14px]"
           type="text"
-          // value={name}
+          value={name}
           onChange={(e) => {
             setName(e.target.value);
           }}
