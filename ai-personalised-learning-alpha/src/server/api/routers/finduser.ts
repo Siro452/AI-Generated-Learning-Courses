@@ -1,25 +1,19 @@
 import { createTRPCRouter, publicProcedure } from "../trpc";
+import { z } from "zod";
 
 export const findUserRouter = createTRPCRouter({
-  findUser: publicProcedure.query(async ({ ctx, input }) => {
-    try {
+  findUser: publicProcedure
+    .input(
+      z.object({
+        userid: z.string(),
+      })
+    )
+    .query(async ({ ctx, input }) => {
       const user = await ctx.prisma.user.findUnique({
         where: {
-          username: input,
-        },
-        include: {
-          sessions: {
-            select: {
-              id: true,
-              event: true,
-            },
-          },
+          id: input.userid,
         },
       });
       return user;
-    } catch (error) {
-      console.log(error);
-      throw new Error("Failed to find user");
-    }
-  }),
+    }),
 });
