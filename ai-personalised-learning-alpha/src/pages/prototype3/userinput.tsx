@@ -21,6 +21,7 @@ export default function UserInput() {
     // User not found.
     console.log(findUser.data);
     router.push("/prototype3/uploadfile");
+    return;
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
