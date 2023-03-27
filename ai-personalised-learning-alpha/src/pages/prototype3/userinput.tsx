@@ -8,50 +8,52 @@ import { useRouter } from "next/router";
 export default function UserInput() {
   const [name, setName] = useState("");
   const createUser = api.createUser.createUser.useMutation({});
-  const findUser = api.findUser.findUser.useQuery({
-    userid: global.localStorage?.getItem("userid") ?? "",
-  });
+  const findExistingUserSession = api.findUser.findExistingUserSession.useQuery(
+    {
+      userid: global.localStorage?.getItem("userid") ?? "",
+    }
+  );
+  // const findExistingUserNoSession =
+  //   api.existingUserCreateSession.findExistingUserNoSession.useQuery({
+  //     username: name,
+  //   });
   const router = useRouter();
 
   if (
-    !findUser.isLoading &&
-    findUser.data !== null &&
-    findUser.data !== undefined
+    !findExistingUserSession.isLoading &&
+    findExistingUserSession.data !== null &&
+    findExistingUserSession.data !== undefined
   ) {
     // User not found.
-    console.log(findUser.data);
+    console.log(findExistingUserSession.data);
     router.push("/prototype3/uploadfile");
-    return;
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
-    const handleFindUser = async () => {
-      e.preventDefault();
-      try {
-        const createNewUser = async () => {
-          const result = await createUser.mutateAsync({
-            username: name,
-            sessions: [
-              {
-                sessionDate: new Date().toISOString(),
-                event: [
-                  {
-                    eventType: "User Created",
-                    eventDescription: "User Created",
-                    eventStatus: "Success",
-                  },
-                ],
-              },
-            ],
-          });
-          localStorage.setItem("userid", result.id);
-        };
-        await createNewUser();
-      } catch (error) {
-        console.log(error);
-      }
-    };
-    await handleFindUser();
+    e.preventDefault();
+    try {
+      const createNewUser = async () => {
+        const result = await createUser.mutateAsync({
+          username: name,
+          sessions: [
+            {
+              sessionDate: new Date().toISOString(),
+              event: [
+                {
+                  eventType: "User Created",
+                  eventDescription: "User Created",
+                  eventStatus: "Success",
+                },
+              ],
+            },
+          ],
+        });
+        localStorage.setItem("userid", result.id);
+      };
+      await createNewUser();
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   return (

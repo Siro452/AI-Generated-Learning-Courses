@@ -2,7 +2,7 @@ import { createTRPCRouter, publicProcedure } from "../trpc";
 import { z } from "zod";
 
 export const findUserRouter = createTRPCRouter({
-  findUser: publicProcedure
+  findExistingUserSession: publicProcedure
     .input(
       z.object({
         userid: z.string(),

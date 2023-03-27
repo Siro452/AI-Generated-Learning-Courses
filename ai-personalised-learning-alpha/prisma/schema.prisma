@@ -93,9 +93,9 @@ model Event {
 model Session {
     id               String             @id @default(cuid())
     createdAt        DateTime           @default(now())
-    sessionDate      DateTime           @default(now())
-    User             User               @relation(fields: [userid], references: [username], onDelete: Cascade)
-    userid           String             @unique
+    sessionDate      DateTime           
+    user             User               @relation(fields: [userid], references: [username], onDelete: Cascade)
+    userid           String            
     event            Event[]
     uploadeddocument UploadedDocument[]
 }

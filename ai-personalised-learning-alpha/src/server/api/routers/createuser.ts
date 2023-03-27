@@ -49,10 +49,130 @@ export const createUserRouter = createTRPCRouter({
         });
       } catch (error) {
         console.log(error);
-        throw new Error("Failed to create user");
+        throw new Error("User already exist or something went wrong");
       }
     }),
 });
+
+// import { createTRPCRouter } from "../trpc";
+// import { publicProcedure } from "../trpc";
+// import { z } from "zod";
+
+// type CreateUserInput = {
+//   username: string;
+//   sessions: {
+//     sessionDate: string;
+//     event: {
+//       eventType: string;
+//       eventDescription: string;
+//       eventStatus: string;
+//     };
+//   }[];
+// };
+
+// export const createUserRouter = createTRPCRouter({
+//   createUser: publicProcedure
+//     .input(
+//       z.object({
+//         username: z.string(),
+//         sessions: z.array(
+//           z.object({
+//             sessionDate: z.string(),
+//             event: z.object({
+//               eventType: z.string(),
+//               eventDescription: z.string(),
+//               eventStatus: z.string(),
+//             }),
+//           })
+//         ),
+//       })
+//     )
+//     .mutation(async ({ ctx, input }: { ctx; input: CreateUserInput }) => {
+//       const user = await ctx.prisma.user.findUnique({
+//         where: { username: input.username },
+//       });
+
+//       if (user) {
+//         const session = await ctx.prisma.session.create({
+//           data: {
+//             sessionDate: input.sessions[0].sessionDate,
+//             event: {
+//               create: {
+//                 eventType: input.sessions[0].event.eventType,
+//                 eventDescription: input.sessions[0].event.eventDescription,
+//                 eventStatus: input.sessions[0].event.eventStatus,
+//               },
+//             },
+//             User: { connect: { id: user.id } },
+//           },
+//           include: {
+//             User: true,
+//             event: {
+//               select: {
+//                 eventType: true,
+//                 eventDescription: true,
+//                 eventStatus: true,
+//               },
+//             },
+//           },
+//         });
+
+//         return {
+//           id: session.id,
+//           username: user.username,
+//           sessionDate: session.sessionDate,
+//           event: session.event,
+//         };
+//       } else {
+//         const session = await ctx.prisma.session.create({
+//           data: {
+//             sessionDate: input.sessions[0].sessionDate,
+//             event: {
+//               create: {
+//                 eventType: input.sessions[0].event.eventType,
+//                 eventDescription: input.sessions[0].event.eventDescription,
+//                 eventStatus: input.sessions[0].event.eventStatus,
+//               },
+//             },
+//             User: {
+//               create: {
+//                 username: input.username,
+//                 sessions: {
+//                   create: input.sessions.map((session) => ({
+//                     sessionDate: session.sessionDate,
+//                     event: {
+//                       create: {
+//                         eventType: session.event.eventType,
+//                         eventDescription: session.event.eventDescription,
+//                         eventStatus: session.event.eventStatus,
+//                       },
+//                     },
+//                   })),
+//                 },
+//               },
+//             },
+//           },
+//           include: {
+//             User: true,
+//             event: {
+//               select: {
+//                 eventType: true,
+//                 eventDescription: true,
+//                 eventStatus: true,
+//               },
+//             },
+//           },
+//         });
+
+//         return {
+//           id: session.id,
+//           username: session.user.username,
+//           sessionDate: session.sessionDate,
+//           event: session.event[0],
+//         };
+//       }
+//     }),
+// });
 
 // //import { createTRPCRouter } from "@trpc/server";
 // import { z } from "zod";
