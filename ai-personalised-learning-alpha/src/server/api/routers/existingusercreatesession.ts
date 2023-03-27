@@ -3,7 +3,7 @@ import { publicProcedure } from "../trpc";
 import { z } from "zod";
 
 type CreateSessionInput = {
-  username: string;
+  id: string;
   sessionDate: string;
   event: {
     eventType: string;
@@ -16,12 +16,12 @@ export const existingUserCreateSessionRouter = createTRPCRouter({
   findExistingUserNoSession: publicProcedure
     .input(
       z.object({
-        username: z.string(),
+        id: z.string(),
       })
     )
     .query(async ({ ctx, input }) => {
       const user = await ctx.prisma.user.findUnique({
-        where: { username: input.username },
+        where: { id: input.id },
       });
       return user;
     }),
