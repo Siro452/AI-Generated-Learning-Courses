@@ -75,7 +75,7 @@ datasource db {
 model User {
     id        String    @id @default(cuid())
     createdAt DateTime  @default(now())
-    username  String    @unique
+    username  String
     sessions  Session[]
 }
 
@@ -93,9 +93,9 @@ model Event {
 model Session {
     id               String             @id @default(cuid())
     createdAt        DateTime           @default(now())
-    sessionDate      DateTime           
-    user             User               @relation(fields: [userid], references: [username], onDelete: Cascade)
-    userid           String            
+    sessionDate      DateTime
+    user             User               @relation(fields: [userid], references: [id], onDelete: Cascade)
+    userid           String
     event            Event[]
     uploadeddocument UploadedDocument[]
 }
@@ -106,10 +106,10 @@ model UploadedDocument {
     fileName      String
     fileContent   String
     processedData String?
-    session   Session @relation(fields: [sessionid], references: [id], onDelete: Cascade)
-    sessionid String  @unique
-    event     Event   @relation(fields: [eventid], references: [id], onDelete: Cascade)
-    eventid   String  @unique
+    session       Session  @relation(fields: [sessionid], references: [id], onDelete: Cascade)
+    sessionid     String   @unique
+    event         Event    @relation(fields: [eventid], references: [id], onDelete: Cascade)
+    eventid       String   @unique
 }
 
 // See if i can make this relate to id
