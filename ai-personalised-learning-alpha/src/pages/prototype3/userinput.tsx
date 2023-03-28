@@ -13,12 +13,9 @@ export default function UserInput() {
       userid: global.localStorage?.getItem("userid") ?? "",
     }
   );
-  // const findExistingUserNoSession =
-  //   api.existingUserCreateSession.findExistingUserNoSession.useQuery({
-  //     username: name,
-  //   });
+  
   const router = useRouter();
-
+    
   if (
     !findExistingUserSession.isLoading &&
     findExistingUserSession.data !== null &&
@@ -30,6 +27,7 @@ export default function UserInput() {
   }
 
   const handleSubmit = async (e: React.FormEvent) => {
+    
     e.preventDefault();
     try {
       const createNewUser = async () => {

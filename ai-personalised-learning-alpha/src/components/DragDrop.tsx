@@ -3,20 +3,21 @@ import Title from "./h1";
 import SubTitle from "./subTitle";
 
 
+
 export default function DragDrop() {
   return (
-    <div className={`p-6`}>
+    <div className="p-6 w-full  " >
       <div
         className="col-span-1 row-span-1 p-4 text-left "
         style={{ marginLeft: "-60px" }}
       >
-        <span className=" block text-lg text-neutral-600">
+        {/* <span className=" block text-lg text-neutral-600">
           <SubTitle subtitle="Upload your files" />
         </span>
         <span className="mx-3"></span>
-        <span className="block pb-10 text-3xl font-black font-extrabold drop-shadow-md">
+        <span className="block pb-10 text-3xl font-extrabold drop-shadow-md">
           <Title title="Drag & drop or browse" />
-        </span>
+        </span> */}
       </div>
       <div>
         <div
