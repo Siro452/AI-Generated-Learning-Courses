@@ -1,12 +1,10 @@
 import HeaderContainer from "../../components/headercontainer";
 import LogoContainer from "../../components/logocontainer";
 import Button from "../../components/button";
-import { api } from "../../utils/api";
-import { useState } from "react";
-import { useRouter } from "next/router";
 
 export default function UserInput() {
-  const [name, setName] = useState("");
+
+const [name, setName] = useState("");
   const createUser = api.createUser.createUser.useMutation({});
   const findExistingUserSession = api.findUser.findExistingUserSession.useQuery(
     {
