@@ -13,7 +13,7 @@ interface FileUploadProps {
 export default function FileUpload(props: FileUploadProps) {
   const [dragging, setDragging] = useState(false);
   // const [rawData, setRawData] = useState<string>("");
-  // const [response, setResponse] = useState<{}>();
+  const [response, setResponse] = useState<{}>();
   const mutation = api.receivedData.mutateData.useMutation();
   const [clientData, setClientData] = useState<string>("");
 
@@ -32,7 +32,7 @@ export default function FileUpload(props: FileUploadProps) {
     input.type = "file";
     input.accept = ".txt";
     input.click();
-    
+
     input.addEventListener("change", () => {
       const file = input.files?.[0];
       if (file) {
@@ -40,12 +40,12 @@ export default function FileUpload(props: FileUploadProps) {
         const fileReader = new FileReader();
         const fileName = file.name;
         fileReader.readAsText(fileBlob);
-  
+
         fileReader.onload = async function () {
           let extractedText = fileReader.result as string;
-  
-          console.log("Extracted text:", extractedText);
-  
+
+          console.log(extractedText);
+
           extractedText
             ? props.setFileSubmissionState({
                 options: props.fileSubmissionState.options,
@@ -53,20 +53,19 @@ export default function FileUpload(props: FileUploadProps) {
                   ...props.fileSubmissionState.content,
                   {
                     filename: fileName,
-                    rawtext: clientData,
+                    rawtext: extractedText,
                   },
                 ],
                 title: props.fileSubmissionState.title,
               })
+              
             : "it hasn't been read";
-  
-          console.log("File submission state:", props.fileSubmissionState);
-          return extractedText
+
+          console.log(props.fileSubmissionState.content);
         };
       }
     });
   }
-  
 
   async function handleDrop(event: React.DragEvent<HTMLDivElement>) {
     event.preventDefault();
@@ -86,7 +85,7 @@ export default function FileUpload(props: FileUploadProps) {
               ...props.fileSubmissionState.content,
               {
                 filename: fileName,
-                rawtext: clientData,
+                rawtext: extractedText,
               },
             ],
             title: props.fileSubmissionState.title,

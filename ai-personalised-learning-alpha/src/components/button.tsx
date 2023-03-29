@@ -5,6 +5,7 @@ interface ButtonProps {
   text: string;
   href: string;
   type: "submit" | "reset" | "button";
+
 }
 
 export default function Button(props: ButtonProps) {

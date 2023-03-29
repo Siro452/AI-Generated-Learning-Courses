@@ -1,13 +1,13 @@
 import FileUpload from "../../components/fileupload";
 import GenerateBar from "../../components/generatebar";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import Filters from "../../components/filters";
 import LogoContainer from "../../components/logocontainer";
 import HeaderContainer from "../../components/headercontainer";
 import Title from "../../components/h1";
 import SubTitle from "../../components/subTitle";
 import Button from "../../components/button";
-
+import { api } from "../../utils/api";
 
 export interface FileContent {
   filename: string;
@@ -23,11 +23,61 @@ export interface FileSubmissionState {
 export interface Filters {
   sliderValue: number;
 }
+
+interface GenerateProps {
+  // placeholder: string;
+  content: FileSubmissionState;
+}
+
 export default function createNewCourse() {
   const [content, setContent] = useState<FileSubmissionState>({
     content: [],
     title: "",
   });
+
+  const mutateData = api.receivedData.mutateData.useMutation({
+    onSuccess: (data) => {
+      console.log(data);
+    },
+  });
+
+  const generate: () => void = async () => {
+    // e.preventDefault();
+    // mutate data
+
+    mutateData.mutateAsync({
+      userUpload: content.content.map((x) => {
+        return {
+          fileName: x.filename,
+          fileContent: x.rawtext,
+          // sessionid: "",
+          // eventid: "",
+        };
+      }),
+    });
+    // const mutateData = api.receivedData.mutateData.useMutation({
+    //   onSuccess: (data) => {
+    //     console.log(data);
+    //   },
+    // });
+    // const response = await mutateData.mutateAsync({ data });
+
+    // console.log(response, "response has been returned");
+
+    // return response
+  };
+
+  // const payload = async (e: { preventDefault: () => void }) => {
+  //   e.preventDefault();
+  //   // mutate data
+  //   const mutateData = api.receivedData.mutateData.useMutation({});
+  //   const response = await mutateData.mutateAsync({  });
+
+  //   console.log(response);
+
+  //   // return response
+  //   return response;
+  // };
 
   return (
     <>
@@ -94,9 +144,15 @@ export default function createNewCourse() {
             <Filters />
           </div>
         </section>
-
-
-       <section className="flex flex-row justify-end py-4"><Button text={"Generate"} href={"/jordanprototype/loadingpage"} type={"button"} className="w-60" /></section>
+        {/* <GenerateBar placeholder={""} content={content} /> */}
+        <section className="flex flex-row justify-end py-4" onClick={generate}>
+          <Button
+            text={"Generate"}
+            href={"/jordanprototype/loadingpage"}
+            type={"button"}
+            className="w-60"
+          />
+        </section>
       </main>
     </>
   );
