@@ -27,13 +27,13 @@ export const createUserRouter = createTRPCRouter({
             username: input.username,
             sessions: {
               create: input.sessions.map((session) => ({
-                // event: {
-                //   create: session.event.map((event) => ({
-                //     eventType: event.eventType,
-                //     eventDescription: event.eventDescription,
-                //     eventStatus: event.eventStatus,
-                //   })),
-                // },
+                event: {
+                  create: session.event.map((event) => ({
+                    eventType: event.eventType,
+                    eventDescription: event.eventDescription,
+                    eventStatus: event.eventStatus,
+                  })),
+                },
                 // event: {
                 //   create: [
                 //     { eventType: "", eventDescription: "", eventStatus: "" },
