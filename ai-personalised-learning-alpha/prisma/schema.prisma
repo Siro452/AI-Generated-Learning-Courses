@@ -3,8 +3,9 @@ generator client {
 }
 
 datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+    provider  = "postgresql"
+    url       = env("DATABASE_URL")
+    directUrl = env("DIRECT_URL")
 }
 
 model User {
@@ -15,34 +16,34 @@ model User {
 }
 
 model Event {
-  id               String            @id @default(cuid())
-  createdAt        DateTime          @default(now())
-  eventType        String            @db.VarChar(32)
-  eventDescription String            @db.VarChar(250)
-  eventStatus      String            @db.VarChar(250)
-  sessionid        String            @unique
-  session          Session           @relation(fields: [sessionid], references: [id], onDelete: Cascade)
-//   UploadedDocument UploadedDocument?
+    id               String   @id @default(cuid())
+    createdAt        DateTime @default(now())
+    eventType        String   @db.VarChar(32)
+    eventDescription String   @db.VarChar(250)
+    eventStatus      String   @db.VarChar(250)
+    session          Session  @relation(fields: [sessionid], references: [id], onDelete: Cascade)
+    sessionid        String
+    // uploadedDocument UploadedDocument?
 }
 
 model Session {
-  id               String            @id @default(cuid())
-  createdAt        DateTime          @default(now())
-  sessionDate      DateTime
-  userid           String
-  event            Event?
-  User             User              @relation(fields: [userid], references: [id], onDelete: Cascade)
-//   uploadeddocument UploadedDocument?
+    id          String   @id @default(cuid())
+    createdAt   DateTime @default(now())
+    sessionDate DateTime
+    user        User     @relation(fields: [userid], references: [id], onDelete: Cascade)
+    userid      String
+    event       Event[]
+    // uploadeddocument UploadedDocument[]
 }
 
 model UploadedDocument {
-  id            String   @id @default(cuid())
-//   createdAt     DateTime @default(now())
-  fileName      String
-  fileContent   String
-  processedData String?
-//   eventid       String?  @default(cuid())
-//   sessionid     String?  @default(cuid())
-//   Event         Event?   @relation(fields: [eventid], references: [id], onUpdate: Cascade)
-//   session       Session? @relation(fields: [sessionid], references: [id], onUpdate: Cascade)
+    id            String   @id @default(cuid())
+    createdAt     DateTime @default(now())
+    fileName      String
+    fileContent   String
+    processedData String?
+    // session       Session  @relation(fields: [sessionid], references: [id], onDelete: Cascade)
+    // sessionid     String   @unique
+    // event         Event    @relation(fields: [eventid], references: [id], onDelete: Cascade)
+    // eventid       String   @unique
 }
