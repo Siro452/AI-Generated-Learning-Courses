@@ -29,6 +29,7 @@
     "nanoid": "^4.0.1",
     "next": "13.1.6",
     "next-auth": "^4.19.0",
+    "nextjs-cors": "^2.1.2",
     "pdf-parse": "^1.1.1",
     "pdf.js-extract": "^0.2.1",
     "pdfjs-dist": "^3.4.120",

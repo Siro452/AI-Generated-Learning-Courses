@@ -103,6 +103,7 @@ export default function FileUpload(props: FileUploadProps) {
       onDragLeave={handleDragLeave}
       onDrop={handleDrop}
       onClick={handleClick}
+      className="w-full"
     >
       <DragDrop />
     </div>
