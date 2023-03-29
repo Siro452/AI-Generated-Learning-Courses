@@ -8,41 +8,41 @@ import { FormEventHandler } from "react";
 
 export default function InputUser() {
   const [name, setName] = useState("");
-  // const createUser = api.createUser.createUser.useMutation({});
-  // const findUser = api.findUser.findUser.useQuery();
+  const createUser = api.createUser.createUser.useMutation({});
+  const findUser = api.findUser.findExistingUserSession.useQuery();
 
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   const handleFindUser = async () => {
-  //     if (findUser.data?.username === name) {
-  //       console.log("user exists");
-  //     } else {
-  //       e.preventDefault();
-  //       try {
-  //         const createNewUser = async () => {
-  //           await createUser.mutateAsync({
-  //             username: name,
-  //             sessions: [
-  //               {
-  //                 sessionDate: new Date().toISOString(),
-  //                 event: [
-  //                   {
-  //                     eventType: "User Created",
-  //                     eventDescription: "User Created",
-  //                     eventStatus: "Success",
-  //                   },
-  //                 ],
-  //               },
-  //             ],
-  //           });
-  //         };
-  //         await createNewUser();
-  //       } catch (error) {
-  //         console.log(error);
-  //       }
-  //     }
-  //   };
-  //   await handleFindUser();
-  // };
+  const handleSubmit = async (e: React.FormEvent) => {
+    const handleFindUser = async () => {
+      if (findUser.data?.username === name) {
+        console.log("user exists");
+      } else {
+        e.preventDefault();
+        try {
+          const createNewUser = async () => {
+            await createUser.mutateAsync({
+              username: name,
+              sessions: [
+                {
+                  sessionDate: new Date().toISOString(),
+                  event: [
+                    {
+                      eventType: "User Created",
+                      eventDescription: "User Created",
+                      eventStatus: "Success",
+                    },
+                  ],
+                },
+              ],
+            });
+          };
+          await createNewUser();
+        } catch (error) {
+          console.log(error);
+        }
+      }
+    };
+    await handleFindUser();
+  };
 
   return (
     <div className="flex items-center justify-center font-sans">

@@ -6,7 +6,7 @@ import { useRouter } from "next/router";
 
 export default function UserInput() {
   const [name, setName] = useState("");
-  // const createUser = api.createUser.createUser.useMutation({});
+  const createUser = api.createUser.createUser.useMutation({});
   const findExistingUserSession = api.findUser.findExistingUserSession.useQuery(
     {
       userid: global.localStorage?.getItem("userid") ?? "",
@@ -22,32 +22,32 @@ export default function UserInput() {
     console.log(findExistingUserSession.data);
     router.push("/prototype3/uploadfile");
   }
-  // const handleSubmit = async (e: React.FormEvent) => {
-  //   e.preventDefault();
-  //   try {
-  //     const createNewUser = async () => {
-  //       const result = await createUser.mutateAsync({
-  //         username: name,
-  //         sessions: [
-  //           {
-  //             sessionDate: new Date().toISOString(),
-  //             event: [
-  //               {
-  //                 eventType: "User Created",
-  //                 eventDescription: "User Created",
-  //                 eventStatus: "Success",
-  //               },
-  //             ],
-  //           },
-  //         ],
-  //       });
-  //       localStorage.setItem("userid", result.id);
-  //     };
-  //     await createNewUser();
-  //   } catch (error) {
-  //     console.log(error);
-  //   }
-  // };
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    try {
+      const createNewUser = async () => {
+        const result = await createUser.mutateAsync({
+          username: name,
+          sessions: [
+            {
+              sessionDate: new Date(),
+              event: [
+                {
+                  eventType: "User Created",
+                  eventDescription: "User Created",
+                  eventStatus: "Success",
+                },
+              ],
+            },
+          ],
+        });
+        localStorage.setItem("userid", result.id);
+      };
+      await createNewUser();
+    } catch (error) {
+      console.log(error);
+    }
+  };
 
   return (
     <div>
