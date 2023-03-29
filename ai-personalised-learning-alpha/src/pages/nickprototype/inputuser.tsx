@@ -8,7 +8,7 @@ import { FormEventHandler } from "react";
 
 export default function InputUser() {
   const [name, setName] = useState("");
-  const createUser = api.createUser.createUser.useMutation({});
+  // const createUser = api.createUser.createUser.useMutation({});
   // const findUser = api.findUser.findUser.useQuery();
 
   // const handleSubmit = async (e: React.FormEvent) => {
