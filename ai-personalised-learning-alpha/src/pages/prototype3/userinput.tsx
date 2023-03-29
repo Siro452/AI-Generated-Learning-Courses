@@ -1,6 +1,5 @@
 import HeaderContainer from "../../components/headercontainer";
 import LogoContainer from "../../components/logocontainer";
-import Button from "../../components/button";
 import { api } from "../../utils/api";
 import { useState } from "react";
 import { useRouter } from "next/router";
