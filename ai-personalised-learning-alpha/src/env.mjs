@@ -30,6 +30,7 @@ const server = z.object({
  * To expose them to the client, prefix them with `NEXT_PUBLIC_`.
  */
 const client = z.object({
+  DATABASE_URL: z.string().url(),
   // NEXT_PUBLIC_CLIENTVAR: z.string().min(1),
 });
 
