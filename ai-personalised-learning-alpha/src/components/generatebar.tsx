@@ -7,21 +7,16 @@ interface GenerateProps {
   content: FileSubmissionState;
 }
 
-const payload = async (e: { preventDefault: () => void }) => {
+const payload = async (userUpload: any, e: { preventDefault: () => void }) => {
   e.preventDefault();
   // mutate data
-  const payloadData = await api.receivedData.mutateData.useMutation();
   const mutateData = api.receivedData.mutateData.useMutation({});
-  const response = await mutateData.mutateAsync({});
+  const response = await mutateData.mutateAsync({ userUpload });
 
- 
-
-  
-  console.log(payloadData);
-  console.log(response);
+  console.log("This is the response that is being returned", response);
 
   // return response
-  return payloadData;
+  return response;
 };
 
 const Generate: React.FC<GenerateProps> = ({ placeholder, content }) => {

@@ -1,7 +1,6 @@
 import { createTRPCRouter } from "../trpc";
 import { publicProcedure } from "../trpc";
 import { z } from "zod";
-
 export const createUserRouter = createTRPCRouter({
   createUser: publicProcedure
     .input(
@@ -9,7 +8,7 @@ export const createUserRouter = createTRPCRouter({
         username: z.string(),
         sessions: z.array(
           z.object({
-            sessionDate: z.string(),
+            sessionDate: z.date(),
             event: z.array(
               z.object({
                 eventType: z.string(),
@@ -35,6 +34,11 @@ export const createUserRouter = createTRPCRouter({
                     eventStatus: event.eventStatus,
                   })),
                 },
+                // event: {
+                //   create: [
+                //     { eventType: "", eventDescription: "", eventStatus: "" },
+                //   ],
+                // },
                 sessionDate: session.sessionDate,
               })),
             },

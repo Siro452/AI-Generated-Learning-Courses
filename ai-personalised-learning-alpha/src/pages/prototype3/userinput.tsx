@@ -12,9 +12,7 @@ export default function UserInput() {
       userid: global.localStorage?.getItem("userid") ?? "",
     }
   );
-  
   const router = useRouter();
-    
   if (
     !findExistingUserSession.isLoading &&
     findExistingUserSession.data !== null &&
@@ -24,9 +22,7 @@ export default function UserInput() {
     console.log(findExistingUserSession.data);
     router.push("/prototype3/uploadfile");
   }
-
   const handleSubmit = async (e: React.FormEvent) => {
-    
     e.preventDefault();
     try {
       const createNewUser = async () => {
@@ -34,7 +30,7 @@ export default function UserInput() {
           username: name,
           sessions: [
             {
-              sessionDate: new Date().toISOString(),
+              sessionDate: new Date(),
               event: [
                 {
                   eventType: "User Created",
@@ -62,7 +58,7 @@ export default function UserInput() {
         flexDirection="flex-col"
       />
       <form
-        onSubmit={handleSubmit}
+        // onSubmit={handleSubmit}
         className="flex flex-row items-center justify-center"
       >
         <input
