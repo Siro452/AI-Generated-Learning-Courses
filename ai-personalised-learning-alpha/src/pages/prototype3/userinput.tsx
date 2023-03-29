@@ -58,7 +58,7 @@ export default function UserInput() {
         flexDirection="flex-col"
       />
       <form
-        // onSubmit={handleSubmit}
+        onSubmit={handleSubmit}
         className="flex flex-row items-center justify-center"
       >
         <input
