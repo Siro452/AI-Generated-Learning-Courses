@@ -1,6 +1,6 @@
-import { createTRPCRouter } from “../trpc”;
-import { publicProcedure } from “../trpc”;
-import { z } from “zod”;
+import { createTRPCRouter } from "../trpc";
+import { publicProcedure } from "../trpc";
+import { z } from "zod";
 export const createUserRouter = createTRPCRouter({
   createUser: publicProcedure
     .input(
@@ -48,7 +48,7 @@ export const createUserRouter = createTRPCRouter({
         });
       } catch (error) {
         console.log(error);
-        throw new Error(“User already exist or something went wrong”);
+        throw new Error("User already exist or something went wrong");
       }
     }),
 });
