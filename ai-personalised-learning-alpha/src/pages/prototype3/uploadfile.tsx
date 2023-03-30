@@ -16,18 +16,43 @@ export interface FileSubmissionState {
   title: string;
 }
 
+export interface Filters {
+  sliderValue: number;
+}
+
 export default function UploadFile() {
-  const findExistingUserSession = api.findUser.findExistingUserSession.useQuery(
-    {
-      userid: global.localStorage?.getItem("userid") ?? "",
-    }
-  );
   const [content, setContent] = useState<FileSubmissionState>({
     content: [],
     title: "",
   });
 
+  const findExistingUserSession = api.findUser.findExistingUserSession.useQuery(
+    {
+      userid: global.localStorage?.getItem("userid") ?? "",
+    }
+  );
+  const mutateData = api.receivedData.mutateData.useMutation({
+    onSuccess: (data) => {
+      console.log(data);
+    },
+  });
 
+  const generate: () => void = async () => {
+    // e.preventDefault();
+    // mutate data
+
+    mutateData.mutateAsync({
+      userUpload: content.content.map((x) => {
+        return {
+          fileName: x.filename,
+          fileContent: x.rawtext,
+          // sessionid: "",
+          // eventid: "",
+        };
+      }),
+    });
+
+  };
 
 
   return (
@@ -40,10 +65,10 @@ export default function UploadFile() {
         alignment="place-self-start items-start"
         flexDirection="flex-col"
       />
-      <div className="flex h-[283px] w-3/4 justify-center content-center">
-        <FileUpload 
-        fileSubmissionState={content}
-        setFileSubmissionState={setContent}  />
+      <div className="flex w-3/4 justify-center content-center">
+        <FileUpload
+          fileSubmissionState={content}
+          setFileSubmissionState={setContent} />
       </div>
       <Button
         className="mr-64 self-end"
