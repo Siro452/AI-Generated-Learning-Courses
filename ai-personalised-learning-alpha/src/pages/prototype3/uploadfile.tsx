@@ -26,7 +26,7 @@ export default function UploadFile() {
     title: "",
   });
 
-  const findExistingUserSession = api.findUser.findExistingUserSession.useQuery(
+  const findExistingUser = api.findUser.findExistingUserSession.useQuery(
     {
       userid: global.localStorage?.getItem("userid") ?? "",
     }
@@ -38,9 +38,6 @@ export default function UploadFile() {
   });
 
   const generate: () => void = async () => {
-    // e.preventDefault();
-    // mutate data
-
     mutateData.mutateAsync({
       userUpload: content.content.map((x) => {
         return {
@@ -70,12 +67,14 @@ export default function UploadFile() {
           fileSubmissionState={content}
           setFileSubmissionState={setContent} />
       </div>
-      <Button
-        className="mr-64 self-end"
+      <form className="mr-64 self-end" onSubmit={generate}>
+        <Button
         text="Next"
         href="./preferences"
         type="submit"
-      />
+        />
+      </form>
+      
     </div>
   );
 }

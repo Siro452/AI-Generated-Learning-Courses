@@ -38,7 +38,7 @@ export const receivedData = t.router({
       z.object({
         userUpload: z.array(
           // z.object({ filename: z.string(), content: z.string(), sessionid: z.any(), eventid: z.any()})
-          z.object({ fileName: z.string(), fileContent: z.string()})
+          z.object({ fileName: z.string(), fileContent: z.string() })
         ),
       })
     )
@@ -46,10 +46,10 @@ export const receivedData = t.router({
       // const modifyString = changeToUpper(input.documents);
       // const removeLinks = filterLinks(input.clientData);
       const result = await prisma.uploadedDocument.createMany({
-      data: input.userUpload.map(document => ({
-        fileName: document.fileName,
-        fileContent: document.fileContent
-      }))
+        data: input.userUpload.map(document => ({
+          fileName: document.fileName,
+          fileContent: document.fileContent
+        }))
       });
       return result;
     }),

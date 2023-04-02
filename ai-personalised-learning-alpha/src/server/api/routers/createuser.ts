@@ -34,11 +34,6 @@ export const createUserRouter = createTRPCRouter({
                     eventStatus: event.eventStatus,
                   })),
                 },
-                // event: {
-                //   create: [
-                //     { eventType: "", eventDescription: "", eventStatus: "" },
-                //   ],
-                // },
                 sessionDate: session.sessionDate,
               })),
             },

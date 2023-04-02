@@ -48,16 +48,16 @@ export default function FileUpload(props: FileUploadProps) {
 
           extractedText
             ? props.setFileSubmissionState({
-                options: props.fileSubmissionState.options,
-                content: [
-                  ...props.fileSubmissionState.content,
-                  {
-                    filename: fileName,
-                    rawtext: extractedText,
-                  },
-                ],
-                title: props.fileSubmissionState.title,
-              })
+              options: props.fileSubmissionState.options,
+              content: [
+                ...props.fileSubmissionState.content,
+                {
+                  filename: fileName,
+                  rawtext: extractedText,
+                },
+              ],
+              title: props.fileSubmissionState.title,
+            })
               
             : "it hasn't been read";
 
@@ -80,22 +80,24 @@ export default function FileUpload(props: FileUploadProps) {
 
       extractedText
         ? props.setFileSubmissionState({
-            options: props.fileSubmissionState.options,
-            content: [
-              ...props.fileSubmissionState.content,
-              {
-                filename: fileName,
-                rawtext: extractedText,
-              },
-            ],
-            title: props.fileSubmissionState.title,
-          })
+          options: props.fileSubmissionState.options,
+          content: [
+            ...props.fileSubmissionState.content,
+            {
+              filename: fileName,
+              rawtext: extractedText,
+            },
+          ],
+          title: props.fileSubmissionState.title,
+        })
         : "it hasn't been read";
 
       console.log();
       console.log(extractedText);
     };
   }
+
+ 
 
   return (
     <div
