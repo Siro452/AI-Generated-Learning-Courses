@@ -12,12 +12,14 @@ import { api } from "../../utils/api";
 export interface FileContent {
   filename: string;
   rawtext: string;
+  userid: string;
 }
 
 export interface FileSubmissionState {
   options?: any;
   content: FileContent[];
   title: string;
+  userid: string;
 }
 
 export interface Filters {
@@ -30,7 +32,9 @@ interface GenerateProps {
 }
 
 export default function createNewCourse() {
+  const user = global.localStorage?.getItem("userid");
   const [content, setContent] = useState<FileSubmissionState>({
+    userid: "",
     content: [],
     title: "",
   });
@@ -50,6 +54,7 @@ export default function createNewCourse() {
         return {
           fileName: x.filename,
           fileContent: x.rawtext,
+          userid: user,
           // sessionid: "",
           // eventid: "",
         };

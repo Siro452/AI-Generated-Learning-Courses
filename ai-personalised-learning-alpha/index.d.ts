@@ -25,4 +25,3 @@ interface Course {
 // index.d.ts needs to be in the same folder as tsconfig.json
 // make a type for content also
 // break down the types into what i need, organise them nicely
-//

@@ -8,17 +8,17 @@ import { toCourse } from "../converters/fileDataConversions";
 // Modification of Data imports
 
 export const receivedData = t.router({
-  returnedData: t.procedure
-    .input(
-      z.object({
-        clientData: z.string(),
-      })
-    )
-    .query(async ({ input }) => {
-      // const prismatest = prismatestRouter
-      const result = await prisma.uploadedDocument.findMany({});
-      return `${input.clientData}`;
-    }),
+  // returnedData: t.procedure
+  //   .input(
+  //     z.object({
+  //       clientData: z.string(),
+  //     })
+  //   )
+  //   .query(async ({ input }) => {
+  //     // const prismatest = prismatestRouter
+  //     const result = await prisma.uploadedDocument.findMany({});
+  //     return `${input.clientData}`;
+  //   }),
   // post: t.procedure
   //   .input(
   //     z.object({
@@ -39,7 +39,11 @@ export const receivedData = t.router({
       z.object({
         userUpload: z.array(
           // z.object({ filename: z.string(), content: z.string(), sessionid: z.any(), eventid: z.any()})
-          z.object({ fileName: z.string(), fileContent: z.string() })
+          z.object({
+            fileName: z.string(),
+            fileContent: z.string(),
+            userid: z.string()
+          })
         ),
       })
     )
@@ -57,8 +61,7 @@ export const receivedData = t.router({
     // )
     //   return result;
     // }
-  
-  
+
     .mutation(async ({ input }) => {
       // const modifyString = changeToUpper(input.documents);
       // const removeLinks = filterLinks(input.clientData);
@@ -67,6 +70,7 @@ export const receivedData = t.router({
           data: input.userUpload.map((document) => ({
             fileName: document.fileName,
             fileContent: document.fileContent,
+            userid: document.userid,
           })),
         })
         .then((x) => toCourse(x));
