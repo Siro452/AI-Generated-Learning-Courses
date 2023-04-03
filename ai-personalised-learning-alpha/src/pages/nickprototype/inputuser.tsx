@@ -86,7 +86,6 @@
 import { api } from "../../utils/api";
 import { useState } from "react";
 import Button from "../../components/button";
-import { nanoid } from "nanoid";
 import Link from "next/link";
 import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
 import { FormEventHandler } from "react";
