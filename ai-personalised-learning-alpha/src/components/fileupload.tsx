@@ -16,6 +16,9 @@ export default function FileUpload(props: FileUploadProps) {
   const [response, setResponse] = useState<{}>();
   const mutation = api.receivedData.mutateData.useMutation();
   const [clientData, setClientData] = useState<string>("");
+  const findExistingUser = api.findUser.findExistingUserSession.useQuery({
+    userid: global.localStorage?.getItem("userid") ?? "",
+  });
 
   function handleDragOver(event: React.DragEvent<HTMLDivElement>) {
     event.preventDefault();
