@@ -35,8 +35,6 @@ export default function UploadFile() {
   const mutateData = api.receivedData.mutateData.useMutation({
     onSuccess: (data) => {
       console.log(data);
-      const dataReceived = data;
-      console.log(mutateData.data);
     },
   });
 
