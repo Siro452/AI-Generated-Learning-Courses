@@ -12,9 +12,9 @@ model User {
   id               String             @id @default(cuid())
   createdAt        DateTime           @default(now())
   username         String
-  Course           Course?
   sessions         Session[]
-  UploadedDocument UploadedDocument[]
+  uploadeddocument UploadedDocument[]
+  course           Course[]
 }
 
 model Event {
@@ -23,17 +23,18 @@ model Event {
   eventType        String   @db.VarChar(32)
   eventDescription String   @db.VarChar(250)
   eventStatus      String   @db.VarChar(250)
-  sessionid        String
   session          Session  @relation(fields: [sessionid], references: [id], onDelete: Cascade)
+  sessionid        String
 }
 
 model Session {
   id          String   @id @default(cuid())
   createdAt   DateTime @default(now())
   sessionDate DateTime
+  user        User     @relation(fields: [userid], references: [id], onDelete: Cascade)
   userid      String
   event       Event[]
-  user        User     @relation(fields: [userid], references: [id], onDelete: Cascade)
+  // uploadeddocument UploadedDocument[]
 }
 
 model UploadedDocument {
@@ -42,14 +43,62 @@ model UploadedDocument {
   fileName      String
   fileContent   String
   processedData String?
+  user          User     @relation(fields: [userid], references: [id], onDelete: Cascade)
   userid        String
-  User          User     @relation(fields: [userid], references: [id], onDelete: Cascade)
 
+  // session       Session  @relation(fields: [sessionid], references: [id], onDelete: Cascade)
+  // sessionid     String   @unique
+  // event         Event    @relation(fields: [eventid], references: [id], onDelete: Cascade)
+  // eventid       String   @unique
   @@index([id])
 }
 
+model Course {
+  id             String       @id @default(cuid())
+  courseNodename CourseNode[]
+
+  User   User   @relation(fields: [userId], references: [id])
+  userId String @unique
+}
+
+model CourseNode {
+  id                    String                  @id @default(cuid())
+  course                Course                  @relation(fields: [courseid], references: [id], onDelete: Cascade)
+  courseid              String                  @unique
+  title                 String
+  description           String
+  sectionNode           SectionNode[]
+  sectionNodeAssessment SectionNodeAssessment[]
+}
+
+model SectionNode {
+  id                   String                 @id @default(cuid())
+  courseNode           CourseNode             @relation(fields: [courseNodeid], references: [id], onDelete: Cascade)
+  title                String
+  courseNodeid         String                 @unique
+  componentNodeArticle ComponentNodeArticle[]
+}
+
+model ComponentNodeArticle {
+  id            String      @id @default(cuid())
+  sectionNode   SectionNode @relation(fields: [sectionNodeid], references: [id], onDelete: Cascade)
+  sectionNodeid String      @unique
+  title         String
+  content       String
+  order         Int
+}
+
+model SectionNodeAssessment {
+  id                 String               @id @default(cuid())
+  courseNode         CourseNode           @relation(fields: [courseNodeid], references: [id], onDelete: Cascade)
+  courseNodeid       String               @unique
+  order              Int
+  assessmentQuestion AssessmentQuestion[]
+}
+
 model AssessmentQuestion {
-  id                      String                @id
+  id                      String                @id @default(cuid())
+  sectionNodeAssessment   SectionNodeAssessment @relation(fields: [sectionNodeAssessmentid], references: [id], onDelete: Cascade)
   sectionNodeAssessmentid String                @unique
   question                String
   option1                 String                @db.VarChar(250)
@@ -60,47 +109,4 @@ model AssessmentQuestion {
   correctAnswer           Int
   guidance                String
   commentary              String
-  SectionNodeAssessment   SectionNodeAssessment @relation(fields: [sectionNodeAssessmentid], references: [id], onDelete: Cascade)
-}
-
-model ComponentNodeArticle {
-  id            String      @id
-  sectionNodeid String      @unique
-  title         String
-  content       String
-  order         Int
-  SectionNode   SectionNode @relation(fields: [sectionNodeid], references: [id], onDelete: Cascade)
-}
-
-model Course {
-  id         String      @id
-  userId     String      @unique
-  User       User        @relation(fields: [userId], references: [id])
-  CourseNode CourseNode?
-}
-
-model CourseNode {
-  id                    String                 @id
-  courseid              String                 @unique
-  title                 String
-  description           String
-  Course                Course                 @relation(fields: [courseid], references: [id], onDelete: Cascade)
-  SectionNode           SectionNode?
-  SectionNodeAssessment SectionNodeAssessment?
-}
-
-model SectionNode {
-  id                   String                @id
-  title                String
-  courseNodeid         String                @unique
-  ComponentNodeArticle ComponentNodeArticle?
-  CourseNode           CourseNode            @relation(fields: [courseNodeid], references: [id], onDelete: Cascade)
-}
-
-model SectionNodeAssessment {
-  id                 String              @id
-  courseNodeid       String              @unique
-  order              Int
-  AssessmentQuestion AssessmentQuestion?
-  CourseNode         CourseNode          @relation(fields: [courseNodeid], references: [id], onDelete: Cascade)
 }
