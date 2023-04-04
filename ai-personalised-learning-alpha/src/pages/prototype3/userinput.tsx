@@ -56,6 +56,7 @@ export default function UserInput() {
         smallTitle="Let's get started"
         largeTitle="What is your name?"
         flexDirection="flex-col"
+        mx="mx-32"
       />
       <form
         onSubmit={handleSubmit}

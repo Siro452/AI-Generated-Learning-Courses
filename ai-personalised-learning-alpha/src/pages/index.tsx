@@ -24,20 +24,27 @@ const Home: NextPage = () => {
           <div className="flex justify-end">
             <Button
               type="button"
-              text="Prototype 3"
-              href="/prototype3/userinput"
+              text="Prototype 1"
+              href="/nickprototype/inputuser"
+              className="mr-10"
             />
             <Button
               type="button"
               text="Prototype 2"
               href="/jordanprototype"
-              className="ml-20"
+              className="mr-10"
             />
-            {/* <Button
+            <Button
               type="button"
-              text="Nick Prototype"
-              href="/nickprototype/inputuser"
-            /> */}
+              text="Prototype 3"
+              href="/prototype3/userinput"
+            />
+            <Button
+              type="button"
+              text="Prototype 4"
+              href="/prototype4/inputname"
+              className="ml-10"
+            />
           </div>
         </div>
       </main>

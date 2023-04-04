@@ -11,7 +11,7 @@ export default function () {
   const router = useRouter();
   setTimeout(() => {
     router.push("/prototype3/courseeditor");
-  }, 4000);
+  }, 5000);
 
   return (
     <div className="flex flex-col items-center">
