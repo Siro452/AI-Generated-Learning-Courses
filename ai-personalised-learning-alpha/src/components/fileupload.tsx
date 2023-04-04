@@ -113,5 +113,3 @@ export default function FileUpload(props: FileUploadProps) {
 // do unit tests to validate functions working the way i want.
 // test payload data
 // wait for api to do filters
-
-// click the fileupload box and it would browse the computer files

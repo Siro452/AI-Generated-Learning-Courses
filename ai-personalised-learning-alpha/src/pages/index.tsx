@@ -30,7 +30,7 @@ const Home: NextPage = () => {
             <Button
               type="button"
               text="Prototype 2"
-              href="/jordanprototype"
+              href="/newprototype"
               className="ml-20"
             />
             {/* <Button
