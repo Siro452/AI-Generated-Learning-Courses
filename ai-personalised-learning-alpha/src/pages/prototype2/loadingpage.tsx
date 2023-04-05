@@ -16,7 +16,7 @@ export default function loadingPage() {
         alignment="place-self-start"
         flexDirection="flex-col"
       />
-      <Link className="flex flex-row" href="../prototype3/courseeditor">
+      <Link className="flex flex-row" href="./courseeditor">
         <Image src={loadinghalf1} width={500} height={500} alt="loadinghalf1" />
         <Image src={loadinghalf2} width={500} height={500} alt="loadinghalf2" />
       </Link>

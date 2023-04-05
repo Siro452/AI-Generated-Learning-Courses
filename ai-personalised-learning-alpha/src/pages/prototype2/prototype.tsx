@@ -33,6 +33,7 @@ interface GenerateProps {
 
 export default function createNewCourse() {
   const user = global.localStorage?.getItem("userid");
+
   const [content, setContent] = useState<FileSubmissionState>({
     userid: "",
     content: [],
@@ -60,29 +61,7 @@ export default function createNewCourse() {
         };
       }),
     });
-    // const mutateData = api.receivedData.mutateData.useMutation({
-    //   onSuccess: (data) => {
-    //     console.log(data);
-    //   },
-    // });
-    // const response = await mutateData.mutateAsync({ data });
-
-    // console.log(response, "response has been returned");
-
-    // return response
   };
-
-  // const payload = async (e: { preventDefault: () => void }) => {
-  //   e.preventDefault();
-  //   // mutate data
-  //   const mutateData = api.receivedData.mutateData.useMutation({});
-  //   const response = await mutateData.mutateAsync({  });
-
-  //   console.log(response);
-
-  //   // return response
-  //   return response;
-  // };
 
   return (
     <>
@@ -153,7 +132,7 @@ export default function createNewCourse() {
         <section className="flex flex-row justify-end py-4" onClick={generate}>
           <Button
             text={"Generate"}
-            href={"/jordanprototype/loadingpage"}
+            href={"/prototype2/loadingpage"}
             type={"button"}
             className="w-60"
           />

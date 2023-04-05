@@ -1,21 +1,25 @@
-import { Course, CourseSection} from "../../../..";
+import { Course, CourseSection, Content} from "../../../..";
 
-export const toCourse: (x: any) => Course = (x: any) => {
+export const toCourse: (x: Content) => Course = (x: Content) => {
   // turn x into course
 
-  console.log(x)
-const course: Course = {
-  title: "",
-  description: "",
-  courseContent: x.map((document:any) => ({
-    sectionHeader: document.fileName,
-    sectionBody: document.fileContent
-  })),
+//   console.log(x)
+// const course: Course = {
+//   title: "",
+//   description: "",
+//   courseContent: x.map((document:any) => ({
+//     sectionHeader: document.fileName,
+//     sectionBody: document.fileContent
+//   })),
   // title: ""
-}
 
-  // return { title: "", description: "", courseContent: [] };
-  return course;
+x.Content
+
+
+
+
+  return { title: "", description: "", courseContent: [] };
+  // return course;
 };
 
 

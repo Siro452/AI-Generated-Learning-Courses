@@ -8,6 +8,10 @@ type ReturnedData = {
   courseTitle: string;
   courseContent: string;
 };
+interface Content {
+Content: string;
+}
+
 
 interface CourseSection {
   sectionHeader: string;
@@ -20,6 +24,21 @@ interface Course {
   courseContent: CourseSection[];
 }
 
+interface ComponentNodeArticle {
+  title: string
+  content: string
+}
+
+interface SectionNode {
+  title: string
+  articles: ComponentNodeArticle[]
+}
+
+interface FrontEndCourse {
+  title: string
+  description: string
+  sectionNodes: SectionNode[]
+}
 // interface in the middle for convention. Keep things separate
 // keep frontend data that will be displayed.
 // index.d.ts needs to be in the same folder as tsconfig.json
