@@ -1,10 +1,12 @@
-import HeaderContainer from "../../components/headercontainer";
-import LogoContainer from "../../components/logocontainer";
 import { api } from "../../utils/api";
 import { useState } from "react";
+import Button from "../../components/button";
+import Link from "next/link";
+import ArrowForwardRoundedIcon from "@mui/icons-material/ArrowForwardRounded";
+import { FormEventHandler } from "react";
 import { useRouter } from "next/router";
 
-export default function UserInput() {
+export default function InputUser() {
   const [name, setName] = useState("");
   const createUser = api.createUser.createUser.useMutation({});
   const findExistingUserSession = api.findUser.findExistingUserSession.useQuery(
@@ -18,11 +20,10 @@ export default function UserInput() {
     findExistingUserSession.data !== null &&
     findExistingUserSession.data !== undefined
   ) {
-    // User found - push to next page
+    // User not found.
     console.log(findExistingUserSession.data);
-    router.push("/prototype3/uploadfile");
+    router.push("/prototype1/inputfile");
   }
-
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -51,31 +52,33 @@ export default function UserInput() {
   };
 
   return (
-    <div>
-      <LogoContainer className="" />
-      <HeaderContainer
-        smallTitle="Let's get started"
-        largeTitle="What is your name?"
-        flexDirection="flex-col"
-        mx="mx-32"
-      />
+    <div className="flex items-center justify-center font-sans">
       <form
+        className="items-left m-72 flex w-full flex-col
+        justify-center gap-4"
         onSubmit={handleSubmit}
-        className="flex flex-row items-center justify-center"
       >
+        <label className="mb-16 items-start  text-5xl tracking-tight ">
+          What&apos;s Your Name?
+        </label>
         <input
-          className="mr-4 h-14 w-1/4 rounded-md border border-[#e7e7e7] p-4"
+          className="placeholder: mb-8 h-14 rounded-full bg-[#E9E9E9]
+          py-[2]
+          pl-[14px]"
           type="text"
           value={name}
           onChange={(e) => {
             setName(e.target.value);
           }}
+          placeholder="Enter your name"
         />
-        <input
-          type="submit"
-          value="Submit"
-          className="rounded-full bg-gradient-to-br from-[#354678]  to-[#8088F1] py-4 px-9 text-xl font-bold text-white"
-        ></input>
+        <label className="m-4 flex w-fit justify-center self-end rounded-full bg-gradient-to-r from-[#8197FA] via-[#BB416D] via-[#A663CC] to-[#4765E8] p-1">
+          <input
+            className="block rounded-full bg-white px-4 py-2 font-semibold text-black"
+            type="submit"
+            value="Submit"
+          ></input>
+        </label>
       </form>
     </div>
   );
