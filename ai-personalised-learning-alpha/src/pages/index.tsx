@@ -25,7 +25,7 @@ const Home: NextPage = () => {
             <Button
               type="button"
               text="Prototype 1"
-              href="/nickprototype/inputuser"
+              href="/prototype1/inputuser"
               className="mr-10"
             />
             <Button
