@@ -1,7 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Button from "../components/button";
-import Image from "next/image";
 import DacreedLogo from "../components/DacreedLogo";
 
 const Home: NextPage = () => {
@@ -53,6 +52,8 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+//this is boiler plate code if you want to use authentication i.e username and password to login
 
 // const AuthShowcase: React.FC = () => {
 //   const { data: sessionData } = useSession();

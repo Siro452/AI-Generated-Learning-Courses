@@ -51,7 +51,7 @@ export default function InputName() {
 
   return (
     <div className="h-screen bg-white">
-      <div className="bg-gradient-t h-4/5 -translate-y-44 -skew-y-6 bg-gradient-to-tr  from-[#9e87d7] via-[#a887d4] via-[#6a87d8]    to-[#6c88e4] ">
+      <div className="bg-gradient-t h-4/5 -translate-y-44 -skew-y-6 bg-gradient-to-tr  from-[#9e87d7] via-[#6a87d8]     to-[#6c88e4] ">
         <div className="translate-y-40  skew-y-6">
           <LogoContainer className="m-16" />
         </div>
@@ -66,7 +66,7 @@ export default function InputName() {
                 What is your name?
               </label>
               <input
-                className="mr-4 h-14 w-full rounded-md border-white bg-white  bg-opacity-20 p-4 backdrop-blur-md placeholder:rounded-md placeholder:border-solid placeholder:border-white placeholder:bg-white placeholder:bg-opacity-20 placeholder:text-white placeholder:backdrop-blur-xl"
+                className="mr-4 h-14 w-full rounded-lg border-white bg-white  bg-opacity-20 p-4 backdrop-blur-md placeholder:rounded-lg placeholder:border-white placeholder:bg-white placeholder:bg-opacity-10 placeholder:text-white placeholder:backdrop-blur-xl"
                 placeholder="Enter your name here"
                 type="text"
                 value={name}
