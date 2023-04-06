@@ -2,11 +2,11 @@ import BlueCircle from "./blueCircle";
 import Title from "./h1";
 import SubTitle from "./subTitle";
 
+interface DragDropProps {}
 
-
-export default function DragDrop() {
+export default function DragDrop(props) {
   return (
-    <div className="p-6 w-full  " >
+    <div className="w-full p-6  ">
       <div
         className="col-span-1 row-span-1 p-4 text-left "
         style={{ marginLeft: "-60px" }}
@@ -28,9 +28,8 @@ export default function DragDrop() {
           }}
         >
           <BlueCircle />
-          <p className="text-lg text-neutral-300">.png, .jpg, .pdf supported</p>
-          <p className="text-center text-lg text-neutral-300">or paste text</p>
-          {/* <input type="file" className="flex block h-0 w-0 flex-col items-center justify-center rounded-xl border-none p-0 m-0"></input> */}
+          <p className="text-lg text-neutral-300">Only .txt Supported</p>
+          <p>{props.label}</p>
         </div>
       </div>
     </div>

@@ -7,6 +7,7 @@ import LogoContainer from "../../components/logocontainer";
 import SectionTextEditor from "../../components/sectiontexteditor";
 import CourseEditorSectionTitle from "../../components/courseeditorsectiontitle";
 import { useState } from "react";
+import { api } from "../../utils/api";
 
 export default function CourseEditor() {
   const [courseTitle, setCourseTitle] = useState<string>("Course Title");
@@ -35,12 +36,18 @@ export default function CourseEditor() {
     } else setSectionHeader(header);
   };
 
+  const findExistingUserSession = api.findUser.findExistingUserSession.useQuery(
+    {
+      userid: global.localStorage?.getItem("userid") ?? "",
+    }
+  );
+
   return (
     <div className="flex flex-col items-center">
       <LogoContainer className="self-start" />
       <HeaderContainer
         smallTitle="Edit your course"
-        largeTitle="Hi, User"
+        largeTitle={`Hi, ${findExistingUserSession.data?.username}`}
         alignment="self-start"
         flexDirection="flex-col-reverse "
       />

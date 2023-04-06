@@ -18,10 +18,11 @@ export default function UserInput() {
     findExistingUserSession.data !== null &&
     findExistingUserSession.data !== undefined
   ) {
-    // User not found.
+    // User found - push to next page
     console.log(findExistingUserSession.data);
     router.push("/prototype3/uploadfile");
   }
+
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     try {
@@ -56,6 +57,7 @@ export default function UserInput() {
         smallTitle="Let's get started"
         largeTitle="What is your name?"
         flexDirection="flex-col"
+        mx="mx-32"
       />
       <form
         onSubmit={handleSubmit}

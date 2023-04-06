@@ -1,7 +1,6 @@
 import { type NextPage } from "next";
 import Head from "next/head";
 import Button from "../components/button";
-import Image from "next/image";
 import DacreedLogo from "../components/DacreedLogo";
 
 const Home: NextPage = () => {
@@ -24,8 +23,9 @@ const Home: NextPage = () => {
           <div className="flex justify-end">
             <Button
               type="button"
-              text="Prototype 3"
-              href="/prototype3/userinput"
+              text="Prototype 1"
+              href="/prototype1/inputuser"
+              className="mr-10"
             />
             <Button
               type="button"
@@ -33,11 +33,17 @@ const Home: NextPage = () => {
               href="/newprototype"
               className="ml-20"
             />
-            {/* <Button
+            <Button
               type="button"
-              text="Nick Prototype"
-              href="/nickprototype/inputuser"
-            /> */}
+              text="Prototype 3"
+              href="/prototype3/userinput"
+            />
+            <Button
+              type="button"
+              text="Prototype 4"
+              href="./prototype4/login"
+              className="ml-10"
+            />
           </div>
         </div>
       </main>
@@ -46,6 +52,8 @@ const Home: NextPage = () => {
 };
 
 export default Home;
+
+//this is boiler plate code if you want to use authentication i.e username and password to login
 
 // const AuthShowcase: React.FC = () => {
 //   const { data: sessionData } = useSession();

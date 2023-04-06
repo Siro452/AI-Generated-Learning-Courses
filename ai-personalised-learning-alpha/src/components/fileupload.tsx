@@ -1,6 +1,6 @@
 import React, { MouseEvent, useState } from "react";
 import { api } from "../utils/api";
-import { FileSubmissionState } from "../pages/jordanprototype/createnewcourse";
+import { FileSubmissionState } from "../pages/prototype2/createnewcourse";
 import BlueCircle from "./blueCircle";
 import DragDrop from "./DragDrop";
 interface FileUploadProps {
@@ -58,7 +58,6 @@ export default function FileUpload(props: FileUploadProps) {
                 ],
                 title: props.fileSubmissionState.title,
               })
-              
             : "it hasn't been read";
 
           console.log(props.fileSubmissionState.content);

@@ -2,6 +2,7 @@ interface HeaderContainerProps {
   smallTitle: string;
   largeTitle: string;
   alignment?: string;
+  mx?: string;
   flexDirection?: string;
   mx?: string;
 }
