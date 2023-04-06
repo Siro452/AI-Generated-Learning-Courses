@@ -15,6 +15,7 @@ model User {
   sessions         Session[]
   uploadeddocument UploadedDocument[]
   course           Course[]
+  @@index([id])
 }
 
 model Event {
@@ -55,10 +56,10 @@ model UploadedDocument {
 
 model Course {
   id             String       @id @default(cuid())
-  courseNodename CourseNode[]
+  courseNode CourseNode[]
 
-  User   User   @relation(fields: [userId], references: [id])
-  userId String @unique
+  User   User   @relation(fields: [userid], references: [id])
+  userid String @unique
 }
 
 model CourseNode {
