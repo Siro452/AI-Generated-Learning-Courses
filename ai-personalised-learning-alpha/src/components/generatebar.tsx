@@ -1,4 +1,4 @@
-import { FileSubmissionState } from "../pages/jordanprototype/createnewcourse";
+import { FileSubmissionState } from "../pages/prototype2/createnewcourse";
 import { api } from "../utils/api";
 import Button from "./generatebtn";
 

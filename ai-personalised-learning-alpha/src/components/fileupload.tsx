@@ -1,6 +1,6 @@
 import React, { MouseEvent, useState } from "react";
 import { api } from "../utils/api";
-import { FileSubmissionState } from "../pages/jordanprototype/createnewcourse";
+import { FileSubmissionState } from "../pages/prototype2/createnewcourse";
 import BlueCircle from "./blueCircle";
 import DragDrop from "./DragDrop";
 interface FileUploadProps {
@@ -48,17 +48,16 @@ export default function FileUpload(props: FileUploadProps) {
 
           extractedText
             ? props.setFileSubmissionState({
-              options: props.fileSubmissionState.options,
-              content: [
-                ...props.fileSubmissionState.content,
-                {
-                  filename: fileName,
-                  rawtext: extractedText,
-                },
-              ],
-              title: props.fileSubmissionState.title,
-            })
-              
+                options: props.fileSubmissionState.options,
+                content: [
+                  ...props.fileSubmissionState.content,
+                  {
+                    filename: fileName,
+                    rawtext: extractedText,
+                  },
+                ],
+                title: props.fileSubmissionState.title,
+              })
             : "it hasn't been read";
 
           console.log(props.fileSubmissionState.content);
@@ -80,24 +79,22 @@ export default function FileUpload(props: FileUploadProps) {
 
       extractedText
         ? props.setFileSubmissionState({
-          options: props.fileSubmissionState.options,
-          content: [
-            ...props.fileSubmissionState.content,
-            {
-              filename: fileName,
-              rawtext: extractedText,
-            },
-          ],
-          title: props.fileSubmissionState.title,
-        })
+            options: props.fileSubmissionState.options,
+            content: [
+              ...props.fileSubmissionState.content,
+              {
+                filename: fileName,
+                rawtext: extractedText,
+              },
+            ],
+            title: props.fileSubmissionState.title,
+          })
         : "it hasn't been read";
 
       console.log();
       console.log(extractedText);
     };
   }
-
- 
 
   return (
     <div
@@ -115,5 +112,3 @@ export default function FileUpload(props: FileUploadProps) {
 // do unit tests to validate functions working the way i want.
 // test payload data
 // wait for api to do filters
-
-// click the fileupload box and it would browse the computer files

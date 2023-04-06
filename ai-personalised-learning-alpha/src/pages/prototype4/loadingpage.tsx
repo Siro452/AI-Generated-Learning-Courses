@@ -23,8 +23,6 @@ export default function () {
         flexDirection="flex-col"
       />
       <Link className="flex flex-row" href="./courseeditor">
-        {/* <Image src={loadinghalf1} width={500} height={500} alt="loadinghalf1" />
-        <Image src={loadinghalf2} width={500} height={500} alt="loadinghalf2" /> */}
         <Image src={loadingImg} width={1000} height={1000} alt="loading" />
       </Link>
     </div>
