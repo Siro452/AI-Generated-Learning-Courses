@@ -4,7 +4,6 @@ interface HeaderContainerProps {
   alignment?: string;
   mx?: string;
   flexDirection?: string;
-  mx?: string;
 }
 
 export default function HeaderContainer(props: HeaderContainerProps) {
