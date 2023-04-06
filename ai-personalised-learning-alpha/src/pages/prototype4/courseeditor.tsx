@@ -50,6 +50,7 @@ export default function CourseEditor() {
         largeTitle={`Hi, ${findExistingUserSession.data?.username}`}
         alignment="self-start"
         flexDirection="flex-col-reverse "
+        mx="mx-16"
       />
       <div className="flex w-3/4 flex-row">
         <div className="flex h-full w-3/4 flex-col">

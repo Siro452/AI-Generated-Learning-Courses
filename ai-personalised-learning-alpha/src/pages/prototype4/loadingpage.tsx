@@ -8,10 +8,10 @@ import Link from "next/link";
 import { useRouter } from "next/router";
 
 export default function () {
-  const router = useRouter();
-  setTimeout(() => {
-    router.push("/prototype4/courseeditor");
-  }, 5000);
+  // const router = useRouter();
+  // setTimeout(() => {
+  //   router.push("/prototype4/courseeditor");
+  // }, 5000);
 
   return (
     <div className="flex flex-col items-center">
@@ -21,6 +21,7 @@ export default function () {
         largeTitle="AI is generating your course..."
         alignment="place-self-start"
         flexDirection="flex-col"
+        mx="mx-16"
       />
       <Link className="flex flex-row" href="./courseeditor">
         <Image src={loadingImg} width={1000} height={1000} alt="loading" />
