@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useRouter } from "next/router";
 import { FrontEndCourse } from "../..";
 // import { Data } from "./api/input"
-
+import { api } from "../utils/api";
 import Button from "./button";
 import CourseDescriptionEditor from "./coursedescriptioneditor";
 import CourseEditorContents from "./courseeditorcontent";
@@ -11,8 +11,7 @@ import HeaderContainer from "./headercontainer";
 import LogoContainer from "./logocontainer";
 import SectionTextEditor from "./sectiontexteditor";
 import CourseEditorSectionTitle from "./courseeditorsectiontitle";
-import { api } from "../utils/api";
-
+import LoadingPage from '../pages/prototype2/loadingpage'
 const CoursePage: React.FC = ({}) => {
   const [loading, setLoading] = useState<boolean>(true);
   const [courseState, setCourseState] = useState<FrontEndCourse | null>();
@@ -26,14 +25,6 @@ const CoursePage: React.FC = ({}) => {
   const router = useRouter();
   const { courseById } = router.query;
 
-  // const getCourseData2 = async () => {
-  //   setLoading(true);
-  //   const response = await fetch(`/api/courses/${courseById}`);
-  //   const data = await response.json();
-  //   console.log(data)
-  //   setCourseState(data);
-  //   setLoading(false);
-  // };
 
   const updateCourseTitle = () => {
     if (courseState?.title === "") {
@@ -54,57 +45,61 @@ const CoursePage: React.FC = ({}) => {
   const getCourseData = () => {
     setLoading(true);
     setTimeout((returnedValuesFromDatabase) => {
-      setCourseState({
-        title: "My cool course",
-        description: "This is a cool course about cool things",
-        sectionNodes: [
-          {
-            title: "Section 1",
-            articles: [
-              {
-                title: "courseState.title",
-                content: "courseState.description",
-              },
-            ],
-          },
-          {
-            title: "Section 2",
-            articles: [
-              {
-                title: "Article Two",
-                content: "This is a fun article about not a lot",
-              },
-            ],
-          },
-          {
-            title: "Article Three",
-            articles: [
-              {
-                title: "Article Three",
-                content: "This is a fun article about not a lot",
-              },
-              {
-                title: "Article Four",
-                content: "This is a fun article about not a lot",
-              },
-            ],
-          },
-        ],
-      });
+
+      const frontEndCourse: FrontEndCourse = {
+        title: courseState?.title || "Course Title",
+        description: courseState?.description || "Course description",
+        sectionNodes: courseState?.sectionNodes || [],
+      };
+      setCourseState(frontEndCourse);
       setLoading(false);
     }, 1000);
+
+
+
+      // setCourseState({
+      //   title: "My cool course",
+      //   description: "This is a cool course about cool things",
+      //   sectionNodes: [
+      //     {
+      //       title: "Section 1",
+      //       articles: [
+      //         {
+      //           title: "courseState.title",
+      //           content: "courseState.description",
+      //         },
+      //       ],
+      //     },
+    //       {
+    //         title: "Section 2",
+    //         articles: [
+    //           {
+    //             title: "Article Two",
+    //             content: "This is a fun article about not a lot",
+    //           },
+    //         ],
+    //       },
+    //       {
+    //         title: "Article Three",
+    //         articles: [
+    //           {
+    //             title: "Article Three",
+    //             content: "This is a fun article about not a lot",
+    //           },
+    //           {
+    //             title: "Article Four",
+    //             content: "This is a fun article about not a lot",
+    //           },
+    //         ],
+    //       },
+    //     ],
+    //   });
+    //   setLoading(false);
+    // }, 1000);
   };
 
-  // const frontEndCourse: FrontEndCourse ={
-  //   title: courseState.title,
-  //   description: courseState.description,
-  //   sectionNodes: courseState.sectionNodes
-  // }
 
   useEffect(() => {
-    // check localStorage
-    // if no userId present router.push("/login")
-
     // if (courseById) {
       getCourseData();
     // }
@@ -114,8 +109,13 @@ const CoursePage: React.FC = ({}) => {
       : router.push("../prototype2/userinput");
   }, []);
 
+  const getCourse = api.findCourse.courseById
+
+  console.log(getCourse)
+
+
   return loading ? (
-    <div>Loading...</div>
+    <div><LoadingPage /></div>
   ) : (
     <div>
       {courseState && (

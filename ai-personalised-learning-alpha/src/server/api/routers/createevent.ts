@@ -3,7 +3,8 @@ import { createTRPCRouter } from "../trpc";
 // import { z } from "zod";
 
 export const createEventRouter = createTRPCRouter({
-  //may be needed for other events
+  //router is designed to create events in the database to log user actions e.g login, logout, clicked button
+  //will need to be updated to include the correct data types
   // createEvent: publicProcedure
   //   .input(
   //     z.object({

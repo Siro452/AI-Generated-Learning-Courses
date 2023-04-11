@@ -8,6 +8,8 @@ import Title from "../../components/h1";
 import SubTitle from "../../components/subTitle";
 import Button from "../../components/button";
 import { api } from "../../utils/api";
+import LoginFormWithNoId from "../../components/loginFormIfNoId";
+import Welcome from "../../components/welcome";
 
 export interface FileContent {
   filename: string;
@@ -33,6 +35,33 @@ interface GenerateProps {
 
 export default function createNewCourse() {
   const user = global.localStorage?.getItem("userid");
+
+  // const user = typeof window !== "undefined" && localStorage.getItem("userid");
+
+  // if (!user) {
+  //   return <LoginFormWithNoId />;
+  // }
+
+  function checkUser() {
+      const [user, setUser] = useState(<Welcome />);
+      
+      useEffect(() => {
+        const userId = localStorage.getItem("userid");
+        if (userId) {
+          setUser(<Welcome />);
+        } else {
+          setUser(<LoginFormWithNoId />);
+        }
+      }, []);
+    
+      return <div>{user}</div>;
+    }
+
+  // if(!user){
+  //   return <LoginFormWithNoId />
+  // } else {
+  //   "Welcome back"
+  // }
 
   const [content, setContent] = useState<FileSubmissionState>({
     userid: "",
@@ -63,6 +92,8 @@ export default function createNewCourse() {
     });
   };
 
+  // const username = global.localStorage?.getItem("userid")
+
   return (
     <>
       {/* Section 3 --- User Input */}
@@ -75,27 +106,9 @@ export default function createNewCourse() {
       </header>
       <main className="mx-auto mt-12 max-w-screen-lg py-8">
         <section className="mb-12 mt-12">
-          <div className="grid gap-4">
-            <div className="">
-              <div
-                className="col-span-1 row-span-1 p-4 text-left "
-                style={{ marginLeft: "-60px" }}
-              >
-                <span className=" block text-lg text-neutral-600">
-                  <SubTitle subtitle="Let's get started!" />
-                </span>
-                <span className="mx-3"></span>
-                <span className="block pb-10 text-3xl font-black font-extrabold drop-shadow-md">
-                  <Title title="What is your name?" />
-                </span>
-                <input
-                  type="text"
-                  placeholder="Enter your name"
-                  className="w-full rounded-lg border-2 p-2"
-                />
-              </div>
-            </div>
-          </div>
+          {/* {user ? `Welcome back` : <LoginFormWithNoId />}
+           */}
+          {checkUser()}
         </section>
         {/* Section 3 --- File upload */}
 

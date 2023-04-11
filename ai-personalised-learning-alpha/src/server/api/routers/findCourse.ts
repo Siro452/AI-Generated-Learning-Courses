@@ -27,7 +27,7 @@ export const getCourse = t.router({
           id: input.courseId
         },
       });
-      return result;
+      return `This is the result: ${result}`;
     }),
 });
 
