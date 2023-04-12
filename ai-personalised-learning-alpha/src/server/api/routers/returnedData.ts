@@ -5,6 +5,7 @@ import { prisma } from "../../db";
 import changeToUpper from "./changeToUpperCase";
 import filterLinks from "./filterLinks&em";
 import { toCourse } from "../converters/fileDataConversions";
+
 // Modification of Data imports
 
 export const receivedData = t.router({
@@ -34,19 +35,7 @@ export const receivedData = t.router({
   //     });
   //     return result;
   //   }),
-  mutateData: t.procedure
-    .input(
-      z.object({
-        userUpload: z.array(
-          // z.object({ filename: z.string(), content: z.string(), sessionid: z.any(), eventid: z.any()})
-          z.object({
-            userid: z.string(),
-            fileName: z.string(),
-            fileContent: z.string(),
-          })
-        ),
-      })
-    )
+
     // .mutation(async ({ input }) => {
     //   const result = await prisma.uploadedDocument
     //     .createMany({
@@ -61,18 +50,46 @@ export const receivedData = t.router({
     // )
     //   return result;
     // }
-
+    mutateData: t.procedure
+    .input(
+      z.object({
+        userid: z.string(),
+        userUpload: z.array(
+          z.object({
+            fileName: z.string(),
+            fileContent: z.string(),
+          })
+        ),
+      })
+    )
     .mutation(async ({ input }) => {
-      // const modifyString = changeToUpper(input.documents);
-      // const removeLinks = filterLinks(input.clientData);
-      const result = await prisma.uploadedDocument.createMany({
+      await prisma.uploadedDocument.createMany({
         data: input.userUpload.map((document) => ({
-          userid: document.userid,
+          userid: input.userid,
           fileName: document.fileName,
           fileContent: document.fileContent,
         })),
       });
-      return result;
+
+      const Course = await prisma.course.create({
+            data: {
+              userid: input.userid
+            }
+          })
+      //   data: {
+      //     userid: input.userid,
+      //     create: [courseNodename: input.userUpload.map(
+      //       (course: { fileName: string; fileContent: string }) => ({
+      //         CourseNode: {
+      //           title: course.fileName,
+      //           description: course.fileContent,
+      //         },
+      //       })
+      //     ),
+      //     ]
+      //   },
+      // });
+      return Course;
     }),
 });
 

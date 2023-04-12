@@ -109,9 +109,9 @@ const CoursePage: React.FC = ({}) => {
       : router.push("../prototype2/userinput");
   }, []);
 
-  const getCourse = api.findCourse.courseById
+  // const getCourse = api.findCourse.courseById.useQuery()
 
-  console.log(getCourse)
+  // console.log(getCourse)
 
 
   return loading ? (

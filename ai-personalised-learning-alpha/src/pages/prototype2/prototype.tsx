@@ -80,11 +80,12 @@ export default function createNewCourse() {
     // mutate data
 
     mutateData.mutateAsync({
+      userid: user,
       userUpload: content.content.map((x) => {
         return {
           fileName: x.filename,
           fileContent: x.rawtext,
-          userid: user,
+        
           // sessionid: "",
           // eventid: "",
         };
