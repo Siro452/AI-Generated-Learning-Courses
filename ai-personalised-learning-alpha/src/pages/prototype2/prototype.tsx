@@ -146,7 +146,7 @@ export default function createNewCourse() {
         <section className="flex flex-row justify-end py-4" onClick={generate}>
           <Button
             text={"Generate"}
-            href={"/prototype2/loadingpage"}
+            href={"/prototype2/courseeditor"}
             type={"button"}
             className="w-60"
           />

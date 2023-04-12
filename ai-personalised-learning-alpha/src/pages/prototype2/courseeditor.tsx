@@ -51,50 +51,6 @@ export default function CourseEditor() {
   );
 
 
-
-  function getCourse() {
-    return (
-      <div className="flex flex-col items-center">
-        <LogoContainer className="self-start" />
-        <HeaderContainer
-          smallTitle="Edit your course"
-          largeTitle={`Hi, ${findExistingUserSession.data?.username}`}
-          alignment="self-start"
-          flexDirection="flex-col-reverse "
-        />
-        <div className="flex w-3/4 flex-row">
-          <div className="flex h-full w-3/4 flex-col">
-            <CourseEditorTitleHeader
-              placeholderTitle={courseTitle}
-              title={updateCourseTitle}
-            />
-            <CourseDescriptionEditor
-              placeholderTitle={courseDescription}
-              // updateCourseDescription={updateCourseDescriptionTitle}
-              updateCourseDescription={courseState.description}
-            />
-            <CourseEditorSectionTitle
-              placeholderTitle={sectionHeader}
-              sectionTitle={updateSectionHeaderTitle}
-            />
-            <SectionTextEditor />
-          </div>
-          <div className="ml-4 flex w-16 flex-col items-center">
-            <CourseEditorContents
-              courseTitle={courseTitle}
-              courseDescription={courseDescription}
-              sectionHeader={sectionHeader}
-            />
-            <Button text="Confirm" href="./confirmation" type="submit" />
-          </div>
-        </div>
-      </div>
-    );
-  }
-  function pageData() {
-    return;
-  }
-
   useEffect(() => {
     localStorage.userid ? "" : router.push("./userinput");
   }, []);
