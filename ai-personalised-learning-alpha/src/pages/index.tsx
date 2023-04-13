@@ -29,7 +29,7 @@ const Home: NextPage = () => {
             <Button
               type="button"
               text="Prototype 2"
-              href="/prototype2/index"
+              href="/prototype2"
               className="ml-20"
             />
             <Button
@@ -41,8 +41,8 @@ const Home: NextPage = () => {
             <Button
               type="button"
               text="Prototype 4"
-              href="./prototype4/login"
-              className="ml-20"
+              href="/prototype4/login"
+              className="ml-10"
             />
           </div>
         </div>

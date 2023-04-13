@@ -1,7 +1,6 @@
-import React, { MouseEvent, useState } from "react";
+import React, { MouseEvent, useRef, useState } from "react";
 import { api } from "../utils/api";
 import { FileSubmissionState } from "../pages/prototype2/createnewcourse";
-import BlueCircle from "./blueCircle";
 import DragDrop from "./DragDrop";
 interface FileUploadProps {
   setFileSubmissionState: React.Dispatch<
@@ -12,10 +11,10 @@ interface FileUploadProps {
 
 export default function FileUpload(props: FileUploadProps) {
   const [dragging, setDragging] = useState(false);
-  // const [rawData, setRawData] = useState<string>("");
-  const [response, setResponse] = useState<{}>();
   const mutation = api.receivedData.mutateData.useMutation();
-  const [clientData, setClientData] = useState<string>("");
+  const findExistingUser = api.findUser.findExistingUserSession.useQuery({
+    userid: global.localStorage?.getItem("userid") ?? "",
+  });
 
   function handleDragOver(event: React.DragEvent<HTMLDivElement>) {
     event.preventDefault();
@@ -33,36 +32,38 @@ export default function FileUpload(props: FileUploadProps) {
     input.accept = ".txt";
     input.click();
 
+
     input.addEventListener("change", () => {
       const file = input.files?.[0];
       if (file) {
-        const fileBlob = new Blob([file], { type: file.type });
-        const fileReader = new FileReader();
-        const fileName = file.name;
-        fileReader.readAsText(fileBlob);
-
-        fileReader.onload = async function () {
-          let extractedText = fileReader.result as string;
-
-          console.log(extractedText);
-
-          extractedText
-            ? props.setFileSubmissionState({
-                options: props.fileSubmissionState.options,
-                content: [
-                  ...props.fileSubmissionState.content,
-                  {
-                    filename: fileName,
-                    rawtext: extractedText,
-                  },
-                ],
-                title: props.fileSubmissionState.title,
-              })
-            : "it hasn't been read";
-
-          console.log(props.fileSubmissionState.content);
-        };
+        input.disabled = true;
       }
+
+      const fileBlob = new Blob([file], { type: file.type });
+      const fileReader = new FileReader();
+      const fileName = file.name;
+      fileReader.readAsText(fileBlob);
+      fileReader.onload = async function () {
+        let extractedText = fileReader.result as string;
+
+        console.log(extractedText);
+
+        extractedText
+          ? props.setFileSubmissionState({
+              options: props.fileSubmissionState.options,
+              content: [
+                ...props.fileSubmissionState.content,
+                {
+                  filename: fileName,
+                  rawtext: extractedText,
+                },
+              ],
+              title: props.fileSubmissionState.title,
+            })
+          : "it hasn't been read";
+
+        console.log(props.fileSubmissionState.content);
+      };
     });
   }
 

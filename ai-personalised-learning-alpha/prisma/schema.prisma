@@ -12,9 +12,10 @@ model User {
   id               String             @id @default(cuid())
   createdAt        DateTime           @default(now())
   username         String
-  course           Course[]
+  // Course           Course[]
   sessions         Session[]
   uploadeddocument UploadedDocument[]
+  course           Course[]
 
   @@index([id])
 }
@@ -45,18 +46,19 @@ model UploadedDocument {
   fileContent   String
   processedData String?
   userid        String
-  courseId      String?
-  Course        Course?  @relation(fields: [courseId], references: [id])
+  course        Course?  @relation(fields: [courseId], references: [id])
   user          User     @relation(fields: [userid], references: [id], onDelete: Cascade)
+  courseId      String?
 
   @@index([id])
 }
 
 model Course {
-  id               String             @id @default(cuid())
-  userid           String             @unique
+  id         String       @id @default(cuid())
+  courseNode CourseNode[]
+
   User             User               @relation(fields: [userid], references: [id])
-  courseNode       CourseNode[]
+  userid           String             @unique
   UploadedDocument UploadedDocument[]
 }
 
@@ -66,8 +68,8 @@ model CourseNode {
   title                 String
   description           String
   course                Course                 @relation(fields: [courseid], references: [id], onDelete: Cascade)
-  sectionNode           SectionNode[]
-  sectionNodeAssessment SectionNodeAssessment[]
+  sectionNode           SectionNode?
+  sectionNodeAssessment SectionNodeAssessment?
 }
 
 model SectionNode {

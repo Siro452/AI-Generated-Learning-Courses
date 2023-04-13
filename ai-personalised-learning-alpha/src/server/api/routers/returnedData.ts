@@ -4,20 +4,22 @@ import { prisma } from "../../db";
 // Modification of Data imports
 import changeToUpper from "./changeToUpperCase";
 import filterLinks from "./filterLinks&em";
+import { toCourse } from "../converters/fileDataConversions";
+
 // Modification of Data imports
 
 export const receivedData = t.router({
-  returnedData: t.procedure
-    .input(
-      z.object({
-        clientData: z.string(),
-      })
-    )
-    .query(async ({ input }) => {
-      // const prismatest = prismatestRouter
-      const result = await prisma.uploadedDocument.findMany({});
-      return `${input.clientData}`;
-    }),
+  // returnedData: t.procedure
+  //   .input(
+  //     z.object({
+  //       clientData: z.string(),
+  //     })
+  //   )
+  //   .query(async ({ input }) => {
+  //     // const prismatest = prismatestRouter
+  //     const result = await prisma.uploadedDocument.findMany({});
+  //     return `${input.clientData}`;
+  //   }),
   // post: t.procedure
   //   .input(
   //     z.object({
@@ -33,13 +35,27 @@ export const receivedData = t.router({
   //     });
   //     return result;
   //   }),
+
+  // .mutation(async ({ input }) => {
+  //   const result = await prisma.uploadedDocument
+  //     .createMany({
+  //       data: input.userUpload.map((document) => ({
+  //         fileName: document.fileName,
+  //         fileContent: document.fileContent,
+  //       })),
+  //     })
+  //     .then((uploadedDocuments) =>
+  //       uploadedDocuments.map((uploadedDocument: any) => toCourse(uploadedDocument))
+  //     )
+  // )
+  //   return result;
+  // }
   mutateData: t.procedure
     .input(
       z.object({
+        userid: z.string(),
         userUpload: z.array(
-          // z.object({ filename: z.string(), content: z.string(), sessionid: z.any(), eventid: z.any()})
           z.object({
-            userid: z.string(),
             fileName: z.string(),
             fileContent: z.string(),
           })
@@ -47,16 +63,67 @@ export const receivedData = t.router({
       })
     )
     .mutation(async ({ input }) => {
-      // const modifyString = changeToUpper(input.documents);
-      // const removeLinks = filterLinks(input.clientData);
-      const result = await prisma.uploadedDocument.createMany({
+      await prisma.uploadedDocument.createMany({
         data: input.userUpload.map((document) => ({
-          userid: document.userid,
+          userid: input.userid,
           fileName: document.fileName,
           fileContent: document.fileContent,
+          
         })),
       });
-      return result;
+
+
+  // const uploadedDocumentId = uploadedDocumentId.id
+
+  // const course = await prisma.course.create({
+  //   data: {
+  //     uploadedDocument: {
+  //       connect: {
+  //         id: uploadedDocumentId
+  //       }
+  //     },
+  //     title: "My new title",
+  //     description: "My description mate",
+  //   }
+  // });
+
+
+      // .query(async({input}) => {
+      //   await prisma.course.findUnique({
+      //     where: {
+      //       uploaddocumentid
+      //     }
+      //   })
+
+      // })
+      // const Course = await prisma.course.create({
+      //   data: {
+      //     userid: input.userid,
+      //     // UploadedDocument:
+      //     courseNode: [input.userUpload.map((
+      //       course: {fileName: string; fileContent: string}) => ({
+      //         courseNode: {
+      //           title: course.fileName,
+      //           description: course.fileContent
+      //         }
+      //       })
+      //     )]
+      //   },
+      // });
+      //   data: {
+      //     userid: input.userid,
+      //     create: [courseNodename: input.userUpload.map(
+      //       (course: { fileName: string; fileContent: string }) => ({
+      //         CourseNode: {
+      //           title: course.fileName,
+      //           description: course.fileContent,
+      //         },
+      //       })
+      //     ),
+      //     ]
+      //   },
+      // });
+      // return course;
     }),
 });
 

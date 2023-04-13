@@ -89,7 +89,7 @@ export default async function LoadingPage() {
         flexDirection="flex-col"
         mx="mx-16"
       />
-      <Link className="flex flex-row" href="./courseeditor">
+      <Link className="flex flex-row" href="/prototype4/courseeditor">
         <Image src={loadingImg} width={1000} height={1000} alt="loading" />
       </Link>
     </div>

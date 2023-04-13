@@ -4,6 +4,7 @@ import loadingImg from "../../images/loading.gif";
 import loadinghalf1 from "../../images/loadinghalf1.svg";
 import loadinghalf2 from "../../images/loadinghalf2.svg";
 import LogoContainer from "../../components/logocontainer";
+import spinner from '../../images/Loading-spinner.gif'
 import Link from "next/link";
 import { useRouter } from "next/router";
 

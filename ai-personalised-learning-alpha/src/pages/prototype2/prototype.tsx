@@ -8,16 +8,20 @@ import Title from "../../components/h1";
 import SubTitle from "../../components/subTitle";
 import Button from "../../components/button";
 import { api } from "../../utils/api";
+import LoginFormWithNoId from "../../components/loginFormIfNoId";
+import Welcome from "../../components/welcome";
 
 export interface FileContent {
   filename: string;
   rawtext: string;
+  userid: string;
 }
 
 export interface FileSubmissionState {
   options?: any;
   content: FileContent[];
   title: string;
+  userid: string;
 }
 
 export interface Filters {
@@ -30,7 +34,37 @@ interface GenerateProps {
 }
 
 export default function createNewCourse() {
+  const user = global.localStorage?.getItem("userid");
+
+  // const user = typeof window !== "undefined" && localStorage.getItem("userid");
+
+  // if (!user) {
+  //   return <LoginFormWithNoId />;
+  // }
+
+  function checkUser() {
+    const [user, setUser] = useState(<Welcome />);
+
+    useEffect(() => {
+      const userId = localStorage.getItem("userid");
+      if (userId) {
+        setUser(<Welcome />);
+      } else {
+        setUser(<LoginFormWithNoId />);
+      }
+    }, []);
+
+    return <div>{user}</div>;
+  }
+
+  // if(!user){
+  //   return <LoginFormWithNoId />
+  // } else {
+  //   "Welcome back"
+  // }
+
   const [content, setContent] = useState<FileSubmissionState>({
+    userid: "",
     content: [],
     title: "",
   });
@@ -46,38 +80,20 @@ export default function createNewCourse() {
     // mutate data
 
     mutateData.mutateAsync({
+      userid: user,
       userUpload: content.content.map((x) => {
         return {
           fileName: x.filename,
           fileContent: x.rawtext,
+
           // sessionid: "",
           // eventid: "",
         };
       }),
     });
-    // const mutateData = api.receivedData.mutateData.useMutation({
-    //   onSuccess: (data) => {
-    //     console.log(data);
-    //   },
-    // });
-    // const response = await mutateData.mutateAsync({ data });
-
-    // console.log(response, "response has been returned");
-
-    // return response
   };
 
-  // const payload = async (e: { preventDefault: () => void }) => {
-  //   e.preventDefault();
-  //   // mutate data
-  //   const mutateData = api.receivedData.mutateData.useMutation({});
-  //   const response = await mutateData.mutateAsync({  });
-
-  //   console.log(response);
-
-  //   // return response
-  //   return response;
-  // };
+  // const username = global.localStorage?.getItem("userid")
 
   return (
     <>
@@ -91,27 +107,9 @@ export default function createNewCourse() {
       </header>
       <main className="mx-auto mt-12 max-w-screen-lg py-8">
         <section className="mb-12 mt-12">
-          <div className="grid gap-4">
-            <div className="">
-              <div
-                className="col-span-1 row-span-1 p-4 text-left "
-                style={{ marginLeft: "-60px" }}
-              >
-                <span className=" block text-lg text-neutral-600">
-                  <SubTitle subtitle="Let's get started!" />
-                </span>
-                <span className="mx-3"></span>
-                <span className="block pb-10 text-3xl font-extrabold drop-shadow-md">
-                  <Title title="What is your name?" />
-                </span>
-                <input
-                  type="text"
-                  placeholder="Enter your name"
-                  className="w-full rounded-lg border-2 p-2"
-                />
-              </div>
-            </div>
-          </div>
+          {/* {user ? `Welcome back` : <LoginFormWithNoId />}
+           */}
+          {checkUser()}
         </section>
         {/* Section 3 --- File upload */}
 
@@ -148,7 +146,7 @@ export default function createNewCourse() {
         <section className="flex flex-row justify-end py-4" onClick={generate}>
           <Button
             text={"Generate"}
-            href={"/jordanprototype/loadingpage"}
+            href={"/prototype2/courseeditor"}
             type={"button"}
             className="w-60"
           />
