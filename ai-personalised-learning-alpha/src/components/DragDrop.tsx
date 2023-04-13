@@ -2,7 +2,6 @@ import BlueCircle from "./blueCircle";
 import Title from "./h1";
 import SubTitle from "./subTitle";
 
-interface DragDropProps {}
 
 export default function DragDrop(props) {
   return (

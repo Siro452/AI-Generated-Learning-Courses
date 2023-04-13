@@ -1,4 +1,4 @@
-export default function blueCircle() {
+export default function BlueCircle() {
   return (
     <svg viewBox="0 0 100 100" width="130" height="120">
       <circle

@@ -1,6 +1,5 @@
 import HeaderContainer from "../../components/headercontainer";
 import Image from "next/image";
-
 import LogoContainer from "../../components/logocontainer";
 import Link from "next/link";
 import loadingImg from "../../images/loading.gif";
