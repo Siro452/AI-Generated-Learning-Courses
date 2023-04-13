@@ -150,7 +150,7 @@ const CoursePage: React.FC = ({}) => {
                 courseDescription={courseDescription}
                 sectionHeader={sectionHeader}
               />
-              <Button text="Confirm" href="./confirmation" type="submit" />
+              <Button text="Confirm" href="../prototype2/confirmation" type="submit" />
             </div>
           </div>
         </div>

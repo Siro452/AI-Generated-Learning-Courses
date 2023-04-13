@@ -72,6 +72,22 @@ export const receivedData = t.router({
         })),
       });
 
+
+  // const uploadedDocumentId = uploadedDocumentId.id
+
+  // const course = await prisma.course.create({
+  //   data: {
+  //     uploadedDocument: {
+  //       connect: {
+  //         id: uploadedDocumentId
+  //       }
+  //     },
+  //     title: "My new title",
+  //     description: "My description mate",
+  //   }
+  // });
+
+
       // .query(async({input}) => {
       //   await prisma.course.findUnique({
       //     where: {
@@ -80,18 +96,20 @@ export const receivedData = t.router({
       //   })
 
       // })
-
-      // const courseid = await prisma.course.findUnique({
-      //   where: {
-      //     uploaddocumentid: "string"
-      //   }
-      // })
-      const Course = await prisma.course.create({
-        data: {
-          userid: input.userid,
-          uploaddocumentid: "courseid",
-        },
-      });
+      // const Course = await prisma.course.create({
+      //   data: {
+      //     userid: input.userid,
+      //     // UploadedDocument:
+      //     courseNode: [input.userUpload.map((
+      //       course: {fileName: string; fileContent: string}) => ({
+      //         courseNode: {
+      //           title: course.fileName,
+      //           description: course.fileContent
+      //         }
+      //       })
+      //     )]
+      //   },
+      // });
       //   data: {
       //     userid: input.userid,
       //     create: [courseNodename: input.userUpload.map(
@@ -105,7 +123,7 @@ export const receivedData = t.router({
       //     ]
       //   },
       // });
-      return Course;
+      // return course;
     }),
 });
 
