@@ -5,6 +5,8 @@ import { createEventRouter } from "./routers/createevent";
 import { findUserRouter } from "./routers/finduser";
 import { findSessionRouter } from "./routers/findsession";
 import { savedatafromapiRouter } from "./routers/savedatafromapi";
+import { uploadedData } from "./routers/uploadeddata";
+import { findCourseRouter } from "./routers/findcourse";
 
 /**
  * This is the primary router for your server.
@@ -18,6 +20,8 @@ export const appRouter = createTRPCRouter({
   findUser: findUserRouter,
   findSession: findSessionRouter,
   savedatafromapi: savedatafromapiRouter,
+  uploadedData,
+  findCourseRouter,
 });
 
 // export type definition of API

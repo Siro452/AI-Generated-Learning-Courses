@@ -101,7 +101,7 @@ export default function createNewCourse() {
                   <SubTitle subtitle="Let's get started!" />
                 </span>
                 <span className="mx-3"></span>
-                <span className="block pb-10 text-3xl font-black font-extrabold drop-shadow-md">
+                <span className="block pb-10 text-3xl font-extrabold drop-shadow-md">
                   <Title title="What is your name?" />
                 </span>
                 <input
@@ -137,7 +137,7 @@ export default function createNewCourse() {
                 <SubTitle subtitle="Drag to change the output tone" />
               </span>
               <span className="mx-3"></span>
-              <span className="block pb-10 text-3xl font-black font-extrabold drop-shadow-md">
+              <span className="block pb-10 text-3xl font-extrabold drop-shadow-md">
                 <Title title="Change preferences" />
               </span>
             </div>
