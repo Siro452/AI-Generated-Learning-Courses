@@ -12,7 +12,7 @@ model User {
   id               String             @id @default(cuid())
   createdAt        DateTime           @default(now())
   username         String
-  // Course           Course?
+  // Course           Course[]
   sessions         Session[]
   uploadeddocument UploadedDocument[]
   course           Course[]

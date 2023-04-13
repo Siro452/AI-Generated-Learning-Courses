@@ -79,7 +79,7 @@ export default function UploadFile() {
           type="submit"
           className="rounded-full bg-gradient-to-br from-[#354678]  to-[#8088F1] py-4 px-9 text-xl font-bold text-white"
         ></input>
-        {mutateData.data ? <p>A file is uploaded</p> : null}
+        {/* {mutateData.data ? <p>A file is uploaded</p> : null} */}
 
         {/* <Button text="Next" href="./preferences" type="submit" /> */}
       </form>
