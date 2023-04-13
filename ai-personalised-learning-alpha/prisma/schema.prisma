@@ -45,16 +45,19 @@ model UploadedDocument {
   fileContent   String
   processedData String?
   userid        String
+  Course        Course?
   user          User     @relation(fields: [userid], references: [id], onDelete: Cascade)
 
   @@index([id])
 }
 
 model Course {
-  id             String      @id @default(cuid())
-  userid         String      @unique
-  User           User        @relation(fields: [userid], references: [id])
-  courseNodename CourseNode?
+  id               String           @id @default(cuid())
+  userid           String           @unique
+  uploaddocumentid String           @unique
+  UploadedDocument UploadedDocument @relation(fields: [uploaddocumentid], references: [id], onDelete: Cascade)
+  User             User             @relation(fields: [userid], references: [id])
+  courseNodename   CourseNode?
 }
 
 model CourseNode {

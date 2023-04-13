@@ -8,10 +8,10 @@ type ReturnedData = {
   courseTitle: string;
   courseContent: string;
 };
-interface Content {
-Content: string;
-}
 
+interface Content {
+  Content: string;
+}
 
 interface CourseSection {
   sectionHeader: string;
@@ -25,19 +25,19 @@ interface Course {
 }
 
 interface ComponentNodeArticle {
-  title: string
-  content: string
+  title: string;
+  content: string;
 }
 
 interface SectionNode {
-  title: string
-  articles: ComponentNodeArticle[]
+  title: string;
+  articles: ComponentNodeArticle[];
 }
 
 interface FrontEndCourse {
-  title: string
-  description: string
-  sectionNodes: SectionNode[]
+  title: string;
+  description: string;
+  sectionNodes: SectionNode[];
 }
 // interface in the middle for convention. Keep things separate
 // keep frontend data that will be displayed.

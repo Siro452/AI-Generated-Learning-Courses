@@ -36,21 +36,21 @@ export const receivedData = t.router({
   //     return result;
   //   }),
 
-    // .mutation(async ({ input }) => {
-    //   const result = await prisma.uploadedDocument
-    //     .createMany({
-    //       data: input.userUpload.map((document) => ({
-    //         fileName: document.fileName,
-    //         fileContent: document.fileContent,
-    //       })),
-    //     })
-    //     .then((uploadedDocuments) =>
-    //       uploadedDocuments.map((uploadedDocument: any) => toCourse(uploadedDocument))
-    //     )
-    // )
-    //   return result;
-    // }
-    mutateData: t.procedure
+  // .mutation(async ({ input }) => {
+  //   const result = await prisma.uploadedDocument
+  //     .createMany({
+  //       data: input.userUpload.map((document) => ({
+  //         fileName: document.fileName,
+  //         fileContent: document.fileContent,
+  //       })),
+  //     })
+  //     .then((uploadedDocuments) =>
+  //       uploadedDocuments.map((uploadedDocument: any) => toCourse(uploadedDocument))
+  //     )
+  // )
+  //   return result;
+  // }
+  mutateData: t.procedure
     .input(
       z.object({
         userid: z.string(),
@@ -68,14 +68,30 @@ export const receivedData = t.router({
           userid: input.userid,
           fileName: document.fileName,
           fileContent: document.fileContent,
+          
         })),
       });
 
+      // .query(async({input}) => {
+      //   await prisma.course.findUnique({
+      //     where: {
+      //       uploaddocumentid
+      //     }
+      //   })
+
+      // })
+
+      // const courseid = await prisma.course.findUnique({
+      //   where: {
+      //     uploaddocumentid: "string"
+      //   }
+      // })
       const Course = await prisma.course.create({
-            data: {
-              userid: input.userid
-            }
-          })
+        data: {
+          userid: input.userid,
+          uploaddocumentid: "courseid",
+        },
+      });
       //   data: {
       //     userid: input.userid,
       //     create: [courseNodename: input.userUpload.map(
