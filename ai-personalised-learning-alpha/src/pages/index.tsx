@@ -42,7 +42,7 @@ const Home: NextPage = () => {
               type="button"
               text="Prototype 4"
               href="/prototype4/login"
-              className="ml-10"
+              className="ml-20"
             />
           </div>
         </div>
