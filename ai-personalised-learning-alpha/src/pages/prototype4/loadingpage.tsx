@@ -5,7 +5,7 @@ import LogoContainer from "../../components/logocontainer";
 import Link from "next/link";
 import { useRouter } from "next/router";
 import { api } from "../../utils/api";
-import { createTRPCProxyClient } from "@trpc/client";
+// import { createTRPCProxyClient } from "@trpc/client";
 
 export default async function LoadingPage() {
   const router = useRouter();
@@ -14,17 +14,17 @@ export default async function LoadingPage() {
   }, 5000);
 
   // save the data to the database router
-  const saveReturnedData = api.savedatafromapi.saveDataFromApi.useMutation({});
-  //query the userid
-  const findExistingUserSession = api.findUser.findExistingUserSession.useQuery(
-    {
-      userid: global.localStorage?.getItem("userid") ?? "",
-    }
-  );
+  // const saveReturnedData = api.savedatafromapi.saveDataFromApi.useMutation({});
+  // //query the userid
+  // const findExistingUserSession = api.findUser.findExistingUserSession.useQuery(
+  //   {
+  //     userid: global.localStorage?.getItem("userid") ?? "",
+  //   }
+  // );
 
-  const getUploadedFile = api.uploadedData.queryUploadedData.useQuery({
-    userid: global.localStorage?.getItem("userid") ?? "",
-  });
+  // const getUploadedFile = api.uploadedData.queryUploadedData.useQuery({
+  //   userid: global.localStorage?.getItem("userid") ?? "",
+  // });
 
   // calling the api
   // const apiCall = createTRPCProxyClient({
