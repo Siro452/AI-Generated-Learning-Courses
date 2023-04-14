@@ -111,7 +111,7 @@ export default function createNewCourse() {
                   <Button
                     text={"Next"}
                     type={"button"}
-                    href={"/prototype4/loadingpage"}
+                    href={"/loadingpage"}
                     className="w-60"
                   />
                 </div>
