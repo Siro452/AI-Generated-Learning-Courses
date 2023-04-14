@@ -68,25 +68,22 @@ export const receivedData = t.router({
           userid: input.userid,
           fileName: document.fileName,
           fileContent: document.fileContent,
-          
         })),
       });
 
+      // const uploadedDocumentId = uploadedDocumentId.id
 
-  // const uploadedDocumentId = uploadedDocumentId.id
-
-  // const course = await prisma.course.create({
-  //   data: {
-  //     uploadedDocument: {
-  //       connect: {
-  //         id: uploadedDocumentId
-  //       }
-  //     },
-  //     title: "My new title",
-  //     description: "My description mate",
-  //   }
-  // });
-
+      // const course = await prisma.course.create({
+      //   data: {
+      //     uploadedDocument: {
+      //       connect: {
+      //         id: uploadedDocumentId
+      //       }
+      //     },
+      //     title: "My new title",
+      //     description: "My description mate",
+      //   }
+      // });
 
       // .query(async({input}) => {
       //   await prisma.course.findUnique({

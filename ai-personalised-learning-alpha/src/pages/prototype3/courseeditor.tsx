@@ -43,7 +43,7 @@ export default function CourseEditor() {
   );
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="my-16 flex flex-col items-center">
       <LogoContainer className="self-start" />
       <HeaderContainer
         smallTitle="Edit your course"

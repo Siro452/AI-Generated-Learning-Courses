@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { api } from "../../utils/api";
 import { useRouter } from "next/router";
 import { FrontEndCourse } from "../../..";
-import CourseData from '../../components/courseData'
+import CourseData from "../../components/courseData";
 export default function CourseEditor() {
   const [courseTitle, setCourseTitle] = useState<string>("Course Title");
   const [loading, setLoading] = useState<boolean>(true);
@@ -50,44 +50,43 @@ export default function CourseEditor() {
     }
   );
 
-
   useEffect(() => {
     localStorage.userid ? "" : router.push("./userinput");
   }, []);
 
-  return  <CourseData />
-    // <div className="flex flex-col items-center">
-    //   <LogoContainer className="self-start" />
-    //   <HeaderContainer
-    //     smallTitle="Edit your course"
-    //     largeTitle={`Hi, ${findExistingUserSession.data?.username}`}
-    //     alignment="self-start"
-    //     flexDirection="flex-col-reverse "
-    //   />
-    //   <div className="flex w-3/4 flex-row">
-    //     <div className="flex h-full w-3/4 flex-col">
-    //       <CourseEditorTitleHeader
-    //         placeholderTitle={courseTitle}
-    //         title={updateCourseTitle}
-    //       />
-    //       <CourseDescriptionEditor
-    //         placeholderTitle={courseDescription}
-    //         updateCourseDescription={updateCourseDescriptionTitle}
-    //       />
-    //       <CourseEditorSectionTitle
-    //         placeholderTitle={sectionHeader}
-    //         sectionTitle={updateSectionHeaderTitle}
-    //       />
-    //       <SectionTextEditor />
-    //     </div>
-    //     <div className="ml-4 flex w-16 flex-col items-center">
-    //       <CourseEditorContents
-    //         courseTitle={courseTitle}
-    //         courseDescription={courseDescription}
-    //         sectionHeader={sectionHeader}
-    //       />
-    //       <Button text="Confirm" href="./confirmation" type="submit" />
-    //     </div>
-    //   </div>
-    // </div>
+  return <CourseData />;
+  // <div className="flex flex-col items-center">
+  //   <LogoContainer className="self-start" />
+  //   <HeaderContainer
+  //     smallTitle="Edit your course"
+  //     largeTitle={`Hi, ${findExistingUserSession.data?.username}`}
+  //     alignment="self-start"
+  //     flexDirection="flex-col-reverse "
+  //   />
+  //   <div className="flex w-3/4 flex-row">
+  //     <div className="flex h-full w-3/4 flex-col">
+  //       <CourseEditorTitleHeader
+  //         placeholderTitle={courseTitle}
+  //         title={updateCourseTitle}
+  //       />
+  //       <CourseDescriptionEditor
+  //         placeholderTitle={courseDescription}
+  //         updateCourseDescription={updateCourseDescriptionTitle}
+  //       />
+  //       <CourseEditorSectionTitle
+  //         placeholderTitle={sectionHeader}
+  //         sectionTitle={updateSectionHeaderTitle}
+  //       />
+  //       <SectionTextEditor />
+  //     </div>
+  //     <div className="ml-4 flex w-16 flex-col items-center">
+  //       <CourseEditorContents
+  //         courseTitle={courseTitle}
+  //         courseDescription={courseDescription}
+  //         sectionHeader={sectionHeader}
+  //       />
+  //       <Button text="Confirm" href="./confirmation" type="submit" />
+  //     </div>
+  //   </div>
+  // </div>
 }

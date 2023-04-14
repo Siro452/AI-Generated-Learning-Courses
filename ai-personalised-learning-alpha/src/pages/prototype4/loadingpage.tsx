@@ -13,18 +13,18 @@ export default async function LoadingPage() {
     router.push("/prototype4/courseeditor");
   }, 5000);
 
-  //save the data to the database router
-  // const saveReturnedData = api.savedatafromapi.saveDataFromApi.useMutation({});
-  // //query the userid
-  // const findExistingUserSession = api.findUser.findExistingUserSession.useQuery(
-  //   {
-  //     userid: global.localStorage?.getItem("userid") ?? "",
-  //   }
-  // );
+  // save the data to the database router
+  const saveReturnedData = api.savedatafromapi.saveDataFromApi.useMutation({});
+  //query the userid
+  const findExistingUserSession = api.findUser.findExistingUserSession.useQuery(
+    {
+      userid: global.localStorage?.getItem("userid") ?? "",
+    }
+  );
 
-  // const getUploadedFile = api.uploadedData.queryUploadedData.useQuery({
-  //   userid: global.localStorage?.getItem("userid") ?? "",
-  // });
+  const getUploadedFile = api.uploadedData.queryUploadedData.useQuery({
+    userid: global.localStorage?.getItem("userid") ?? "",
+  });
 
   // calling the api
   // const apiCall = createTRPCProxyClient({
