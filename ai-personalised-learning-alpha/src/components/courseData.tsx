@@ -25,6 +25,8 @@ const CoursePage: React.FC = ({}) => {
   const router = useRouter();
   const { courseById } = router.query;
 
+    // do the api query to access the course ID 
+
 
   const updateCourseTitle = () => {
     if (courseState?.title === "") {
@@ -54,6 +56,28 @@ const CoursePage: React.FC = ({}) => {
       setCourseState(frontEndCourse);
       setLoading(false);
     }, 1000);
+
+    // const mutateData = api.receivedData.mutateData.useMutation({
+    //   onSuccess: (data) => {
+    //     console.log(data);
+    //     const frontEndCourse: FrontEndCourse = {
+    //       title: data.id,
+    //       description: data.userid,
+    //       sectionNodes:  sectionNodes: [
+    //         //     {
+    //         //       title: "Section 1",
+    //         //       articles: [
+    //         //         {
+    //         //           title: "courseState.title",
+    //         //           content: "courseState.description",
+    //         //         },
+    //         //       ],
+    //         //     },,
+
+    //     }
+    //   },
+    // });
+  
 
 
 

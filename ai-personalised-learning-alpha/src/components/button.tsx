@@ -3,7 +3,7 @@ import Link from "next/link";
 interface ButtonProps {
   className?: string;
   text: string;
-  href: string;
+  href?: string;
   type: "submit" | "reset" | "button";
 
 }
