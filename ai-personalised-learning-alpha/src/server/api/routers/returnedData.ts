@@ -68,26 +68,25 @@ export const receivedData = t.router({
           userid: input.userid,
           fileName: document.fileName,
           fileContent: document.fileContent,
-          
         })),
       });
 
+      // const uploadedDocumentId = uploadedDocumentId.id
 
-  // const uploadedDocumentId = uploadedDocumentId.id
-
-  // const course = await prisma.course.create({
-  //   data: {
-  //     uploadedDocument: {
-  //       connect: {
-  //         id: uploadedDocumentId
-  //       }
-  //     },
-  //     title: "My new title",
-  //     description: "My description mate",
-  //   }
-  // });
+      const course = await prisma.course.create({
+        data: {
+          userid: input.userid,
+          courseNode: {
+            create: [{ title: "my title mate", description: "my description" }],
+          },
+        },
+        include: {
+          courseNode: true
+        }
+      });
 
 
+      
       // .query(async({input}) => {
       //   await prisma.course.findUnique({
       //     where: {
@@ -123,8 +122,13 @@ export const receivedData = t.router({
       //     ]
       //   },
       // });
-      // return course;
+      return course;
     }),
 });
 
 // adding another api endpoint that returns what's already in the database.
+
+
+
+// route for checking user info to match the course
+//
