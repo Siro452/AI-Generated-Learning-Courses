@@ -46,7 +46,6 @@ export default function createNewCourse() {
       } else {
         setUser(<LoginFormWithNoId />);
       }
-      generate()
     }, []);
 
     return <div>{user}</div>;
@@ -69,8 +68,7 @@ export default function createNewCourse() {
 
   const generate: () => void = async () => {
 
-    console.log(findExistingUser)
-    try {
+    // try {
       // if(!findExistingUser.isLoading && findExistingUser.data){
         const course = await mutateData.mutateAsync({
           userid: findExistingUser.data.id,
@@ -83,9 +81,9 @@ export default function createNewCourse() {
         });
         router.push(`/prototype2/courseeditor/?courseid=${course.id}`);
       // }
-    } catch (error) {
-      console.error(error);
-    }
+    // } catch (error) {
+      // console.error(error);
+    // }
   }
   
   
