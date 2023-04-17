@@ -1,34 +1,145 @@
-// notes from meeting
-
-// getting a query that will await the course id, making a router which is this page that will findUnique course id
-// findUnique
-// result ({
-// input.courseID
-// })
-
-//return result
-
-// access the parts of course ID once you have the course ID being returned
-
+import { createTRPCRouter, publicProcedure } from "../trpc";
 import { z } from "zod";
-import { t } from "../trpc";
-import { prisma } from "../../db";
+import { Course, Prisma } from '@prisma/client';
 
-export const getCourse = t.router({
-  courseById: t.procedure
-    .input(
+const findCourseRouter = createTRPCRouter({
+  findCourse: publicProcedure.query(
+    z.object({
+      userid: z.string(),
+    })
+  ).output(
+    z.array(
       z.object({
-        courseId: z.string()
+        id: z.string(),
+        userid: z.string(),
+        courseNode: z.array(
+          z.object({
+            id: z.string(),
+            title: z.string(),
+            description: z.string(),
+            sectionNode: z.array(
+              z.object({
+                id: z.string(),
+                title: z.string(),
+                compononentNodeArticle: z.array(
+                  z.object({
+                    id: z.string(),
+                    title: z.string(),
+                    content: z.string(),
+                    order: z.number(),
+                  })
+                ),
+              })
+            ),
+            sectionNodeAssessment: z.array(
+              z.object({
+                id: z.string(),
+                order: z.number(),
+                assessmentQuestion: z.array(
+                  z.object({
+                    id: z.string(),
+                    question: z.string(),
+                    option1: z.string(),
+                    option2: z.string(),
+                    option3: z.string(),
+                    option4: z.string(),
+                    option5: z.string(),
+                    correctAnswer: z.number(),
+                    guidance: z.string(),
+                    commentary: z.string(),
+                  })
+                ),
+              })
+            ),
+          })
+        ),
       })
     )
-    .query(async ({ input }) => {
-      const result = await prisma.course.findUnique({
-        where: {
-          id: input.courseId
+  ).use(async ({ input }, { prisma }) => {
+    const courses = await prisma.course.findMany({
+      where: {
+        userid: input.userid,
+      },
+      select: {
+        id: true,
+        userid: true,
+        courseNode: {
+          select: {
+            id: true,
+            title: true,
+            description: true,
+            sectionNode: {
+              select: {
+                id: true,
+                title: true,
+                compononentNodeArticle: {
+                  select: {
+                    id: true,
+                    title: true,
+                    content: true,
+                    order: true,
+                  },
+                },
+              },
+            },
+            sectionNodeAssessment: {
+              select: {
+                id: true,
+                order: true,
+                assessmentQuestion: {
+                  select: {
+                    id: true,
+                    question: true,
+                    option1: true,
+                    option2: true,
+                    option3: true,
+                    option4: true,
+                    option5: true,
+                    correctAnswer: true,
+                    guidance: true,
+                    commentary: true,
+                  },
+                },
+              },
+            },
+          },
         },
-      });
-      return result;
-    }),
+      },
+    });
+    return courses as (Course & {
+      courseNode: {
+        id: string;
+        title: string;
+        description: string;
+        sectionNode: {
+          id: string;
+          title: string;
+          compononentNodeArticle: {
+            id: string;
+            title: string;
+            content: string;
+            order: number;
+          }[];
+        }[];
+        sectionNodeAssessment: {
+          id: string;
+          order: number;
+          assessmentQuestion: {
+            id: string;
+            question: string;
+            option1: string;
+            option2: string;
+            option3: string;
+            option4: string;
+            option5: string;
+            correctAnswer: number;
+            guidance: string;
+            commentary: string;
+          }[];
+        }[];
+      }[];
+    })[];
+  }),
 });
 
-// adding another api endpoint that returns what's already in the database.
+export default findCourseRouter;

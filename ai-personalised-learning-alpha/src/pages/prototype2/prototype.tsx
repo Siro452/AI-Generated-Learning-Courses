@@ -10,7 +10,7 @@ import Button from "../../components/button";
 import { api } from "../../utils/api";
 import LoginFormWithNoId from "../../components/loginFormIfNoId";
 import Welcome from "../../components/welcome";
-import { useRouter } from 'next/router'
+import { useRouter } from "next/router";
 
 export interface FileContent {
   filename: string;
@@ -28,10 +28,9 @@ export interface Filters {
 }
 
 export default function createNewCourse() {
-  const router = useRouter()
+  const router = useRouter();
   const [course, setCourse] = useState<any | undefined>();
 
-  // const user = global.localStorage?.getItem("userid");
   const userId = global.localStorage?.getItem("userid") ?? "";
 
   const findExistingUser = api.findUser.findExistingUserSession.useQuery({
@@ -61,8 +60,7 @@ export default function createNewCourse() {
 
   const mutateData = api.receivedData.mutateData.useMutation({
     onSuccess: (data) => {
-      console.log(data);
-
+      console.log(data.courseNode);
       setCourse(data);
     },
   });
@@ -71,8 +69,7 @@ export default function createNewCourse() {
     // e.preventDefault();
     // mutate data
 
-   const course = await mutateData.mutateAsync({
-      
+    const course = await mutateData.mutateAsync({
       userid: findExistingUser.data.id,
       userUpload: content.content.map((x) => {
         return {
@@ -81,7 +78,7 @@ export default function createNewCourse() {
         };
       }),
     });
-    router.push(`/prototype2/courseeditor/?courseid=${course.id}`)
+    router.push(`/prototype2/courseeditor/?courseid=${course.id}`);
   };
   return (
     <>
@@ -90,7 +87,6 @@ export default function createNewCourse() {
       <header className="flex flex-col justify-start py-4">
         <LogoContainer className="mb-5 h-32" />
         <span className="ml-11 flex flex-col text-3xl text-blue-800">
-          <SubTitle subtitle="AI Learning Content creator" />
         </span>
       </header>
       <main className="mx-auto mt-12 max-w-screen-lg py-8">
