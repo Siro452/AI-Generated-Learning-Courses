@@ -46,13 +46,13 @@ model UploadedDocument {
   userid        String   
   course        Course?  @relation(fields: [courseId], references: [id])
   user          User     @relation(fields: [userid], references: [id], onDelete: Cascade)
-
+  courseId      String?
   @@index([id])
 }
 
 model Course {
-  id               String             @id @default(cuid())
-  userid           String             @unique
+  id         String       @id @default(cuid())
+  courseNode CourseNode[]
   User             User               @relation(fields: [userid], references: [id])
   userid           String             
   UploadedDocument UploadedDocument[]

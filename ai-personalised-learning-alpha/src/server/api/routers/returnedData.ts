@@ -60,14 +60,12 @@ export const receivedData = t.router({
             fileContent: z.string(),
           })
         ),
-        courseId: z.string(),
       })
     )
     .mutation(async ({ input }) => {
       await prisma.uploadedDocument.createMany({
         data: input.userUpload.map((document) => ({
           userid: input.userid,
-          courseId: input.courseId,
           fileName: document.fileName,
           fileContent: document.fileContent,
         })),
