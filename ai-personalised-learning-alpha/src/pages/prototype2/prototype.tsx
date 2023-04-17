@@ -29,9 +29,8 @@ export interface Filters {
 
 export default function createNewCourse() {
   const router = useRouter();
+  const [userId, setUserId] = useState()
   const [course, setCourse] = useState<any | undefined>();
-
-  const userId = global.localStorage?.getItem("userid") ?? "";
 
   const findExistingUser = api.findUser.findExistingUserSession.useQuery({
     userid: global.localStorage?.getItem("userid") ?? "",
@@ -47,6 +46,7 @@ export default function createNewCourse() {
       } else {
         setUser(<LoginFormWithNoId />);
       }
+      generate()
     }, []);
 
     return <div>{user}</div>;
@@ -65,29 +65,37 @@ export default function createNewCourse() {
     },
   });
 
-  const generate: () => void = async () => {
-    // e.preventDefault();
-    // mutate data
 
-    const course = await mutateData.mutateAsync({
-      userid: findExistingUser.data.id,
-      userUpload: content.content.map((x) => {
-        return {
-          fileName: x.filename,
-          fileContent: x.rawtext,
-        };
-      }),
-    });
-    router.push(`/prototype2/courseeditor/?courseid=${course.id}`);
-  };
+
+  const generate: () => void = async () => {
+
+    console.log(findExistingUser)
+    try {
+      // if(!findExistingUser.isLoading && findExistingUser.data){
+        const course = await mutateData.mutateAsync({
+          userid: findExistingUser.data.id,
+          userUpload: content.content.map((x) => {
+            return {
+              fileName: x.filename,
+              fileContent: x.rawtext,
+            };
+          }),
+        });
+        router.push(`/prototype2/courseeditor/?courseid=${course.id}`);
+      // }
+    } catch (error) {
+      console.error(error);
+    }
+  }
+  
+  
   return (
     <>
       {/* Section 3 --- User Input */}
 
       <header className="flex flex-col justify-start py-4">
         <LogoContainer className="mb-5 h-32" />
-        <span className="ml-11 flex flex-col text-3xl text-blue-800">
-        </span>
+        <span className="ml-11 flex flex-col text-3xl text-blue-800"></span>
       </header>
       <main className="mx-auto mt-12 max-w-screen-lg py-8">
         <section className="mb-12 mt-12">
