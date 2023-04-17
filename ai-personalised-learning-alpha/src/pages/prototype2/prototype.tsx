@@ -10,37 +10,31 @@ import Button from "../../components/button";
 import { api } from "../../utils/api";
 import LoginFormWithNoId from "../../components/loginFormIfNoId";
 import Welcome from "../../components/welcome";
+import { useRouter } from "next/router";
 
 export interface FileContent {
   filename: string;
   rawtext: string;
-  userid: string;
 }
 
 export interface FileSubmissionState {
   options?: any;
   content: FileContent[];
   title: string;
-  userid: string;
 }
 
 export interface Filters {
   sliderValue: number;
 }
 
-interface GenerateProps {
-  // placeholder: string;
-  content: FileSubmissionState;
-}
-
 export default function createNewCourse() {
-  const user = global.localStorage?.getItem("userid");
+  const router = useRouter();
+  const [userId, setUserId] = useState();
+  const [course, setCourse] = useState<any | undefined>();
 
-  // const user = typeof window !== "undefined" && localStorage.getItem("userid");
-
-  // if (!user) {
-  //   return <LoginFormWithNoId />;
-  // }
+  const findExistingUser = api.findUser.findExistingUserSession.useQuery({
+    userid: global.localStorage?.getItem("userid") ?? "",
+  });
 
   function checkUser() {
     const [user, setUser] = useState(<Welcome />);
@@ -57,43 +51,37 @@ export default function createNewCourse() {
     return <div>{user}</div>;
   }
 
-  // if(!user){
-  //   return <LoginFormWithNoId />
-  // } else {
-  //   "Welcome back"
-  // }
-
   const [content, setContent] = useState<FileSubmissionState>({
-    userid: "",
+    // userid: "",
     content: [],
     title: "",
   });
 
   const mutateData = api.receivedData.mutateData.useMutation({
     onSuccess: (data) => {
-      console.log(data);
+      console.log(data.courseNode);
+      setCourse(data);
     },
   });
 
   const generate: () => void = async () => {
-    // e.preventDefault();
-    // mutate data
-
-    mutateData.mutateAsync({
-      userid: user,
+    // try {
+    // if(!findExistingUser.isLoading && findExistingUser.data){
+    const course = await mutateData.mutateAsync({
+      userid: findExistingUser.data.id,
       userUpload: content.content.map((x) => {
         return {
           fileName: x.filename,
           fileContent: x.rawtext,
-
-          // sessionid: "",
-          // eventid: "",
         };
       }),
     });
+    router.push(`/prototype2/courseeditor/?courseid=${course.id}`);
+    // }
+    // } catch (error) {
+    // console.error(error);
+    // }
   };
-
-  // const username = global.localStorage?.getItem("userid")
 
   return (
     <>
@@ -101,9 +89,7 @@ export default function createNewCourse() {
 
       <header className="flex flex-col justify-start py-4">
         <LogoContainer className="mb-5 h-32" />
-        <span className="ml-11 flex flex-col text-3xl text-blue-800">
-          <SubTitle subtitle="AI Learning Content creator" />
-        </span>
+        <span className="ml-11 flex flex-col text-3xl text-blue-800"></span>
       </header>
       <main className="mx-auto mt-12 max-w-screen-lg py-8">
         <section className="mb-12 mt-12">
@@ -146,7 +132,7 @@ export default function createNewCourse() {
         <section className="flex flex-row justify-end py-4" onClick={generate}>
           <Button
             text={"Generate"}
-            href={"/prototype2/courseeditor"}
+            href={"#"}
             type={"button"}
             className="w-60"
           />

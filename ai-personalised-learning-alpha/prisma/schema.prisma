@@ -12,10 +12,9 @@ model User {
   id               String             @id @default(cuid())
   createdAt        DateTime           @default(now())
   username         String
-  course           Course[]
+  courses          Course[]
   sessions         Session[]
   uploadeddocument UploadedDocument[]
-
   @@index([id])
 }
 
@@ -44,8 +43,7 @@ model UploadedDocument {
   fileName      String
   fileContent   String
   processedData String?
-  userid        String 
-  courseId      String  
+  userid        String   
   course        Course?  @relation(fields: [courseId], references: [id])
   user          User     @relation(fields: [userid], references: [id], onDelete: Cascade)
 
@@ -56,7 +54,7 @@ model Course {
   id               String             @id @default(cuid())
   userid           String             @unique
   User             User               @relation(fields: [userid], references: [id])
-  courseNode       CourseNode[]
+  userid           String             
   UploadedDocument UploadedDocument[]
 }
 
@@ -66,7 +64,7 @@ model CourseNode {
   title                 String
   description           String
   course                Course                 @relation(fields: [courseid], references: [id], onDelete: Cascade)
-  sectionNode           SectionNode?
+  sectionNode           SectionNode[]
   sectionNodeAssessment SectionNodeAssessment[]
 }
 
@@ -74,7 +72,7 @@ model SectionNode {
   id                   String                @id @default(cuid())
   title                String
   courseNodeid         String                @unique
-  componentNodeArticle ComponentNodeArticle?
+  componentNodeArticle ComponentNodeArticle[]
   courseNode           CourseNode            @relation(fields: [courseNodeid], references: [id], onDelete: Cascade)
 }
 
@@ -91,7 +89,7 @@ model SectionNodeAssessment {
   id                 String              @id @default(cuid())
   courseNodeid       String              @unique
   order              Int
-  assessmentQuestion AssessmentQuestion?
+  assessmentQuestion AssessmentQuestion[]
   courseNode         CourseNode          @relation(fields: [courseNodeid], references: [id], onDelete: Cascade)
 }
 

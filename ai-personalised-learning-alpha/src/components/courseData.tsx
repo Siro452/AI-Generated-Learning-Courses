@@ -25,6 +25,8 @@ const CoursePage: React.FC = ({}) => {
   const router = useRouter();
   const { courseById } = router.query;
 
+  // do the api query to access the course ID
+
   const updateCourseTitle = () => {
     if (courseState?.title === "") {
       setCourseTitle("Course Title");
@@ -52,6 +54,27 @@ const CoursePage: React.FC = ({}) => {
       setCourseState(frontEndCourse);
       setLoading(false);
     }, 1000);
+
+    // const mutateData = api.receivedData.mutateData.useMutation({
+    //   onSuccess: (data) => {
+    //     console.log(data);
+    //     const frontEndCourse: FrontEndCourse = {
+    //       title: data.id,
+    //       description: data.userid,
+    //       sectionNodes:  sectionNodes: [
+    //         //     {
+    //         //       title: "Section 1",
+    //         //       articles: [
+    //         //         {
+    //         //           title: "courseState.title",
+    //         //           content: "courseState.description",
+    //         //         },
+    //         //       ],
+    //         //     },,
+
+    //     }
+    //   },
+    // });
 
     // setCourseState({
     //   title: "My cool course",
@@ -116,14 +139,16 @@ const CoursePage: React.FC = ({}) => {
     <div>
       {courseState && (
         <div className="flex flex-col items-center">
-          <LogoContainer className="self-start" />
+          <LogoContainer className="mt-4 self-start" />
           <HeaderContainer
             smallTitle="Edit your course"
             // largeTitle={`Hi, ${findExistingUserSession.data?.username}`}
             largeTitle={`Hi`}
             alignment="self-start"
             flexDirection="flex-col-reverse"
+            mx="mx-20"
           />
+
           <div className="flex w-3/4 flex-row">
             <div className="flex h-full w-3/4 flex-col">
               <CourseEditorTitleHeader
@@ -146,6 +171,11 @@ const CoursePage: React.FC = ({}) => {
                 courseDescription={courseDescription}
                 sectionHeader={sectionHeader}
                 questiontitle=""
+              />
+              <Button
+                text="Confirm"
+                href="../prototype2/confirmation"
+                type="submit"
               />
               <Button
                 text="Confirm"

@@ -1,3 +1,3 @@
 export default function Welcome() {
-    return <div>Welcome back</div>
+    return <div className="text-xl">Welcome back</div>
 }
