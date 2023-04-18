@@ -51,7 +51,7 @@ export default function InputName() {
 
   return (
     <div className="h-screen bg-white">
-      <div className="bg-gradient-t h-4/5 -translate-y-44 -skew-y-6 bg-gradient-to-tr from-purple-500 via-indigo-500 to-violet-800 ">
+      <div className="h-4/5 -translate-y-44 -skew-y-6 bg-gradient-to-tr from-purple-500 via-indigo-500 to-violet-800 ">
         <div className="translate-y-40  skew-y-6">
           <LogoContainer className="m-16" />
         </div>

@@ -65,20 +65,15 @@ export default function createNewCourse() {
   return (
     <>
       {/* Section 3 --- User Input */}
-      <div className="relative bg-white">
-        <div className="h-screen w-screen bg-gradient-to-r from-purple-500 via-indigo-500 to-violet-800">
-          <div className="absolute inset-0 inset-y-0 right-0 origin-top-left -skew-y-12 transform overflow-hidden bg-white opacity-25"></div>
-          <header className="items-left flex h-60 flex-col justify-between py-4">
+      <div className="h-screen bg-white">
+        <div className="h-screen w-screen -translate-y-44 -skew-y-6 bg-gradient-to-r from-purple-500 via-indigo-500 to-violet-800">
+          <header className="items-left flex h-60 translate-y-44 skew-y-6  flex-col justify-between py-4">
             {/* Logo */}
             <div className="flex items-center">
               <LogoContainer className="h-8" />
             </div>
-
-            <span className="ml-12 text-2xl font-bold text-blue-800">
-              AI Learning Content Creator
-            </span>
           </header>
-          <main className="mx-auto max-w-screen-lg">
+          <main className="mx-auto max-w-screen-lg translate-y-40 skew-y-6">
             {/* File upload and sliders */}
             <section className="mt-30 flex flex-col items-center justify-center lg:flex-row">
               {/* File upload */}
@@ -111,7 +106,7 @@ export default function createNewCourse() {
                   <Button
                     text={"Next"}
                     type={"button"}
-                    href={"prototype4/loadingpage"}
+                    href={"./loadingpage"}
                     className="w-60"
                   />
                 </div>
