@@ -16,10 +16,14 @@ export default function Preferences() {
       />
       <div className="flex flex-row items-center">
         <div className="mx-64">
-          <Slider label="Professionalism" />
-          <Slider label="Humour" />
-          <Slider label="Simplicity" />
-          <Slider label="Synonyms" />
+          <h4>Professionalism</h4>
+          <Slider />
+          <h4>Humour</h4>
+          <Slider />
+          <h4>Simplicity</h4>
+          <Slider />
+          <h4>Synonyms</h4>
+          <Slider />
         </div>
         <Button
           className="self-end"
