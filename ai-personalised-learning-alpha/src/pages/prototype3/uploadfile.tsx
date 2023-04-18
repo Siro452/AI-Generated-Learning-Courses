@@ -57,14 +57,15 @@ export default function UploadFile() {
   return (
     <div className="flex flex-col  items-center">
       <LogoContainer className="self-start" />
-      <h4 className="ml-8 self-start text-3xl font-semibold  ">
-        Hello {findExistingUser.data?.username}
+      <h4 className="ml-16 mt-16 self-start text-3xl font-semibold  ">
+        Hello {findExistingUser.data?.username}!
       </h4>
       <HeaderContainer
         smallTitle="Upload your file"
         largeTitle="Drag & drop or browse"
         alignment="place-self-start items-start"
         flexDirection="flex-col"
+        mx="mx-20"
       />
       <div className="flex w-3/4 content-center justify-center">
         <FileUpload

@@ -2,6 +2,7 @@ interface courseEditorContentsProps {
   courseTitle: string;
   courseDescription: string;
   sectionHeader: string;
+  questiontitle: string;
 }
 
 export default function CourseEditorContents(props: courseEditorContentsProps) {
@@ -16,7 +17,7 @@ export default function CourseEditorContents(props: courseEditorContentsProps) {
       <h4 className="p-3">
         {props.sectionHeader}
         <div className="flex flex-col justify-items-center px-6 py-2">
-          <h5>Question 1</h5>
+          <h5>place holder Question 1 {props.questiontitle}</h5>
           <h5>Question 2</h5>
         </div>
       </h4>

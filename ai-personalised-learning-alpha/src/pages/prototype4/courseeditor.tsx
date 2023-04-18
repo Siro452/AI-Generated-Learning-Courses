@@ -42,15 +42,23 @@ export default function CourseEditor() {
     }
   );
 
+  if (findExistingUserSession.isLoading) {
+    return <div>Loading...</div>;
+  }
+
+  if (findExistingUserSession.isError) {
+    return <div>Error: {findExistingUserSession.error.message}</div>;
+  }
+
   return (
     <div className="flex flex-col items-center">
-      <LogoContainer className="self-start" />
+      <LogoContainer className="my-8 self-start" />
       <HeaderContainer
         smallTitle="Edit your course"
         largeTitle={`Hi, ${findExistingUserSession.data?.username}`}
         alignment="self-start"
         flexDirection="flex-col-reverse "
-        mx="mx-16"
+        mx="mx-32"
       />
       <div className="flex w-3/4 flex-row">
         <div className="flex h-full w-3/4 flex-col">
@@ -73,6 +81,7 @@ export default function CourseEditor() {
             courseTitle={courseTitle}
             courseDescription={courseDescription}
             sectionHeader={sectionHeader}
+            questiontitle=""
           />
           <Button text="Confirm" href="./confirmation" type="submit" />
         </div>

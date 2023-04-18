@@ -12,6 +12,7 @@ export default function Preferences() {
         largeTitle="Dial your preferences"
         alignment="place-self-start"
         flexDirection="flex-col"
+        mx="ml-20"
       />
       <div className="flex flex-row items-center">
         <div className="mx-64">

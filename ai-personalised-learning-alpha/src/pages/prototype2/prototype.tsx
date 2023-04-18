@@ -29,7 +29,7 @@ export interface Filters {
 
 export default function createNewCourse() {
   const router = useRouter();
-  const [userId, setUserId] = useState()
+  const [userId, setUserId] = useState();
   const [course, setCourse] = useState<any | undefined>();
 
   const findExistingUser = api.findUser.findExistingUserSession.useQuery({
@@ -64,29 +64,25 @@ export default function createNewCourse() {
     },
   });
 
-
-
   const generate: () => void = async () => {
-
     // try {
-      // if(!findExistingUser.isLoading && findExistingUser.data){
-        const course = await mutateData.mutateAsync({
-          userid: findExistingUser.data.id,
-          userUpload: content.content.map((x) => {
-            return {
-              fileName: x.filename,
-              fileContent: x.rawtext,
-            };
-          }),
-        });
-        router.push(`/prototype2/courseeditor/?courseid=${course.id}`);
-      // }
-    // } catch (error) {
-      // console.error(error);
+    // if(!findExistingUser.isLoading && findExistingUser.data){
+    const course = await mutateData.mutateAsync({
+      userid: findExistingUser.data.id,
+      userUpload: content.content.map((x) => {
+        return {
+          fileName: x.filename,
+          fileContent: x.rawtext,
+        };
+      }),
+    });
+    router.push(`/prototype2/courseeditor/?courseid=${course.id}`);
     // }
-  }
-  
-  
+    // } catch (error) {
+    // console.error(error);
+    // }
+  };
+
   return (
     <>
       {/* Section 3 --- User Input */}
@@ -125,7 +121,7 @@ export default function createNewCourse() {
                 <SubTitle subtitle="Drag to change the output tone" />
               </span>
               <span className="mx-3"></span>
-              <span className="block pb-10 text-3xl font-black font-extrabold drop-shadow-md">
+              <span className="block pb-10 text-3xl font-extrabold drop-shadow-md">
                 <Title title="Change preferences" />
               </span>
             </div>

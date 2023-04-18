@@ -139,7 +139,7 @@ const CoursePage: React.FC = ({}) => {
     <div>
       {courseState && (
         <div className="flex flex-col items-center">
-          <LogoContainer className="self-start mt-4" />
+          <LogoContainer className="mt-4 self-start" />
           <HeaderContainer
             smallTitle="Edit your course"
             // largeTitle={`Hi, ${findExistingUserSession.data?.username}`}
@@ -170,6 +170,12 @@ const CoursePage: React.FC = ({}) => {
                 courseTitle={courseTitle}
                 courseDescription={courseDescription}
                 sectionHeader={sectionHeader}
+                questiontitle=""
+              />
+              <Button
+                text="Confirm"
+                href="../prototype2/confirmation"
+                type="submit"
               />
               <Button
                 text="Confirm"

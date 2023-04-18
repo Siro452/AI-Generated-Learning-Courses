@@ -19,7 +19,7 @@ export default function Button(props: ButtonProps) {
         className=" flex items-center px-9 text-3xl font-bold text-amber-500"
       >
         {props.text}
-        <span className="text-xl text-amber-500 ml-4">
+        <span className="ml-4 text-xl text-amber-500">
           <MdOutlineArrowForwardIos />
         </span>
       </button>

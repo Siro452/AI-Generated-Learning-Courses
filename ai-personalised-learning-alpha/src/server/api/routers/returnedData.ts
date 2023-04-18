@@ -81,12 +81,10 @@ export const receivedData = t.router({
           },
         },
         include: {
-          courseNode: true
-        }
+          courseNode: true,
+        },
       });
 
-
-      
       // .query(async({input}) => {
       //   await prisma.course.findUnique({
       //     where: {
@@ -127,8 +125,6 @@ export const receivedData = t.router({
 });
 
 // adding another api endpoint that returns what's already in the database.
-
-
 
 // route for checking user info to match the course
 //

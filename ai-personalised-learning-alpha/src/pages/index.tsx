@@ -16,7 +16,7 @@ const Home: NextPage = () => {
           <h1 className="items-start bg-gradient-to-r from-[#F2F2F2] via-[#6567EA] via-[#364577] to-[#FFDCB3] bg-clip-text text-[180px] font-bold tracking-tight text-transparent">
             Prototype Testing
           </h1>
-          <h2 className="m-2 flex flex-row bg-gradient-to-r  from-[#4865A6] via-[#AFAFAF] to-[#E3E3E3] bg-clip-text text-5xl text-transparent">
+          <h2 className="m-2 flex h-16 flex-row items-center  bg-gradient-to-r from-[#4865A6] via-[#AFAFAF] to-[#E3E3E3] bg-clip-text text-5xl text-transparent">
             <DacreedLogo height={100} width={200} />
             AI Learning Content Creator
           </h2>
@@ -25,7 +25,6 @@ const Home: NextPage = () => {
               type="button"
               text="Prototype 1"
               href="/prototype1/inputuser"
-              className="mr-10"
             />
             <Button
               type="button"
@@ -37,12 +36,13 @@ const Home: NextPage = () => {
               type="button"
               text="Prototype 3"
               href="/prototype3/userinput"
+              className="ml-20"
             />
             <Button
               type="button"
               text="Prototype 4"
               href="/prototype4/login"
-              className="ml-10"
+              className="ml-20"
             />
           </div>
         </div>

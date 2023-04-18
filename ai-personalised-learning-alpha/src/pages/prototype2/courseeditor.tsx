@@ -10,7 +10,7 @@ import { useEffect, useState } from "react";
 import { api } from "../../utils/api";
 import { useRouter } from "next/router";
 import { FrontEndCourse } from "../../..";
-import CourseData from '../../components/courseData'
+import CourseData from "../../components/courseData";
 export default function CourseEditor() {
   const [courseTitle, setCourseTitle] = useState<string>("Course Title");
   const [loading, setLoading] = useState<boolean>(true);
@@ -50,10 +50,9 @@ export default function CourseEditor() {
     }
   );
 
-
   useEffect(() => {
     localStorage.userid ? "" : router.push("./userinput");
   }, []);
 
-  return  <CourseData />
+  return <CourseData />;
 }

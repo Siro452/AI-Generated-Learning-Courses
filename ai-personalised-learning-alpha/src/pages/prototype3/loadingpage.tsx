@@ -22,6 +22,7 @@ export default function () {
         largeTitle="AI is generating your course..."
         alignment="place-self-start"
         flexDirection="flex-col"
+        mx="mx-20"
       />
       <Link className="flex flex-row" href="./courseeditor">
         {/* <Image src={loadinghalf1} width={500} height={500} alt="loadinghalf1" />

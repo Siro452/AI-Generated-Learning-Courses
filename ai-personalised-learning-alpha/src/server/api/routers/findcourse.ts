@@ -18,13 +18,13 @@ export const getCourse = t.router({
   courseById: t.procedure
     .input(
       z.object({
-        courseId: z.string()
+        courseId: z.string(),
       })
     )
     .query(async ({ input }) => {
       const result = await prisma.course.findUnique({
         where: {
-          id: input.courseId
+          id: input.courseId,
         },
       });
       return `This is the result: ${result}`;
