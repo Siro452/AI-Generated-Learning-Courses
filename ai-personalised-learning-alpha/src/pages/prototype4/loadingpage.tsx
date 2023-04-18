@@ -81,7 +81,7 @@ export default function LoadingPage() {
 
   return (
     <div className="flex flex-col items-center">
-      <LogoContainer className="self-start" />
+      <LogoContainer className="my-8 self-start" />
       <HeaderContainer
         smallTitle="This won't take long"
         largeTitle="AI is generating your course..."
