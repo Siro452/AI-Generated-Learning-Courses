@@ -17,6 +17,7 @@ Here is an example of data transfer in the stack. There is lots of helpful docum
 Link: https://shorturl.at/uGO26
 
 
-Check the commented stuff to scan if there is anything that might be useful to you or not.
 
-Don't be afraid once you've checked it to cut it out to clean up the code.
+Regarding the commented code:
+- Check the commented stuff to scan if there is anything that might be useful to you or not.
+- Don't be afraid once you've checked it to cut it out to clean up the code.
